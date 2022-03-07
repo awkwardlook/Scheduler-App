@@ -1,5 +1,7 @@
 <template>
   <Header/>
+  <Login/>
+  <Register/>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to our Scheduler App Hope we get A"/>
 </template>
@@ -7,12 +9,16 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/Header.vue'
+import Login from './components/Login.vue'
+import Register from './components/Register.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    Header
+    Header,
+    Login,
+    Register
   }
 }
 </script>
