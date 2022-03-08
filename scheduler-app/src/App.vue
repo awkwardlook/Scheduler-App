@@ -9,8 +9,8 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/Header.vue'
-import Login from './components/Login.vue'
-import Register from './components/Register.vue'
+import Login from './views/Login.vue'
+import Register from './views/Register.vue'
 
 export default {
   name: 'App',
@@ -21,6 +21,7 @@ export default {
     Register
   }
 }
+
 </script>
 
 <style>
