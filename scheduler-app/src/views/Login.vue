@@ -1,4 +1,6 @@
 <template>
+<!-- add /login to reach this page -->
+
 <h1>Login</h1>
 </template>
 
