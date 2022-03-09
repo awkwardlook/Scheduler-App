@@ -1,12 +1,16 @@
 <template>
-<!-- add /login to reach this page -->
-
-<h1>Login</h1>
+<LoginBox/>
+	<h1> mi at login page</h1>
 </template>
 
 <script>
+import LoginBox from '@/components/LoginRegister/Loginbox.vue'
+
 export default {
-	name: 'Login'
+  name: 'Login',
+  components: {
+    LoginBox,
+  }
 }
 </script>
 

@@ -1,19 +1,20 @@
 <template>
-<div id="headers">
-  <!-- HEADERS ARE HERE -->
+  <div id="headers">
+    <!-- <NavBar/> -->
+    <!-- delete the router links once the navbar vue app works -->
     <router-link to="/login">Login</router-link> |
     <router-link to="/register">Register</router-link> |
     <router-link to="/home">Home</router-link> |
-    <router-link to="/mplyrprof">Profile</router-link>
-
+    <router-link to="/employerprof">Profile</router-link>
   </div>
-<router-view/>
+  <router-view/>
 </template>
 
 <script>
-
+// import NavBar from '@/components/NavBar.vue'
 export default {
   name: 'App',
+  // components: NavBar,
 }
 
 </script>

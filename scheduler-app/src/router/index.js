@@ -13,14 +13,14 @@ const routes = [
 	},
 	{
 		path: '/register',
-		name: 'Register',
-		component: () => import('../views/Register.vue')
+		name: 'EmployerRegister',
+		component: () => import('../views/EmployerRegister.vue')
 	},
 
 	{
-		path: '/mplyrprof',
+		path: '/employerprof',
 		name: 'Employer Profile',
-		component: () => import('../views/MplyrProfile.vue')
+		component: () => import('../views/EmployerProf.vue')
 	},
 ]
 
