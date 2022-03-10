@@ -4,15 +4,15 @@
             <div class="header">
                 <h1>Register your Account</h1>
             </div>
-            <h3 id="desc">Create an Employer Profile</h3>
-            <div class = "registration form">
+            <h3 id="desc">Create an Employer Profile, with your company details included.</h3>
+            <div class = "input">
                 <label for="username"> Username: </label>
                 <input type = "text" id = "username" required="" placeholder="given username"> <br><br>
                 <label for="password"> Password: </label>
                 <input type = "text" id = "password" required="" placeholder="min. 8 chars"> <br><br>
 
-                <div class = "login">
-                    <button id = "loginbutton" type="button" v-on:click="savetofs()" style="color: rgb(0, 0, 0);"> Register </button><br><br>
+                <div class = "reg">
+                    <button id = "regbutton" type="button" v-on:click="savetofs()" > Register </button><br><br>
                 </div>
             </div>
         </form>
@@ -61,15 +61,37 @@ export default {
         height: 50px;
         background-color: grey;
         text-align: center;
+        font-size: 17px;
     }
 
-    .description{
+    #desc{
         height: 50px;
         background-color: none;
         text-align: center;
+        font-size: 16px;
     }
 
-    .table{
+    #regbutton{
+        background-color: #0069e0; 
+        border-radius: 30px;
+        color: white;
+        padding: 15px 32px;
         text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
     }
+
+    .RegisterForm{
+        text-align: center;
+        font-size: 24px;
+        width: 382px;  
+        overflow: hidden;  
+        margin: auto;  
+        margin: 20 0 0 450px;  
+        padding: 80px;  
+        background: #ffffff;  
+        border-radius: 15px ;
+    }
+
 </style>

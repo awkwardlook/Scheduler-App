@@ -11,7 +11,7 @@
             <br>
             <div class="input">
             <label for="username"> Username: </label>
-            <input type = "text" id = "username" required="" placeholder="given username"> 
+            <input type = "text" id = "usernamebox" required="" placeholder="given username"> 
             </div>
             <br>
             <div class = "button">
@@ -41,6 +41,7 @@ export default {
 
     .login{  
         width: 382px;  
+        height: 300px;
         overflow: hidden;  
         margin: auto;  
         margin: 20 0 0 450px;  
@@ -74,5 +75,6 @@ export default {
     }
     .button, .input{
         text-align: center;
+        font-size: 24px;
     }
 </style>
