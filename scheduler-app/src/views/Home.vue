@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Header from '@/components/NavBar.vue'
+import Header from '@/components/Header/Header.vue'
 
 export default {
   name: 'Home',
