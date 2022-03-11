@@ -10,7 +10,7 @@
             <br><br>
 
             <div class="loginforminput">
-                <input type = "text" id = "username" required="" placeholder="Username"> 
+                <input type="text" v-model = "username" id="username" placeholder="Username"> 
             </div>
             <br><br>
 
@@ -25,10 +25,14 @@
 
 <script>
 export default {
+    data(){
+        return{
+            username: ""
+        }
+    },
     methods: {
         setUsername() {
-            var username = document.getElementById("username").value;
-            alert("Username entered: " + username);
+            alert("Username entered: " + this.username);
         }
     }
 }
