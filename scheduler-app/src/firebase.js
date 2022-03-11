@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 
+
 const firebaseConfig = {
 	apiKey: "AIzaSyC1skHWlJ4I4B089I0L9fQ220M53gootqQ",
 	authDomain: "scheduler-app-bt3103.firebaseapp.com",
