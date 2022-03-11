@@ -14,10 +14,21 @@
 
             <div v-if = "!usernameEntered">
                 <div class="loginforminput">
-                    <input type="text" v-model = "username" id="username" placeholder="Username" required> 
+                    <input type="text" v-model = "username" id="loginforminputbox" placeholder="Username" required> 
                 </div>
                 <br><br>
                 <button class = "usernamebutton" type="button" @click="enterUsername()">Next</button> 
+            </div>
+
+            <div v-else>
+                <div class="loginforminput">
+                    <input type="password" v-model = "password" id="loginforminputbox" placeholder="Password" required> 
+                </div>
+                <br><br>
+                <div style="text-align: center;">
+                    <button class = "passwordbutton" type="button" @click="loginEmployer()">Login As Employer</button>
+                    <button class = "passwordbutton" type="button" @click="loginEmployee()">Login As Employee</button>
+                </div>
             </div>
         </form>
     </div>
@@ -30,13 +41,13 @@ export default {
     data(){
         return{
             username: "",
-            usernameEntered: false
+            usernameEntered: false,
+            password: ""
         }
     },
     methods: {
         enterUsername() {
             if (this.username != "") {
-                alert("Username entered: " + this.username);
                 this.usernameEntered = !this.usernameEntered;
             } else {
                 alert("Please ensure username is filled in!");
@@ -44,6 +55,20 @@ export default {
         },
         editUsername() {
             this.usernameEntered = !this.usernameEntered;
+        },
+        loginEmployer() {
+            if (this.password != "") {
+                alert("Password entered: " + this.password);
+            } else {
+                alert("Please enter a valid password!");
+            }
+        },
+        loginEmployee() {
+            if (this.password != "") {
+                alert("Password entered: " + this.password);
+            } else {
+                alert("Please enter a valid password!");
+            }
         }
     }
 }
@@ -62,7 +87,9 @@ export default {
         border-radius: 15px;
     }
     .backbuttondiv{
-        background-color: red;
+        position: absolute;
+        top: 120px;
+        left: 400px;
     }
     .loginformheader{
         height: 50px;
@@ -91,7 +118,19 @@ export default {
         font-size: 24px;
         margin-top: 12px;
     }
-    #username{
+    #loginforminputbox{
         width: 100%;
+    }
+    .passwordbutton {
+        background-color: #0069e0; 
+        border-radius: 30px;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        width: 160px;
+        margin: 0px 14px;
     }
 </style>
