@@ -10,11 +10,11 @@
     <br><br>
         
     <label for="companyUEN"> Company UEN: </label>
-    <input type = "text" id = "companyUEN" required="" placeholder="Company UEN" v-model="companyUEN"> 
+    <input type = "text" id = "companyUEN" required="" placeholder="Company UEN" v-model="companyUEN" /> 
     <br><br>
         
     <label for="companyname"> Company Name: </label>
-    <input type = "text" id = "companyname" required="" placeholder="Company Name" v-model="companyName"> 
+    <input type = "text" id = "companyname" required="" placeholder="Company Name" v-model="companyName" /> 
     <br><br>
         
     <label for="password"> Password: </label>
@@ -47,13 +47,13 @@
   const register = () => {
     auth
       .createUserWithEmailAndPassword(email.value, password.value) // create employer account
+      
       .then(() => {
         console.log('Successfully registered!');
         alert('Successfully registered!');
 
         // add credentials to firestore upon successful registration
         // doc ID for employer is consistent with prescribed UID for firebase auth
-        
         employersCollection.doc(auth.currentUser.uid.toString()).set({
           email: email.value,
           username: username.value,
