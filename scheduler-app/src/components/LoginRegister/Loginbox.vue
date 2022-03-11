@@ -1,22 +1,21 @@
 <template>
-    
-    <br><br>
-    <div class="login">
-        <form id ="login">
-            <div class="header">
+    <div class="loginbox">
+        <form>
+            <div class="loginformheader">
                 <h1>Log in to your Account</h1>
             </div>
-            <h3 id="desc">For both employees and employers, just add your username and corresponding password to log in.</h3>
-            
             <br>
-            <div class="input">
-            <label for="username"> Username: </label>
-            <input type = "text" id = "usernamebox" required="" placeholder="given username"> 
+
+            <text id="loginformdesc">For both employees and employers, just add your username and corresponding password to log in.</text>
+            <br><br>
+
+            <div class="loginforminput">
+                <input type = "text" id = "username" required="" placeholder="Username"> 
             </div>
-            <br>
-            <div class = "button">
-                <button id = "loginbutton" type="button" > Log In </button>
-                <!-- v-on:click="savetofs()" -->
+            <br><br>
+
+            <div>
+                <button class = "usernamebutton" type="button" @click="setUsername()">Next</button> 
             </div>
         </form>
     </div>
@@ -26,20 +25,18 @@
 
 <script>
 export default {
+    methods: {
+        setUsername() {
+            var username = document.getElementById("username").value;
+            alert("Username entered: " + username);
+        }
+    }
 }
 
 </script>
 
-<style>
-
-    body{  
-    margin: 0;  
-    padding: 0;  
-    background-color:#6abadeba;  
-    font-family: 'Arial';  
-    }  
-
-    .login{  
+<style scoped>
+    .loginbox{  
         width: 382px;  
         height: 300px;
         overflow: hidden;  
@@ -50,31 +47,37 @@ export default {
         border-radius: 15px ;
     }
 
-    .header{
+    .loginformheader{
         height: 50px;
-        background-color: none;
         text-align: center;
     }
 
-    #desc{
+    #loginformdesc{
         height: 50px;
         background-color: none;
         color: rgb(68, 68, 68);
         text-align: center;
     } 
 
-    #loginbutton {
+    .usernamebutton {
         background-color: #0069e0; 
         border-radius: 30px;
         color: white;
-        padding: 15px 32px;
+        padding: 10px 24px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 24px;
+        font-size: 14px;
+        width: 120px;
     }
-    .button, .input{
-        text-align: center;
+
+    .loginforminput{
+        display: flex;
+        flex-direction: row;
         font-size: 24px;
+        margin-top: 12px;
+    }
+    #username{
+        width: 100%;
     }
 </style>

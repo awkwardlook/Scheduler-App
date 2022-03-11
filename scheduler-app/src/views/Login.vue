@@ -1,7 +1,7 @@
 <template>
 <Header/>
+<br><br>
 <LoginBox/>
-	<h1> mi at login page</h1>
 </template>
 
 <script>
