@@ -38,13 +38,15 @@
 
 <script>
 import store from '../../store.js'
+import {useRouter} from 'vue-router'
 
 export default {
     data(){
         return{
             username: "",
             usernameEntered: false,
-            password: ""
+            password: "",
+            router: useRouter()
         }
     },
     methods: {
@@ -58,17 +60,19 @@ export default {
         editUsername() {
             this.usernameEntered = !this.usernameEntered;
         },
-        async loginEmployer() {
+        loginEmployer() {
             if (this.password != "") {
                 store.commit("loginAsEmployer");
                 console.log(store.state.user);
                 // firebase authentication code
                 // if correct, route to /employerschedule page
+                this.router.replace('/employerschedule')
+                
             } else {
                 alert("Please enter a valid password!");
             }
         },
-        async loginEmployee() {
+        loginEmployee() {
             if (this.password != "") {
                 store.commit("loginAsEmployee");
                 console.log(store.state.user);
