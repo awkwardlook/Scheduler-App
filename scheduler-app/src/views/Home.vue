@@ -1,7 +1,5 @@
 <template>
 <!-- code from App.vue -->
-
-<h1>Home</h1>
   <Header/>
   <img alt="Vue logo" src="@/assets/logo.png">
   

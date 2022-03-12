@@ -1,18 +1,19 @@
 <template>
 <Header/>
 <br><br>
-<LoginBox/>
+<Loginbox/>
+<br><br>
 </template>
 
 <script>
-import Header from '@/components/Header/Header.vue'
-import LoginBox from '@/components/LoginRegister/Loginbox.vue'
+import Header from '../components/Header/Header.vue'
+import Loginbox from '../components/LoginRegister/Loginbox.vue'
 
 export default {
   name: 'Login',
   components: {
-    LoginBox,
-    Header
+    Header,
+    Loginbox
   }
 }
 </script>

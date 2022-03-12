@@ -37,6 +37,8 @@
 
 
 <script>
+import store from '../../store.js'
+
 export default {
     data(){
         return{
@@ -58,14 +60,16 @@ export default {
         },
         loginEmployer() {
             if (this.password != "") {
-                alert("Password entered: " + this.password);
+                store.commit("loginAsEmployer");
+                console.log(store.state.user);
             } else {
                 alert("Please enter a valid password!");
             }
         },
         loginEmployee() {
             if (this.password != "") {
-                alert("Password entered: " + this.password);
+                store.commit("loginAsEmployee");
+                console.log(store.state.user);
             } else {
                 alert("Please enter a valid password!");
             }
