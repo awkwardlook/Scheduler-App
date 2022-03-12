@@ -28,7 +28,11 @@ const routes = [
 		name: 'Employee Profile',
 		component: () => import('../views/EmployeeProf.vue')
 	},
-
+	{
+		path: '/addemployee',
+		name: 'Add Employee',
+		component: () => import('../views/AddEmployee.vue')
+	},
 	{
 		path: '/employeeschedule',
 		name: 'Employee Schedule',
