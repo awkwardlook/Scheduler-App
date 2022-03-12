@@ -62,6 +62,7 @@
         })
 
         router.push('/employerprof')
+        console.log(auth.currentUser.uid.toString())
       })
       .catch(error => {
         console.log(error.code)
