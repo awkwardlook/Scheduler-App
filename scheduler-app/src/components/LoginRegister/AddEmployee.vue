@@ -10,18 +10,14 @@
     <br><br>
         
     <label for="companyUEN"> Company UEN: </label>
-    <input type = "text" id = "companyUEN" required="" placeholder="Company UEN" v-model="companyUEN" /> 
+    <input type = "text" id = "companyUEN" required="" placeholder="Company UEN" v-model="companyUEN" />     
     <br><br>
         
-    <label for="companyname"> Company Name: </label>
+    <label for="companyname"> Company Name: </label> 
     <input type = "text" id = "companyname" required="" placeholder="Company Name" v-model="companyName" /> 
     <br><br>
         
-    <label for="password"> Password: </label>
-    <input type="password" id="password" required="" placeholder="Password" v-model="password" />
-    <br><br>
-        
-    <p><button type="submit" id="regbutton" @click="register">Submit</button></p>
+    <p><button type="submit" id="regbutton" @click="addEmployee">Register Employee</button></p>
 
 </div>
 </template>
@@ -38,36 +34,31 @@
   const username = ref('')
   const companyUEN = ref('')
   const companyName = ref('')
-  const password = ref('')
 
-  const auth = firebase.auth()
   const db = firebase.firestore()
-  const employersCollection = db.collection('employers')
+  const employeesCollection = db.collection('employees')
 
-  const register = () => {
-    auth
-      .createUserWithEmailAndPassword(email.value, password.value) // create employer account
-      
-      .then(() => {
-        console.log('Successfully registered!');
-        alert('Successfully registered!');
+// add employee credentials to firestore, but not auth
+// employee will only be able to login if docID is in firestore
+// account (auth) will only be created when employee sets a password at login
+const addEmployee = () => {
+	employeesCollection.doc(username.value).set({
+		email: email.value,
+		username: username.value,
+		companyUEN: companyUEN.value,
+		companyName: companyName.value	
+	
+	}).then(() => {
+		alert('Successully added employee!')
+		console.log('Successully added employee!')
+		router.push('/employerprof')
+	
+	}).catch(error => {
+		console.log(error.code)
+		alert(error.message)
+	});
+}
 
-        // add credentials to firestore upon successful registration
-        // doc ID for employer is consistent with prescribed UID for firebase auth
-        employersCollection.doc(auth.currentUser.uid.toString()).set({
-          email: email.value,
-          username: username.value,
-          companyUEN: companyUEN.value,
-          companyName: companyName.value
-        })
-
-        router.push('/employerprof')
-      })
-      .catch(error => {
-        console.log(error.code)
-        alert(error.message);
-      });
-  }
 </script>
 
 
