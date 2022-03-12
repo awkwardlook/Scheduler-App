@@ -78,6 +78,7 @@ export default {
                 console.log(store.state.user);
                 // firebase authentication code
                 // if correct, route to /employeeschedule page
+                this.router.replace('/employeeschedule')
             } else {
                 alert("Please enter a valid password!");
             }
