@@ -1,4 +1,6 @@
 <template>
+	<EmployerHeader/>
+	<br><br>
 	<!-- add /Profile to reach this page -->
 	<h1>Employer Profile</h1>
 	<EmployerProfile/>
@@ -9,6 +11,7 @@
 </template>
 
 <script>
+import EmployerHeader from '../components/Header/EmployerHeader.vue'
 import EmployerProfile from '@/components/MplyrProfile/MplyrDeets.vue'
 import CompanyProfile from '@/components/MplyrProfile/CoyDeets.vue'
 
@@ -17,6 +20,7 @@ export default {
 	components: {
 		EmployerProfile,
 		CompanyProfile,
+		EmployerHeader
 	}
 }
 

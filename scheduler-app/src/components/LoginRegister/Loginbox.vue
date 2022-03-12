@@ -58,18 +58,22 @@ export default {
         editUsername() {
             this.usernameEntered = !this.usernameEntered;
         },
-        loginEmployer() {
+        async loginEmployer() {
             if (this.password != "") {
                 store.commit("loginAsEmployer");
                 console.log(store.state.user);
+                // firebase authentication code
+                // if correct, route to /employerschedule page
             } else {
                 alert("Please enter a valid password!");
             }
         },
-        loginEmployee() {
+        async loginEmployee() {
             if (this.password != "") {
                 store.commit("loginAsEmployee");
                 console.log(store.state.user);
+                // firebase authentication code
+                // if correct, route to /employeeschedule page
             } else {
                 alert("Please enter a valid password!");
             }

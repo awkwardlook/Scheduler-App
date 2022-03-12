@@ -1,18 +1,14 @@
 <template>
     <div class="header">
-    <!-- HEADERS ARE HERE -->
-    <router-link to="/home">Home</router-link> |
-    <router-link to="/employerprof">Profile</router-link> |
+        <button @click="$router.push('/employerschedule')">Schedule</button>
+        <button @click="$router.push('/employerprof')">Profiles</button>
+        <button @click="$router.push('/analytics')">Analytics</button>
+        <button @click="$router.push('/addemployee')">Add Employee</button>
+        <button @click="$router.replace('/')">Sign Out</button>
     </div>
-    <router-view/>
 </template>
 
-<style scoped>
-    .header{
-        height: 50px;
-        background-color: grey;
-        text-align: center;
-    }
+<style>
 </style>
 
 <script>

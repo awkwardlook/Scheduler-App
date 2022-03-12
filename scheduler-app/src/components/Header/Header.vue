@@ -1,9 +1,7 @@
 <template>
     <div class="header">
     <button @click="$router.push('/login')">Login</button>
-    <button @click="$router.push('/register')">Register</button>
     </div>
-    <router-view/>
 </template>
 
 <style scoped>

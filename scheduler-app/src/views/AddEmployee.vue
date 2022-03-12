@@ -1,19 +1,20 @@
 <template>
 	<!-- /addemployee to reach this page -->
-	<Header/>
+	<EmployerHeader/>
+	<br><br>
 	<h1>Add Employee</h1>
 	<AddEmployeeForm/>
 </template>
 
 <script>
-import Header from '@/components/Header/Header.vue'
+import EmployerHeader from '@/components/Header/EmployerHeader.vue'
 import AddEmployeeForm from '@/components/LoginRegister/AddEmployee.vue'
 
 export default {
 	name: 'EmployerRegister',
 	components: {
 		AddEmployeeForm,
-		Header,
+		EmployerHeader,
 	}
 }
 

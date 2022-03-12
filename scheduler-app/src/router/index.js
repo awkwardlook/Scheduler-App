@@ -38,6 +38,16 @@ const routes = [
 		name: 'Employee Schedule',
 		component: () => import('../views/EmployeeSchedule.vue')
 	},
+	{
+		path: '/employerschedule',
+		name: 'Employer Schedule',
+		component: () => import('../views/EmployerSchedule.vue')
+	},
+	{
+		path: '/analytics',
+		name: 'Analytics',
+		component: () => import('../views/EmployerAnalytics.vue')
+	},
 
 	{
 		path: '/employeetimesheet',
