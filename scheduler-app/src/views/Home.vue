@@ -1,17 +1,20 @@
 <template>
 <!-- code from App.vue -->
+
   <Header/>
-  <img alt="Vue logo" src="@/assets/logo.png">
+  <Landing-card/>
   
 </template>
 
 <script>
 import Header from '@/components/Header/Header.vue'
+import LandingCard from '@/components/LandingPage/LandingCard.vue';
 
 export default {
   name: 'Home',
   components: {
     Header,
+    LandingCard,
   }
 }
 
@@ -23,6 +26,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 </style>
