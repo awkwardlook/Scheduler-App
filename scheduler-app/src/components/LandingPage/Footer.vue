@@ -1,0 +1,117 @@
+<template>
+    <div className='footer-container'>
+        <div className='footer-links'>
+            <div className="footer-link-wrapper">
+                <div className="footer-link-items">
+                    <h2>Features</h2>
+                    <p>Scheduling</p>
+                    <p>Smart Timesheet</p>
+                    <p>Real Time Analytics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+.footer-container {
+    background-color: rgb(49, 46, 85);
+    padding: 4rem 0 2 rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-self: center;
+}
+
+.footer-subscription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    margin-bottom: 24px;
+    padding: 24px;
+    color: #fff;
+  }
+  
+  .footer-subscription > p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .footer-subscription-heading {
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+  
+  .footer-subscription-text {
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+  
+  .footer-input {
+    padding: 8px 20px;
+    border-radius: 2px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 16px;
+    border: 1px solid #fff;
+  }
+  
+  .footer-input-feedback {
+    padding: 8px 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 16px;
+    border: 1px solid #fff;
+    margin: 0px 10px 15.9943px 0px; 
+    width: 366px; height: 99px;
+  }
+  .footer-links {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: left;
+  }
+  
+  .footer-link-wrapper {
+    display: flex;
+  }
+  
+  .footer-link-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 16px;
+    text-align: left;
+    width: 160px;
+    box-sizing: border-box;
+  }
+  
+  .footer-link-items h2 {
+    margin-bottom: 16px;
+  }
+  
+  .footer-link-items > h2 {
+    color: #fff;
+  }
+  
+  .footer-link-items p {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+  }
+
+</style>
