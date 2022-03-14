@@ -16,6 +16,10 @@
     <label for="companyname"> Company Name: </label> 
     <input type = "text" id = "companyname" required="" placeholder="Company Name" v-model="companyName" /> 
     <br><br>
+
+    <label for="password"> Default Password: </label>
+    <input type="password" id="password" required="" placeholder="Password" v-model="password" />
+    <br><br>
         
     <p><button type="submit" id="regbutton" @click="addEmployee">Register Employee</button></p>
 
@@ -31,39 +35,42 @@
   
   // ref for all credentials
   const email = ref('')
+  const password = ref('')
   const username = ref('')
   const companyUEN = ref('')
   const companyName = ref('')
 
   const db = firebase.firestore()
+  const auth = firebase.auth()
   const employeesCollection = db.collection('employees')
   const usersCollection = db.collection('users')
 
 
 const addEmployee = () => {
-	employeesCollection.doc(email.value).set({
-		email: email.value,
-		username: username.value,
-		companyUEN: companyUEN.value,
-		companyName: companyName.value	
+    
+    auth.createUserWithEmailAndPassword(email.value, password.value)
 	
-	})
-
     .then(() => {
-       usersCollection.doc(email.value).set({
+        
+        employeesCollection.doc(email.value).set({
+            email: email.value,
+            username: username.value,
+            companyUEN: companyUEN.value,
+            companyName: companyName.value,
+            password: password.value	
+        })
+
+        usersCollection.doc(email.value).set({
 		// email: email.value,
 		// username: username.value,
 		// companyUEN: companyUEN.value,
 		// companyName: companyName.value	
         }) 
-    })
-    
-    .then(() => {
-		alert('Successully added employee!')
+
+        alert('Successully added employee!')
 		console.log('Successully added employee!')
 		router.push('/employerprof')
-	
-	})
+    })
     
     .catch(error => {
 		console.log(error.code)
