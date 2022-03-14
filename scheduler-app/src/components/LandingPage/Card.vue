@@ -27,6 +27,8 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #fff;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 .card {

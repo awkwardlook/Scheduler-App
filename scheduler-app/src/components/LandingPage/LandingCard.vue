@@ -44,14 +44,18 @@
             <img src="/img/gg.gif">
         </div>
     </div>
+    <Card/>
   </div>
 </template>
 
 
 <script>
-
+import Card from './Card.vue';
 export default {
-
+  name: "LandingCard",
+  components: {
+    Card
+  }
 }
 </script>
 <style>
