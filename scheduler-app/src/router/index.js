@@ -24,6 +24,18 @@ const routes = [
 	},
 
 	{
+		path: '/employerschedule',
+		name: 'Employer Schedule',
+		component: () => import('../views/EmployerSchedule.vue')
+	},
+
+	{
+		path: '/employeranalytics',
+		name: 'Employer Analytics',
+		component: () => import('../views/EmployerAnalytics.vue')
+	},
+
+	{
 		path: '/employeeprof',
 		name: 'Employee Profile',
 		component: () => import('../views/EmployeeProf.vue')

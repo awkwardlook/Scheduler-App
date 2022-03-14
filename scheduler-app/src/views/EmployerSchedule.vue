@@ -1,17 +1,17 @@
 <template>
-	<h1>Employee Schedule</h1>
-	<EmployeeHeader/>
+	<h1>Employer Schedule</h1>
+	<EmployerHeader/>
 	<br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br>
 </template>
 
 <script>
-import EmployeeHeader from '@/components/Header/EmployeeHeader.vue'
+import EmployerHeader from '@/components/Header/EmployerHeader.vue'
 
 export default {
-	name: 'Employee Schedule',
+	name: 'Employer Schedule',
 	components: {
-		EmployeeHeader,
+		EmployerHeader,
 	}
 }
 

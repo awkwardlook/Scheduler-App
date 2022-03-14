@@ -8,6 +8,7 @@
     <router-link to="/employerprof">E Profile</router-link> |
     <router-link to="/addemployee">add E</router-link> |
     <router-link to="/employeeschedule">E Sched</router-link>
+
   </div>
   <router-view/>
 </template>

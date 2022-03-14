@@ -1,8 +1,10 @@
 <template>
     <div class="header">
     <!-- HEADERS ARE HERE -->
-    <router-link to="/home">Home</router-link> |
+    <router-link to="/employerschedule">Schedule</router-link> |
     <router-link to="/employerprof">Profile</router-link> |
+    <router-link to="/employeranalytics">Analytics</router-link> |
+    <router-link to="/signout">Sign Out</router-link> |
     </div>
     <router-view/>
 </template>

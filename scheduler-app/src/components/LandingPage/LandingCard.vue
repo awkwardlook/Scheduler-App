@@ -1,7 +1,7 @@
 <template>
    <div class='hero-container'>
         <h1>Welcome to Scheduler</h1>
-        <p>Plan you schedule</p>
+        <p>Plan your schedule</p>
         <p>Plan their schedule</p>
         <div class='hero-btns'>
         <a href="/login" class='hero-start'>
@@ -44,14 +44,21 @@
             <img src="/img/gg.gif">
         </div>
     </div>
+    <Card/>
+    <Footer/>
   </div>
 </template>
 
 
 <script>
-
+import Card from './Card.vue';
+import Footer from './Footer.vue';
 export default {
-
+  name: "LandingCard",
+  components: {
+    Card,
+    Footer
+  }
 }
 </script>
 <style>
@@ -59,7 +66,7 @@ export default {
   font-family: "Rosario";
 }
 .hero-container {
-  background: url('/img/backgroundLP.jpg') center center/cover no-repeat; 
+  background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
   background-repeat: no-repeat;
   background-attachment: scroll;
   height: 100vh;

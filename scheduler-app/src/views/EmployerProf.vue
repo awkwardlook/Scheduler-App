@@ -1,4 +1,5 @@
 <template>
+	<EmployerHeader/>
 	<div class="deets">
 		<EmployerProfile/>
 		<br/><br/>
@@ -8,12 +9,14 @@
 </template>
 
 <script>
+import EmployerHeader from '@/components/Header/EmployerHeader.vue'
 import EmployerProfile from '@/components/MplyrProfile/MplyrDeets.vue'
 import CompanyProfile from '@/components/MplyrProfile/CoyDeets.vue'
 
 export default {
 	name: 'Employer Profile',
 	components: {
+		EmployerHeader,
 		EmployerProfile,
 		CompanyProfile,
 	}
