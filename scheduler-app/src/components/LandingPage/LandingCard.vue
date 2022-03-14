@@ -63,7 +63,7 @@ export default {
   font-family: "Rosario";
 }
 .hero-container {
-  background: url('/img/backgroundLP.jpg') center center/cover no-repeat; 
+  background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
   background-repeat: no-repeat;
   background-attachment: scroll;
   height: 100vh;
