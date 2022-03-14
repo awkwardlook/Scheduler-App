@@ -1,7 +1,7 @@
 <template>
    <div class='hero-container'>
         <h1>Welcome to Scheduler</h1>
-        <p>Plan you schedule</p>
+        <p>Plan your schedule</p>
         <p>Plan their schedule</p>
         <div class='hero-btns'>
         <a href="/login" class='hero-start'>
