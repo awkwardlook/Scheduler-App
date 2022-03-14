@@ -1,11 +1,10 @@
 <template>
-	<!-- add /Profile to reach this page -->
-	<h1>Employer Profile</h1>
-	<EmployerProfile/>
-	<br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br>
-	<!-- they are supposed to be side by side -->
-	<CompanyProfile/>
+	<div class="deets">
+		<EmployerProfile/>
+		<br/><br/>
+		<CompanyProfile/>
+	</div>
+	<br/><br/><br/>
 </template>
 
 <script>
@@ -23,5 +22,16 @@ export default {
 </script>
 
 <style>
-
+.deets{
+        text-align: center;
+        font-size: 24px;
+        width: 1000px;  
+        overflow: hidden;  
+        margin: auto;  
+        margin: 0 0 10 550px;  
+		/* top right bottom left */
+        padding: 80px;  
+        background: #ffffff;  
+        border-radius: 15px ;
+    }
 </style>
