@@ -1,5 +1,6 @@
 <template>
    <div class='hero-container'>
+        <img src="/img/logo.png" alt="logo" />
         <h1>Welcome to Scheduler</h1>
         <p>Plan you schedule</p>
         <p>Plan their schedule</p>
@@ -18,19 +19,19 @@
         <h1 style="color:black"> Our Clients</h1>
         <div class="row">
           <div class="column">
-            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%">
+            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> |
           </div>
           <div class="column">
-            <img src="/img/google.png" alt="Google" style="width:50%" id="google">
+            <img src="/img/google.png" alt="Google" style="width:50%" id="google"> |
           </div>
           <div class="column">
-            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%">
+            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> |
           </div>
           <div class="column">
-            <img src="/img/IBM.jpg" alt="IBM" style="width:50%">
+            <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> |
           </div>
           <div class="column">
-            <img src="/img/intel.png" alt="Intel" style="width:50%">
+            <img src="/img/intel.png" alt="Intel" style="width:50%"> |
           </div>
         </div>
         <br/>
@@ -44,7 +45,8 @@
             <img src="/img/gg.gif">
         </div>
     </div>
-    <Card/>
+    <Card/>    
+    <Schedule/>
     <Footer/>
   </div>
 </template>
@@ -53,11 +55,13 @@
 <script>
 import Card from './Card.vue';
 import Footer from './Footer.vue';
+import Schedule from './FunctionSchedule.vue';
 export default {
   name: "LandingCard",
   components: {
     Card,
-    Footer
+    Footer,
+    Schedule,
   }
 }
 </script>
