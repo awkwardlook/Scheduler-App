@@ -41,10 +41,10 @@ import store from '../../store.js'
 import { useRouter } from 'vue-router'
 import firebase from 'firebase'
 
-// const auth = firebase.auth()
+const auth = firebase.auth()
 const db = firebase.firestore()
-//const employersCollection = db.collection('employers')
-//const employeesCollection = db.collection('employees')
+const employersCollection = db.collection('employers')
+const employeesCollection = db.collection('employees')
 const usersCollection = db.collection('users')
 
 export default {
@@ -82,23 +82,51 @@ export default {
         },
         loginEmployer() {
             if (this.password != "") {
-                store.commit("loginAsEmployer");
-                console.log(store.state.user);
-                // firebase authentication code
-                // if correct, route to /employerschedule page
-                this.router.replace('/employerschedule')
+
+                const employersRef = employersCollection.doc(this.username)
                 
+                employersRef.get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        auth.signInWithEmailAndPassword(this.username, this.password)
+                        .then((data) => {
+                            console.log(data),
+                            store.commit("loginAsEmployer")
+                            console.log(store.state.user);
+                            this.router.replace('/employerschedule')
+                        })
+                        .catch(error => alert(error.message))
+                    } else {
+                        alert('Log in as Employee instead.')
+                    }
+                })
+                
+            
             } else {
                 alert("Please enter a valid password!");
             }
         },
         loginEmployee() {
             if (this.password != "") {
-                store.commit("loginAsEmployee");
-                console.log(store.state.user);
-                // firebase authentication code
-                // if correct, route to /employeeschedule page
-                this.router.replace('/employeeschedule')
+
+                const employeesRef = employeesCollection.doc(this.username)
+                
+                employeesRef.get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        auth.signInWithEmailAndPassword(this.username, this.password)
+                        .then((data) => {
+                            console.log(data),
+                            store.commit("loginAsEmployee")
+                            console.log(store.state.user);
+                            this.router.replace('/employeeschedule')
+                        })
+                        .catch(error => alert(error.message))
+                    } else {
+                        alert('Log in as Employer instead.')
+                    }
+                })
+
             } else {
                 alert("Please enter a valid password!");
             }
