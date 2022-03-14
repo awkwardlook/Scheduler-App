@@ -1,20 +1,13 @@
 <template>
     <div class="header">
-    <!-- schedule, timesheet, profile, signout empty page headers -->
-    <router-link to="/employeeschedule">Schedule</router-link> |
-    <router-link to="/employeetimesheet">Timesheet</router-link> |
-    <router-link to="/employeeprof">Profile</router-link> |
-    <router-link to="/signout">Sign Out</router-link> |
+        <button @click="$router.push('/employeeschedule')">Schedule</button>
+        <button @click="$router.push('/employeetimesheet')">Timesheet</button>
+        <button @click="$router.push('/employeeprof')">Profile</button>
+        <button @click="$router.replace('/')">Sign Out</button>
     </div>
-    <router-view/>
 </template>
 
-<style scoped>
-    .header{
-        height: 50px;
-        background-color: grey;
-        text-align: center;
-    }
+<style>
 </style>
 
 <script>

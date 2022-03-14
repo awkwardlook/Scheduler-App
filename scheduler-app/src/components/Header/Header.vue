@@ -2,7 +2,6 @@
     <div class="header">
     <button @click="$router.push('/login')">Login</button>
     </div>
-    <router-view/>
 </template>
 
 <style scoped>

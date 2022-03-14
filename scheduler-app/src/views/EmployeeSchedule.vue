@@ -1,22 +1,19 @@
 <template>
-	<h1>Employee Schedule</h1>
-	<EmployeeHeader/>
-	<br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br>
+    <EmployeeHeader/>
+    <br><br>
+    <h1>Employee Schedule Page</h1>
 </template>
 
+<style scoped>
+</style>
+
 <script>
-import EmployeeHeader from '@/components/Header/EmployeeHeader.vue'
+import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
 
 export default {
-	name: 'Employee Schedule',
-	components: {
-		EmployeeHeader,
-	}
+    name: 'Employee Schedule',
+    components: {
+        EmployeeHeader
+    }
 }
-
 </script>
-
-<style>
-
-</style>

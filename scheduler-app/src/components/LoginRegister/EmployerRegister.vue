@@ -53,8 +53,8 @@
         alert('Successfully registered!');
 
         // add credentials to firestore upon successful registration
-        // doc ID for employer is consistent with prescribed UID for firebase auth
-        employersCollection.doc(auth.currentUser.uid.toString()).set({
+        // doc ID is email
+        employersCollection.doc(email.value).set({
           email: email.value,
           username: username.value,
           companyUEN: companyUEN.value,

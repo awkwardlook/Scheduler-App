@@ -1,22 +1,16 @@
 <template>
-	<h1>Employee Profile</h1>
-	<EmployeeHeader/>
-	<br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br>
+    <EmployeeHeader/>
+    <br><br>
+    <h1>Employee Profile Page</h1>
 </template>
 
 <script>
-import EmployeeHeader from '@/components/Header/EmployeeHeader.vue'
+import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
 
 export default {
-	name: 'Employee Profile',
-	components: {
-		EmployeeHeader,
-	}
+    name: 'Employee Profile',
+    components: {
+        EmployeeHeader
+    }
 }
-
 </script>
-
-<style>
-
-</style>

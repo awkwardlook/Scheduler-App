@@ -1,7 +1,7 @@
 <template>
     <div class="loginbox">
-        <div v-if = "usernameEntered" class="backbuttondiv">
-            <button @click="editUsername()">Back</button>
+        <div v-if = "emailEntered" class="backbuttondiv">
+            <button @click="editEmail()">Back</button>
         </div>
         <form>
             <div class="loginformheader">
@@ -9,15 +9,15 @@
             </div>
             <br>
 
-            <text id="loginformdesc">For both employees and employers, just add your username and corresponding password to log in.</text>
+            <text id="loginformdesc">For both employees and employers, enter your email and corresponding password to log in.</text>
             <br><br>
 
-            <div v-if = "!usernameEntered">
+            <div v-if = "!emailEntered">
                 <div class="loginforminput">
-                    <input type="text" v-model = "username" id="loginforminputbox" placeholder="Username" required> 
+                    <input type="text" v-model = "email" id="loginforminputbox" placeholder="Email" required> 
                 </div>
                 <br><br>
-                <button class = "usernamebutton" type="button" @click="enterUsername()">Next</button> 
+                <button class = "emailbutton" type="button" @click="enterEmail()">Next</button> 
             </div>
 
             <div v-else>
@@ -38,38 +38,97 @@
 
 <script>
 import store from '../../store.js'
+import { useRouter } from 'vue-router'
+import firebase from 'firebase'
+
+const auth = firebase.auth()
+const db = firebase.firestore()
+const employersCollection = db.collection('employers')
+const employeesCollection = db.collection('employees')
+const usersCollection = db.collection('users')
 
 export default {
     data(){
         return{
-            username: "",
-            usernameEntered: false,
-            password: ""
+            email: "",
+            emailEntered: false,
+            password: "",
+            router: useRouter()
         }
     },
     methods: {
-        enterUsername() {
-            if (this.username != "") {
-                this.usernameEntered = !this.usernameEntered;
+        enterEmail() {
+            if (this.email != "") {
+
+                // check if email exists
+                const usersRef = usersCollection.doc(this.email)
+                usersRef.get()
+                .then((docSnapshot) => {
+
+                    // only allowed to enter password if email exists
+                    if (docSnapshot.exists) {
+                        this.emailEntered = !this.emailEntered;
+                    } else {
+                        alert('Email does not exist. Create an account.')
+                    }
+                })
+
             } else {
-                alert("Please ensure username is filled in!");
+                alert("Please ensure email is filled in!");
             }
         },
-        editUsername() {
-            this.usernameEntered = !this.usernameEntered;
+        editEmail() {
+            this.emailEntered = !this.emailEntered;
         },
         loginEmployer() {
             if (this.password != "") {
-                store.commit("loginAsEmployer");
-                console.log(store.state.user);
+
+                const employersRef = employersCollection.doc(this.email)
+                
+                employersRef.get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        auth.signInWithEmailAndPassword(this.email, this.password)
+                        .then((data) => {
+                            console.log(data),
+                            
+                            store.commit("loginAsEmployer")
+                            console.log(store.state.user);
+                            this.router.replace('/employerschedule')
+                        })
+                        .catch(error => alert(error.message))
+                    } else {
+                        alert('Log in as Employee instead.')
+                    }
+                })
+                
+            
             } else {
                 alert("Please enter a valid password!");
             }
         },
         loginEmployee() {
             if (this.password != "") {
-                store.commit("loginAsEmployee");
-                console.log(store.state.user);
+
+                const employeesRef = employeesCollection.doc(this.email)
+                
+                employeesRef.get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        auth.signInWithEmailAndPassword(this.email, this.password)
+                        .then((data) => {
+                            console.log(data),
+                            
+                            store.commit("loginAsEmployee")
+                            console.log(store.state.user);
+                            this.router.replace('/employeeschedule')
+                        })
+                        .catch(error => alert(error.message))
+                    } else {
+                        alert('Log in as Employer instead.')
+                    }
+                })
+
             } else {
                 alert("Please enter a valid password!");
             }
@@ -93,7 +152,7 @@ export default {
     .backbuttondiv{
         position: absolute;
         top: 120px;
-        left: 400px;
+        left: 40%;
     }
     .loginformheader{
         height: 50px;
@@ -105,7 +164,7 @@ export default {
         color: rgb(68, 68, 68);
         text-align: center;
     } 
-    .usernamebutton {
+    .emailbutton {
         background-color: #0069e0; 
         border-radius: 30px;
         color: white;
