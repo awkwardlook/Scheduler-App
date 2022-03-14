@@ -42,7 +42,7 @@
 // employee will only be able to login if docID is in firestore
 // account (auth) will only be created when employee sets a password at login
 const addEmployee = () => {
-	employeesCollection.doc(username.value).set({
+	employeesCollection.doc(email.value).set({
 		email: email.value,
 		username: username.value,
 		companyUEN: companyUEN.value,
