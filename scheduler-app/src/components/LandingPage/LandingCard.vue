@@ -109,8 +109,8 @@ export default {
 
 .btns:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  background-color: #4CAF50; /* Green */
-  color: cadetblue;
+  background-color: #25deff; /* Green */
+  color: rgb(25, 27, 44);
 }
 
 .fa-play-circle {
