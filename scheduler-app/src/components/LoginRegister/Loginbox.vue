@@ -102,7 +102,7 @@ export default {
     .backbuttondiv{
         position: absolute;
         top: 120px;
-        left: 400px;
+        left: 40%;
     }
     .loginformheader{
         height: 50px;
