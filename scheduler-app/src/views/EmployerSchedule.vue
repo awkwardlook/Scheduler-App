@@ -4,7 +4,7 @@
     <h1>Employer Schedule Page</h1>
 </template>
 
-<style scoped>
+<style>
 </style>
 
 <script>

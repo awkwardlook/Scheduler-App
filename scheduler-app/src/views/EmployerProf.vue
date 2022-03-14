@@ -20,8 +20,7 @@ export default {
 	components: {
 		EmployerHeader,
 		EmployerProfile,
-		CompanyProfile,
-		EmployerHeader
+		CompanyProfile
 	}
 }
 
