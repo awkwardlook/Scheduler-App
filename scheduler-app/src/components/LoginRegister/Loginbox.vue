@@ -9,7 +9,7 @@
             </div>
             <br>
 
-            <text id="loginformdesc">For both employees and employers, just add your username and corresponding password to log in.</text>
+            <text id="loginformdesc">For both employees and employers, add your username and corresponding password to log in.</text>
             <br><br>
 
             <div v-if = "!usernameEntered">
@@ -38,7 +38,14 @@
 
 <script>
 import store from '../../store.js'
-import {useRouter} from 'vue-router'
+import { useRouter } from 'vue-router'
+import firebase from 'firebase'
+
+const auth = firebase.auth()
+const db = firebase.firestore()
+const employersCollection = db.collection('employers')
+const employeesCollection = db.collection('employees')
+const usersCollection = db.collection('users')
 
 export default {
     data(){
@@ -52,7 +59,20 @@ export default {
     methods: {
         enterUsername() {
             if (this.username != "") {
-                this.usernameEntered = !this.usernameEntered;
+
+                // check if email exists
+                const usersRef = usersCollection.doc(this.username)
+                usersRef.get()
+                .then((docSnapshot) => {
+
+                    // only allowed to enter password if email exists
+                    if (docSnapshot.exists) {
+                        this.usernameEntered = !this.usernameEntered;
+                    } else {
+                        alert('Email does not exist. Create an account.')
+                    }
+                })
+
             } else {
                 alert("Please ensure username is filled in!");
             }
@@ -62,23 +82,51 @@ export default {
         },
         loginEmployer() {
             if (this.password != "") {
-                store.commit("loginAsEmployer");
-                console.log(store.state.user);
-                // firebase authentication code
-                // if correct, route to /employerschedule page
-                this.router.replace('/employerschedule')
+
+                const employersRef = employersCollection.doc(this.username)
                 
+                employersRef.get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        auth.signInWithEmailAndPassword(this.username, this.password)
+                        .then((data) => {
+                            console.log(data),
+                            store.commit("loginAsEmployer")
+                            console.log(store.state.user);
+                            this.router.replace('/employerschedule')
+                        })
+                        .catch(error => alert(error.message))
+                    } else {
+                        alert('Log in as Employee instead.')
+                    }
+                })
+                
+            
             } else {
                 alert("Please enter a valid password!");
             }
         },
         loginEmployee() {
             if (this.password != "") {
-                store.commit("loginAsEmployee");
-                console.log(store.state.user);
-                // firebase authentication code
-                // if correct, route to /employeeschedule page
-                this.router.replace('/employeeschedule')
+
+                const employeesRef = employeesCollection.doc(this.username)
+                
+                employeesRef.get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        auth.signInWithEmailAndPassword(this.username, this.password)
+                        .then((data) => {
+                            console.log(data),
+                            store.commit("loginAsEmployee")
+                            console.log(store.state.user);
+                            this.router.replace('/employeeschedule')
+                        })
+                        .catch(error => alert(error.message))
+                    } else {
+                        alert('Log in as Employer instead.')
+                    }
+                })
+
             } else {
                 alert("Please enter a valid password!");
             }

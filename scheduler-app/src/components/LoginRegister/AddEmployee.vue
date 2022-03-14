@@ -37,23 +37,35 @@
 
   const db = firebase.firestore()
   const employeesCollection = db.collection('employees')
+  const usersCollection = db.collection('users')
 
-// add employee credentials to firestore, but not auth
-// employee will only be able to login if docID is in firestore
-// account (auth) will only be created when employee sets a password at login
+
 const addEmployee = () => {
-	employeesCollection.doc(username.value).set({
+	employeesCollection.doc(email.value).set({
 		email: email.value,
 		username: username.value,
 		companyUEN: companyUEN.value,
 		companyName: companyName.value	
 	
-	}).then(() => {
+	})
+
+    .then(() => {
+       usersCollection.doc(email.value).set({
+		// email: email.value,
+		// username: username.value,
+		// companyUEN: companyUEN.value,
+		// companyName: companyName.value	
+        }) 
+    })
+    
+    .then(() => {
 		alert('Successully added employee!')
 		console.log('Successully added employee!')
 		router.push('/employerprof')
 	
-	}).catch(error => {
+	})
+    
+    .catch(error => {
 		console.log(error.code)
 		alert(error.message)
 	});
