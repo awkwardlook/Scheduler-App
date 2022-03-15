@@ -7,27 +7,32 @@
         </div>
 
         <div class="description">
-            <h1 id="desc">Company Description</h1>
-                <table id = "table" class = "auto=index">
-                    <tr>
-                        <th>The quick brown fox jumps oover the lazy dog</th>
-                    </tr>
-                </table>
-            
+            <h1>Company Description</h1>
+            <h2 id="coydesc"> The quick brown fox jumps over the lazy dog</h2>            
         </div>
     </div>
 
 </template>
 
 <script>
-//   const db = firebase.firestore()
-//   const auth = firebase.auth()
-//   const employeesCollection = db.collection('employees')
-//   const usersCollection = db.collection('users')
+
+import firebase from 'firebase'
+// import { doc, getDoc } from "firebase/firestore";
+
+const db = firebase.firestore()
+const shopee = db.collection("companies").doc("shopee")
 
 export default {
-    mounted(){}
+    mounted(){
+    async function display(){
+
+        // const docSnap = await getDoc(cdescription)
+        document.getElementById("coydesc").innerHTML = (shopee.get("description"))
+    }
+    display()
+    }
 }
+
 </script>
 
 <style scoped>
