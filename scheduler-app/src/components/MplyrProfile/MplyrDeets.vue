@@ -58,7 +58,7 @@ export default {
     }
 
     .mdeets{
-        margin-top: -100px;
+        margin-top: -80px;
         text-align: center;
         font-size: 24px;
         width: 1000px;  

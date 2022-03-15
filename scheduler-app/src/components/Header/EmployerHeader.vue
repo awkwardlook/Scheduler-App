@@ -9,6 +9,9 @@
 </template>
 
 <style>
+.header {
+    align-content: center;
+}
 </style>
 
 <script>

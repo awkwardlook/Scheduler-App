@@ -1,13 +1,13 @@
 <template>
 	<EmployerHeader/>
 	<br><br>
-	<!-- add /Profile to reach this page -->
-	<h1>Employer Profile</h1>
-	<EmployerProfile/>
-	<br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br>
-	<!-- they are supposed to be side by side -->
-	<CompanyProfile/>
+	<div class="deets">
+		<!-- add /Profile to reach this page -->
+		<EmployerProfile/>
+		<br><br>
+		<!-- they are supposed to be side by side -->
+		<CompanyProfile/>
+	</div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
     <div class="loginbox">
         <div v-if = "emailEntered" class="backbuttondiv">
-            <button @click="editEmail()">Back</button>
+            <button class="bbutton" @click="editEmail()">Back</button>
         </div>
         <form>
             <div class="loginformheader">
@@ -149,10 +149,17 @@ export default {
         background: #ffffff;  
         border-radius: 15px;
     }
-    .backbuttondiv{
-        position: absolute;
-        top: 120px;
-        left: 40%;
+    .bbutton{
+        background-color: #0069e0; 
+        border-radius: 30px;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        width: 100px;
+
     }
     .loginformheader{
         height: 50px;
@@ -175,11 +182,15 @@ export default {
         font-size: 14px;
         width: 120px;
     }
+
+    /* email input  */
     .loginforminput{
         display: flex;
         flex-direction: row;
         font-size: 24px;
         margin-top: 12px;
+        border-radius: 30px;
+        height: 50px;
     }
     #loginforminputbox{
         width: 100%;
