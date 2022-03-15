@@ -20,11 +20,10 @@
 </template>
 
 <script>
-// import firebaseApp from '../firebase.js';
-// import { getFirestore } from "firebase/firestore"
-// import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-
-// const db = getFirestore(firebaseApp);
+//   const db = firebase.firestore()
+//   const auth = firebase.auth()
+//   const employeesCollection = db.collection('employees')
+//   const usersCollection = db.collection('users')
 
 export default {
     mounted(){}
