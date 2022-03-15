@@ -1,12 +1,28 @@
 <template>
-    <div class="function-container">
-        <div class="text">
-        <h1>Schedule</h1>
-        <p>We are a platform for you to plan the schedule for your employees and for your clients for meetings, 
-        work and timetables.</p>
+    <div class="main-container" style="background-color:#fff">
+        <div class="function-container">
+            <div class="text">
+            <h2>Schedule</h2>
+            <h4> Real Time Availabilities</h4>
+            <p style="font-size:16px;color:rgb(78, 66, 66);">With a connected schedule, know which of your employees are available before planning for next week schedule</p>
+            <h4>Schedule Your Staff Easily</h4>
+            <p style="font-size:16px;color:rgb(78, 66, 66);">Just by approving the shifts, you instantly assigned your staff to shifts</p>
+            </div>
+            <div class="functionImage">
+                <img src="/img/calendar.png" style="width:250px;height:300px">
+            </div>
         </div>
-        <div class="functionImage">
-            <img src="/img/schedule.png">
+         <div class="function-container">
+            <div class="functionImage">
+                <img src="/img/analytics.png">
+            </div>
+            <div class="text">
+                <h2>Analytics</h2>
+                <h4> Real Time Availabilities</h4>
+                <p style="font-size:16px;color:rgb(78, 66, 66);">With a connected schedule, know which of your employees are available before planning for next week schedule</p>
+                <h4>Schedule Your Staff Easily</h4>
+                <p style="font-size:16px;color:rgb(78, 66, 66);">Just by approving the shifts, you instantly assigned your staff to shifts</p>
+            </div>
         </div>
     </div>
 </template>
@@ -18,11 +34,11 @@ export default {
 </script>
 
 <style>
+
 .function-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #C5FFEF;
     
 }
 
@@ -36,4 +52,5 @@ export default {
     padding-left: 40px;
     text-align: justify;
 }
+
 </style>
