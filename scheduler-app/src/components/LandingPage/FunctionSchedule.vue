@@ -18,10 +18,10 @@
             </div>
             <div class="text">
                 <h2>Analytics</h2>
-                <h4> Real Time Availabilities</h4>
-                <p style="font-size:16px;color:rgb(78, 66, 66);">With a connected schedule, know which of your employees are available before planning for next week schedule</p>
-                <h4>Schedule Your Staff Easily</h4>
-                <p style="font-size:16px;color:rgb(78, 66, 66);">Just by approving the shifts, you instantly assigned your staff to shifts</p>
+                <h4>Work Peformance Report</h4>
+                <p style="font-size:16px;color:rgb(78, 66, 66);">
+                Keep track of how your stores and employee are doing    
+                </p>
             </div>
         </div>
     </div>
