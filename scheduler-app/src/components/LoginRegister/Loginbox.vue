@@ -1,4 +1,5 @@
 <template>
+<Header/>
     <div class="loginbox">
         <div v-if = "emailEntered" class="backbuttondiv">
             <button class="bbutton" @click="editEmail()">Back</button>
@@ -40,6 +41,7 @@
 import store from '../../store.js'
 import { useRouter } from 'vue-router'
 import firebase from 'firebase'
+import Header from '../Header/Header.vue'
 
 const auth = firebase.auth()
 const db = firebase.firestore()
@@ -55,6 +57,9 @@ export default {
             password: "",
             router: useRouter()
         }
+    },
+    components: {
+        Header,
     },
     methods: {
         enterEmail() {

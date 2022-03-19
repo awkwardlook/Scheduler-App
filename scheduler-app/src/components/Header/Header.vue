@@ -1,6 +1,8 @@
 <template>
     <div class="header">
-    <button @click="$router.push('/login')">Login</button>
+    <img src="@/assets/scheduler_logo2.png" alt="logo"
+    height="100px"
+    width="100px">
     </div>
 </template>
 

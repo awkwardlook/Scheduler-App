@@ -1,7 +1,9 @@
 <template>
    <div class='hero-container'>
-        <img src="@/assets/scheduler_logo.png" alt="logo" />
-        <h1>Welcome to Scheduler</h1>
+        <img src="@/assets/scheduler_logo2.png" alt="logo" 
+        height= '60px'
+        width='60px'>
+        <h1>Welcome to Scheduler</h1> <br>
         <p>Plan your schedule</p>
         <p>Plan their schedule</p>
         <div class='hero-btns'>
