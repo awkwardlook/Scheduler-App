@@ -1,6 +1,6 @@
 <template>
    <div class='hero-container'>
-        <img src="/img/logo.png" alt="logo" />
+        <img :src="image" alt="logo" />
         <h1>Welcome to Scheduler</h1>
         <p>Plan your schedule</p>
         <p>Plan their schedule</p>
@@ -56,6 +56,7 @@
 import Card from './Card.vue';
 import Footer from './Footer.vue';
 import Schedule from './FunctionSchedule.vue';
+import image from "./assets/scheduler_logo.png"
 export default {
   name: "LandingCard",
   components: {
