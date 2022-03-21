@@ -7,12 +7,6 @@
     </div>
 </template>
 
-<style>
-.header {
-    align-content: center;
-}
-</style>
-
 <script>
     import firebase from 'firebase'
 
@@ -37,3 +31,9 @@
     }
     
 </script>
+
+<style>
+.header {
+    align-content: center;
+}
+</style>
