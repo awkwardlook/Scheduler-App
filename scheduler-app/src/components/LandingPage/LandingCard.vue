@@ -109,8 +109,10 @@ export default {
   border-radius: 8px;
   transition-duration: 0.4s;
   color:white;
-  background-color: #3182CE;
-  font-size: 16px;
+  background-color: #0069e0;
+  font-size: 24px;
+  height: 60px;
+  width: 240px;
   padding: 10px 24px;;
 }
 

@@ -156,7 +156,7 @@ export default {
     }
     .bbutton{
         background-color: #0069e0; 
-        border-radius: 30px;
+        border-radius: 8px;
         color: white;
         padding: 10px 24px;
         text-align: center;
@@ -165,6 +165,12 @@ export default {
         font-size: 14px;
         width: 100px;
 
+    }
+
+    .bbutton:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color: #25deff; /* Green */
+        color: rgb(25, 27, 44);
     }
     .loginformheader{
         height: 50px;
@@ -178,14 +184,20 @@ export default {
     } 
     .emailbutton {
         background-color: #0069e0; 
-        border-radius: 30px;
+        border-radius: 8px;
         color: white;
         padding: 10px 24px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 14px;
+        font-size: 16px;
         width: 120px;
+    }
+
+    .emailbutton:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color: #25deff; /* Green */
+        color: rgb(25, 27, 44);
     }
 
     /* email input  */
@@ -202,7 +214,7 @@ export default {
     }
     .passwordbutton {
         background-color: #0069e0; 
-        border-radius: 30px;
+        border-radius: 8px;
         color: white;
         padding: 10px 24px;
         text-align: center;
@@ -211,5 +223,11 @@ export default {
         font-size: 14px;
         width: 160px;
         margin: 0px 14px;
+    }
+
+    .passwordbutton:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color: #25deff; 
+        color: rgb(25, 27, 44);
     }
 </style>
