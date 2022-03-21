@@ -4,6 +4,7 @@ import router from './router/index.js'
 import firebase from 'firebase'
 import store from './store.js'
 
+
 const firebaseConfig = {
 	apiKey: "AIzaSyC1skHWlJ4I4B089I0L9fQ220M53gootqQ",
 	authDomain: "scheduler-app-bt3103.firebaseapp.com",
