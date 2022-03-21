@@ -1,6 +1,9 @@
 <template>
 <h1>Main Schedule</h1>
-<AvailForm/>
+
+<div class="mainschedule">
+	<AvailForm/>
+</div>
 </template>
 
 <script>
@@ -9,12 +12,21 @@ import AvailForm from '../components/MainSchedule/AvailForm.vue'
 export default {
 	name: 'MainSchedule',
 	components: {
-		AvailForm	
+		AvailForm
 	}
 
 }
 </script>
 
-<style>
+<style scoped>
+h1 {
+	text-align: center;	
+}
+.mainschedule {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 
 </style>
