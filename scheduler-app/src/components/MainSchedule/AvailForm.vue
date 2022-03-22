@@ -6,21 +6,16 @@
 
 		<div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
 		
-		<!-- Contents of popup availability form -->
-			
+			<!-- Content of popup availability form below-->
 			<div class="modal" v-if="showModal">
 				
 				<h3>Select Availabilities for the Week</h3>
+				
 				<datepicker v-model="picked"/>
 				
-				<button class="button" @click="showModal = false">
-					Cancel
-				</button>
-				<button class="button" @click="showModal = false">
-					Submit
-				</button>
+				<button class="button" @click="showModal = false">Cancel</button>
+				<button class="button" @click="showModal = false">Submit</button>
 			</div>
-
 	</div>
 </template>
 
@@ -30,15 +25,17 @@ import { ref } from 'vue'
 
 export default {
 	name: 'AvailForm',
+	
 	components: {
 		Datepicker 
 	},
 	
 	data() {
 		const picked = ref(new Date())
+		
 		return {
-			showModal: false,
-			picked: picked
+			showModal: false, 	// for rendering popup form
+			picked: picked 		// for date picker
 		}
 	},
 }
@@ -90,13 +87,6 @@ h2 {
  border-radius: 16px;
  
  padding: 25px;
- 
- h1 {
-  color: #222;
-  font-size: 32px;
-  font-weight: 900;
-  margin-bottom: 15px;
- }
  
  p {
   color: #666;
