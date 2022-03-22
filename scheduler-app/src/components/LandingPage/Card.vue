@@ -3,13 +3,13 @@
         <div class="card">
             <img src="/img/time.svg" alt="Avatar" class="card-img">
             <div class="card-text">
-                <h4><b>Save up to 15 hours per week building the schedule.</b></h4>
+                <h4><b>Save up to 15 hours per week building YOUR schedule.</b></h4>
             </div> 
         </div>
         <div class="card">
             <img src="/img/office.svg" alt="Avatar" class="card-img">
             <div class="card-text">
-                <h4><b>Make your workplace more efficient.</b></h4> 
+                <h4><b>Optimize your work with planning.</b></h4> 
             </div>
         </div>
     </div>

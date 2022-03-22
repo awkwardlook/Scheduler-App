@@ -2,25 +2,20 @@
 	<EmployerHeader/>
 	<br><br>
 	<div class="deets">
-		<!-- add /Profile to reach this page -->
-		<EmployerProfile/>
-		<br><br>
 		<!-- they are supposed to be side by side -->
-		<CompanyProfile/>
+		<Deets/>
 	</div>
 </template>
 
 <script>
 import EmployerHeader from '../components/Header/EmployerHeader.vue'
-import EmployerProfile from '@/components/MplyrProfile/MplyrDeets.vue'
-import CompanyProfile from '@/components/MplyrProfile/CoyDeets.vue'
+import Deets from '@/components/MplyrProfile/deets.vue'
 
 export default {
 	name: 'Employer Profile',
 	components: {
 		EmployerHeader,
-		EmployerProfile,
-		CompanyProfile
+		Deets
 	}
 }
 
