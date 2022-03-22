@@ -2,9 +2,9 @@
 	<div class="availform">
 		
 		<!-- Add availabilities button -->
-		<button class="button" @click="showModal = true">Add Availabilities</button>
+		<button class="button" @click="toggleModal()">Add Availabilities</button>
 
-		<div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+		<div class="modal-overlay" v-if="showModal" @click="toggleModal()"></div>
 		
 			<!-- Content of popup availability form below-->
 			<div class="modal" v-if="showModal">
@@ -26,8 +26,8 @@
 				</div>
 				
 				<br>
-				<button class="button" @click="showModal = false">Cancel</button>
-				<button class="button" @click="showModal = false">Submit</button>
+				<button class="button" @click="toggleModal()">Cancel</button>
+				<button class="button" @click="toggleModal()">Submit</button>
 			</div>
 	</div>
 </template>
@@ -61,6 +61,11 @@ export default {
 			]
 		}
 	},
+	methods: {
+		toggleModal() {
+			this.showModal = !this.showModal;
+		}
+	}
 }
 </script>
 
