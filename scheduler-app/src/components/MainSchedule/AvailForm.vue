@@ -30,7 +30,7 @@
 				</div>
 				
 				<br>
-				<p v-for = "timing in Array.from(addedTimings.values())" :key = "timing" style="font-size: small;">
+				<p v-for = "timing in Array.from(addedTimings.values()).sort(this.myComparator)" :key = "timing" style="font-size: small;">
 					{{timing.Date}} {{timing.Time}}
 				</p>
 				<button class="button" @click="toggleModal()">Cancel</button>
@@ -80,7 +80,7 @@ export default {
 		addTiming() {
 			if (this.timeslot != null) {
 				const newTiming = {
-					'Date': `${this.picked.getDate()}/${this.picked.getMonth()+1}/${this.picked.getFullYear()}`,
+					'Date': this.formatDate(this.picked.getDate(), this.picked.getMonth() + 1, this.picked.getFullYear()),
 					'Time': this.timeslot
 				};
 				this.addedTimings.add(newTiming);
@@ -91,7 +91,20 @@ export default {
 				alert("Please select a timing")
 			}
 		},
-		
+		formatDate(date, month, year) {
+			return String(year) + '-' + String(month).padStart(2,'0') + '-' + String(date).padStart(2,'0');
+		},
+		myComparator(obj1, obj2) {
+			if (obj1.Date < obj2.Date) {
+				return -1;
+			} else if (obj1.Date > obj2.Date) {
+				return 1;
+			} else if (obj1.Time < obj2.Time) {
+				return -1;
+			} else {
+				return 1;
+			}
+		}
 	}
 }
 </script>
