@@ -26,12 +26,12 @@
 				</div>
 
 				<div class="datetime">
-					<button @click="addTiming()">Add</button>
+					<button class="button smallbutton" @click="addTiming()">Add</button>
 				</div>
 				
 				<br>
 				<p v-for = "timing in Array.from(addedTimings.values()).sort(this.myComparator)" :key = "timing" style="font-size: small;">
-					{{timing.Date}} {{timing.Time}}
+					{{timing.Date}} {{timing.Time}} <button class="button smallbutton">Delete</button>
 				</p>
 				<button class="button" @click="toggleModal()">Cancel</button>
 				<button class="button" @click="submit()">Submit</button>
@@ -128,6 +128,12 @@ h2 {
  color: #FFF;
  font-size: 15px;
  font-weight: bold;
+}
+
+.smallbutton {
+	padding: 3px 5px;
+	margin: 2px;
+	font-size: small;
 }
 
 .modal-overlay {
