@@ -31,7 +31,7 @@
 				
 				<br>
 				<p v-for = "timing in Array.from(addedTimings.values()).sort(this.myComparator)" :key = "timing" style="font-size: small;">
-					{{timing.Date}} {{timing.Time}} <button class="button smallbutton">Delete</button>
+					{{timing.Date}} {{timing.Time}} <button class="button smallbutton" @click="deleteSelection(timing)">Delete</button>
 				</p>
 				<button class="button" @click="toggleModal()">Cancel</button>
 				<button class="button" @click="submit()">Submit</button>
@@ -104,6 +104,9 @@ export default {
 			} else {
 				return 1;
 			}
+		},
+		deleteSelection(timing) {
+			this.addedTimings.delete(timing);
 		}
 	}
 }
