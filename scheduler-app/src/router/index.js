@@ -72,6 +72,11 @@ const routes = [
 		name: 'Sign Out',
 		component: () => import('../views/SignOut.vue')
 	},
+	{
+		path: '/mainschedule',
+		name: 'Main Schedule',
+		component: () => import('../views/MainSchedule.vue')
+	},
 ]
 
 const router = createRouter({
