@@ -1,5 +1,6 @@
 <template>
 	<div class="availform">
+		
 		<button class="button" @click="showModal = true">Add Availabilities</button>
 		<transition name="fade" appear>
 		<div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
@@ -7,6 +8,7 @@
 		<transition name="slide" appear>
 			<div class="modal" v-if="showModal">
 				<h3>Select Availabilities for the Week</h3>
+				<datepicker v-model="picked"/>
 				
 				
 				<button class="button" @click="showModal = false">
@@ -21,11 +23,19 @@
 </template>
 
 <script>
+import Datepicker from 'vue3-datepicker'
+import { ref } from 'vue'
+
 export default {
 	name: 'AvailForm',
+	components: {
+		Datepicker
+	},
 	data() {
+		const picked = ref(new Date())
 		return {
-			showModal: false
+			showModal: false,
+			picked: picked
 		}
 	},
 }
