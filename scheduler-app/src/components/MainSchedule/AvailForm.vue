@@ -17,17 +17,24 @@
 				</div>
 
 				<div class="datetime">
-					<label for="timeslot">Time</label>
+					<label for="timeslot">Time</label>	
 					<br>
 					<select class="form-control" id="timeslot" v-model="timeslot">
 						<option :value="null" disabled selected>Select Timeslot</option>
-						<option v-for="option in timeslot_options" :key="option.id" v-bind:value="option.id">{{option.text}}</option>
+						<option v-for="option in timeslotOptions" :key="option.id" v-bind:value="option.text">{{option.text}}</option>
 					</select>
+				</div>
+
+				<div class="datetime">
+					<button @click="addTiming()">Add</button>
 				</div>
 				
 				<br>
+				<p v-for = "timing in Array.from(addedTimings.values())" :key = "timing" style="font-size: small;">
+					{{timing.Date}} {{timing.Time}}
+				</p>
 				<button class="button" @click="toggleModal()">Cancel</button>
-				<button class="button" @click="toggleModal()">Submit</button>
+				<button class="button" @click="submit()">Submit</button>
 			</div>
 	</div>
 </template>
@@ -40,7 +47,7 @@ export default {
 	name: 'AvailForm',
 	
 	components: {
-		Datepicker 
+		Datepicker
 	},
 	
 	data() {
@@ -49,13 +56,15 @@ export default {
 		return {
 			showModal: false, 	// for rendering popup form
 			picked: picked, 	// for date picker
-			timeslot_options: [
+			timeslot: null,
+			addedTimings: new Set(),
+			timeslotOptions: [
 				{
-					text: "09:00 - 15:00",
+					text: "09:00-15:00",
 					id: 1
 				},
 				{
-					text: "15:00 - 21:00",
+					text: "15:00-21:00",
 					id: 2
 				},
 			]
@@ -64,7 +73,25 @@ export default {
 	methods: {
 		toggleModal() {
 			this.showModal = !this.showModal;
-		}
+		},
+		submit() {
+			console.log(this.picked.toString());
+		},
+		addTiming() {
+			if (this.timeslot != null) {
+				const newTiming = {
+					'Date': `${this.picked.getDate()}/${this.picked.getMonth()+1}/${this.picked.getFullYear()}`,
+					'Time': this.timeslot
+				};
+				this.addedTimings.add(newTiming);
+				const newValues = [...new Set(Array.from(this.addedTimings.values()).map(JSON.stringify))].map(JSON.parse);
+				this.addedTimings = new Set(newValues);
+				this.timeslot = null;
+			} else {
+				alert("Please select a timing")
+			}
+		},
+		
 	}
 }
 </script>
@@ -113,6 +140,7 @@ h2 {
  border-radius: 16px;
  
  padding: 25px;
+ text-align: center;
  
  p {
   color: #666;
