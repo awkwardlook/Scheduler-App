@@ -11,8 +11,21 @@
 				
 				<h3>Select Availabilities for the Week</h3>
 				
-				<datepicker v-model="picked"/>
+				<div class="datetime">
+					<label for="datepicker">Date</label>
+					<datepicker v-model="picked" id="datepicker"/>
+				</div>
+
+				<div class="datetime">
+					<label for="timeslot">Time</label>
+					<br>
+					<select class="form-control" id="timeslot" v-model="timeslot">
+						<option :value="null" disabled selected>Select Timeslot</option>
+						<option v-for="option in timeslot_options" :key="option.id" v-bind:value="option.id">{{option.text}}</option>
+					</select>
+				</div>
 				
+				<br>
 				<button class="button" @click="showModal = false">Cancel</button>
 				<button class="button" @click="showModal = false">Submit</button>
 			</div>
@@ -35,7 +48,17 @@ export default {
 		
 		return {
 			showModal: false, 	// for rendering popup form
-			picked: picked 		// for date picker
+			picked: picked, 	// for date picker
+			timeslot_options: [
+				{
+					text: "09:00 - 15:00",
+					id: 1
+				},
+				{
+					text: "15:00 - 21:00",
+					id: 2
+				},
+			]
 		}
 	},
 }
@@ -51,7 +74,6 @@ h2 {
  outline: none;
  border: none;
  background: none;
- cursor: pointer;
  
  display: inline-block;
  padding: 15px 25px;
@@ -61,7 +83,6 @@ h2 {
  color: #FFF;
  font-size: 15px;
  font-weight: bold;
- transition: 0.4s ease-out;
 }
 
 .modal-overlay {
@@ -94,6 +115,15 @@ h2 {
   font-weight: 400;
   margin-bottom: 15px;
  }
+
 }
 
+.datetime {
+	display: inline-block;
+	margin: 5px;
+}
+
+#timeslot {
+	height: 22px;
+}
 </style>
