@@ -5,7 +5,7 @@
                 <img src="@/assets/scheduler_logo2.png" alt=""/>
             </div>
             <div class="buttons">
-                <button class="btn" @click="$router.push('/employerschedule')">Schedule</button>
+                <button class="btn" @click="$router.push('/schedule')">Schedule</button>
                 <button class="btn" @click="$router.push('/employerprof')">Profiles</button>
                 <button class="btn" @click="$router.push('/analytics')">Analytics</button>
                 <button class="btn" @click="$router.push('/addemployee')">Add Employee</button>
