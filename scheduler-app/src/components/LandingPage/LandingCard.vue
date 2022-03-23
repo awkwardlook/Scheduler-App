@@ -1,6 +1,6 @@
 <template>
    <div class='hero-container'>
-        <img src="@/assets/scheduler_logo2.png" alt="logo" height= '180px' width='180px'>
+        <img src="@/assets/scheduler_logo2.png" alt="logo" height= '160px' width='160px'>
         <h1 id='welcome'>Welcome to Scheduler</h1>
         <p>Plan your schedule</p>
         <p>Plan their schedule</p>
@@ -116,6 +116,7 @@ export default {
   height: 60px;
   width: 240px;
   padding: 10px 24px;;
+  cursor: pointer;
 }
 
 .btns:hover {
