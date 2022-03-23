@@ -1,16 +1,12 @@
 <template>
    <div class='hero-container'>
-        <img src="@/assets/scheduler_logo2.png" alt="logo" 
-        height= '60px'
-        width='60px'>
-        <h1>Welcome to Scheduler</h1> <br>
+        <img src="@/assets/scheduler_logo2.png" alt="logo" height= '180px' width='180px'>
+        <h1 id='welcome'>Welcome to Scheduler</h1>
         <p>Plan your schedule</p>
         <p>Plan their schedule</p>
         <div class='hero-btns'>
         <a href="/login" class='hero-start'>
-            <button
-              class='btns'
-            >
+            <button class='btns'>
               GET STARTED
             </button>
           </a>
@@ -21,19 +17,19 @@
         <h1 style="color:black"> Our Clients</h1>
         <div class="row">
           <div class="column">
-            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> |
+            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> 
           </div>
           <div class="column">
-            <img src="/img/google.png" alt="Google" style="width:50%" id="google"> |
+            <img src="/img/google.png" alt="Google" style="width:50%" id="google"> 
           </div>
           <div class="column">
-            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> |
+            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> 
           </div>
           <div class="column">
-            <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> |
+            <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> 
           </div>
           <div class="column">
-            <img src="/img/intel.png" alt="Intel" style="width:50%"> |
+            <img src="/img/intel.png" alt="Intel" style="width:50%"> 
           </div>
         </div>
         <br/>
@@ -72,9 +68,15 @@ export default {
 .p .h1 {
   font-family: "Rosario";
 }
+
+#welcome{
+  position: relative;
+  top: -180px;
+}
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
   background-repeat: no-repeat;
+  margin-top: 0px;
   background-attachment: scroll;
   height: 100vh;
   width: 100%;

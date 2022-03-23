@@ -9,8 +9,8 @@
     <input type = "text" id = "username" required="" placeholder="Username" v-model="username" /> 
     <br><br>
         
-    <label for="companyUEN"> Company UEN: </label>
-    <input type = "text" id = "companyUEN" required="" placeholder="Company UEN" v-model="companyUEN" />     
+    <label for="companyUEN"> Department: </label>
+    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" />     
     <br><br>
         
     <label for="companyname"> Company Name: </label> 
