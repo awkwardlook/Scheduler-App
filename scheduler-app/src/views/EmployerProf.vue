@@ -9,7 +9,7 @@
 
 <script>
 import EmployerHeader from '../components/Header/EmployerHeader.vue'
-import Deets from '@/components/MplyrProfile/deets.vue'
+import Deets from '@/components/profile/erdeets.vue'
 
 export default {
 	name: 'Employer Profile',
