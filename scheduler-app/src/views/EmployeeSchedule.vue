@@ -1,20 +1,24 @@
 <template>
-<EmployeeHeader/>
-<h1>Main Schedule</h1>
+<div v-if="user && this.$store.state.usertype == 'employee'">
+	<EmployeeHeader/>
+	<h1>Main Schedule</h1>
 
-<div class="mainschedule">
-	<AvailForm/>
-	<CancelShiftForm/>
-	<Availability/>
+	<div class="mainschedule">
+		<AvailForm/>
+		<CancelShiftForm/>
+		<Availability/>
 
+	</div>
 </div>
 </template>
 
 <script>
-import AvailForm from '../components/EmployeeSchedule/AvailForm.vue';
-import EmployeeHeader from '../components/Header/EmployeeHeader.vue';
-import CancelShiftForm from '../components/EmployeeSchedule/CancelShift.vue';
-import Availability from '../components/EmployeeSchedule/Availability.vue';
+import AvailForm from '../components/EmployeeSchedule/AvailForm.vue'
+import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
+import CancelShiftForm from '../components/EmployeeSchedule/CancelShift.vue'
+import Availability from '../components/EmployeeSchedule/Availability.vue'
+import firebase from 'firebase'
+
 export default {
 	name: 'EmployeeSchedule',
 	components: {
@@ -22,8 +26,20 @@ export default {
 		EmployeeHeader,
 		CancelShiftForm,
 		Availability,
+	},
+	data() {
+		return {
+			user: false,
+			usertype: null
+		}
+	},
+	mounted() {
+		const auth = firebase.auth();
+		auth.onAuthStateChanged((user) => {
+			this.user = user;
+			this.usertype = this.$store.state.usertype;
+		})
 	}
-
 }
 </script>
 
@@ -39,3 +55,4 @@ h1 {
 
 
 </style>
+

@@ -8,9 +8,7 @@
         <p>Plan their schedule</p>
         <div class='hero-btns'>
         <a href="/login" class='hero-start'>
-            <button
-              class='btns'
-            >
+            <button class='btns'>
               GET STARTED
             </button>
           </a>
@@ -21,19 +19,19 @@
         <h1 style="color:black"> Our Clients</h1>
         <div class="row">
           <div class="column">
-            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> |
+            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> 
           </div>
           <div class="column">
-            <img src="/img/google.png" alt="Google" style="width:50%" id="google"> |
+            <img src="/img/google.png" alt="Google" style="width:50%" id="google"> 
           </div>
           <div class="column">
-            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> |
+            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> 
           </div>
           <div class="column">
-            <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> |
+            <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> 
           </div>
           <div class="column">
-            <img src="/img/intel.png" alt="Intel" style="width:50%"> |
+            <img src="/img/intel.png" alt="Intel" style="width:50%"> 
           </div>
         </div>
         <br/>
@@ -58,6 +56,7 @@
 import Card from './Card.vue';
 import Footer from './Footer.vue';
 import Schedule from './FunctionSchedule.vue';
+
 export default {
   name: "LandingCard",
   components: {
@@ -71,9 +70,15 @@ export default {
 .p .h1 {
   font-family: "Rosario";
 }
+
+#welcome{
+  position: relative;
+  top: -180px;
+}
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
   background-repeat: no-repeat;
+  margin-top: 0px;
   background-attachment: scroll;
   height: 100vh;
   width: 100%;
@@ -108,15 +113,18 @@ export default {
   border-radius: 8px;
   transition-duration: 0.4s;
   color:white;
-  background-color: #3182CE;
-  font-size: 16px;
+  background-color: #0069e0;
+  font-size: 24px;
+  height: 60px;
+  width: 240px;
   padding: 10px 24px;;
+  cursor: pointer;
 }
 
 .btns:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  background-color: #4CAF50; /* Green */
-  color: cadetblue;
+  background-color: #25deff; /* Green */
+  color: rgb(25, 27, 44);
 }
 
 .fa-play-circle {

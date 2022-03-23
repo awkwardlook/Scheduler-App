@@ -12,17 +12,25 @@ const routes = [
 		component: () => import('../views/Login.vue')
 	},
 	{
-		path: '/register',
+		path: '/eregister',
 		name: 'EmployerRegister',
 		component: () => import('../views/EmployerRegister.vue')
 	},
-
 	{
 		path: '/employerprof',
 		name: 'Employer Profile',
 		component: () => import('../views/EmployerProf.vue')
 	},
-
+	{
+		path: '/employerschedule',
+		name: 'Employer Schedule',
+		component: () => import('../views/EmployerSchedule.vue')
+	},
+	{
+		path: '/employeranalytics',
+		name: 'Employer Analytics',
+		component: () => import('../views/EmployerAnalytics.vue')
+	},
 	{
 		path: '/employeeprof',
 		name: 'Employee Profile',
@@ -38,17 +46,20 @@ const routes = [
 		name: 'Employee Schedule',
 		component: () => import('../views/EmployeeSchedule.vue')
 	},
-
+	{
+		path: '/employerschedule',
+		name: 'Employer Schedule',
+		component: () => import('../views/EmployerSchedule.vue')
+	},
+	{
+		path: '/analytics',
+		name: 'Analytics',
+		component: () => import('../views/EmployerAnalytics.vue')
+	},
 	{
 		path: '/employeetimesheet',
 		name: 'Employee Timesheet',
 		component: () => import('../views/EmployeeTimesheet.vue')
-	},
-
-	{
-		path: '/signout',
-		name: 'Sign Out',
-		component: () => import('../views/SignOut.vue')
 	},
 ]
 

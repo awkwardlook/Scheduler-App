@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import Header from '@/components/Header/Header.vue'
+//import Header from '@/components/Header/Header.vue'
 import LandingCard from '@/components/LandingPage/LandingCard.vue';
 
 export default {
   name: 'Home',
   components: {
-    Header,
+    //Header,
     LandingCard,
   }
 }

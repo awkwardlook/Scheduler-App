@@ -3,15 +3,19 @@ import {createStore} from 'vuex';
 export default createStore({
 	state() {
 		return {
-			user: ""
+			usertype: "",
+			email: ""
 		}
 	},
 	mutations: {
 		loginAsEmployer(state) {
-			state.user = "employer"
+			state.usertype = "employer"
 		},
 		loginAsEmployee(state) {
-			state.user = "employee"
+			state.usertype = "employee"
+		},
+		storeEmail(state, email) {
+			state.email = email
 		}
 	}
 })

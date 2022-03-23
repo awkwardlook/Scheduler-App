@@ -1,22 +1,51 @@
 <template>
-    <div class="header">
-    <button @click="$router.push('/login')">Login</button>
-    <button @click="$router.push('/register')">Register</button>
-    </div>
-    <router-view/>
+    <!-- weird gap at the top of login box cannot resolve --> 
+    <header :class="{ 'scrolled-nav': scrollPosition }">
+        <nav class="flexbox">
+            <div class="branding">
+                <router-link to="/"><img src="@/assets/scheduler_logo2.png" alt=""/></router-link>
+            </div>
+        </nav>  
+        </header>
 </template>
 
 <style scoped>
-    .header{
-        height: 50px;
-        background-color: grey;
-        text-align: center;
+    header {
+        z-index: 99;
+        width: 100%;
+        position: fixed;
+    }
+
+    nav.flexbox {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        background-color: #bebebe;
+    }
+
+    .branding {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .branding:hover {
+        cursor: pointer;
+    }
+
+    img {
+        width: 30px;
+        transition: 0.5 ease all;
     }
 </style>
 
 <script>
     export default {
-        mounted(){}
+        name: "header",
+
     }
     
 </script>

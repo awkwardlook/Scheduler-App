@@ -20,7 +20,7 @@
                 <h2>Analytics</h2>
                 <h4>Work Peformance Report</h4>
                 <p style="font-size:16px;color:rgb(78, 66, 66);">
-                    Keep track of how your stores and employee are doing
+                Keep track of how your stores and employee are doing    
                 </p>
             </div>
         </div>

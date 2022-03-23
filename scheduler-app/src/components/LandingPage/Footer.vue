@@ -3,6 +3,9 @@
         <div className='footer-links'>
             <div className="footer-link-wrapper">
                 <div className="footer-link-items">
+                    <img src="/img/logo.png" alt="logo" style="margin-top:10px"/>
+                </div>
+                <div className="footer-link-items">
                     <h2>Features</h2>
                     <p>Scheduling</p>
                     <p>Smart Timesheet</p>

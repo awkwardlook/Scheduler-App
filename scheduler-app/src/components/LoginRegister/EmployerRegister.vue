@@ -9,8 +9,8 @@
     <input type = "text" id = "username" required="" placeholder="Username" v-model="username" /> 
     <br><br>
         
-    <label for="companyUEN"> Company UEN: </label>
-    <input type = "text" id = "companyUEN" required="" placeholder="Company UEN" v-model="companyUEN" /> 
+    <label for="companyUEN"> Department: </label>
+    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" /> 
     <br><br>
         
     <label for="companyname"> Company Name: </label>
@@ -53,8 +53,8 @@
         alert('Successfully registered!');
 
         // add credentials to firestore upon successful registration
-        // doc ID for employer is consistent with prescribed UID for firebase auth
-        employersCollection.doc(auth.currentUser.uid.toString()).set({
+        // doc ID is email
+        employersCollection.doc(email.value).set({
           email: email.value,
           username: username.value,
           companyUEN: companyUEN.value,
