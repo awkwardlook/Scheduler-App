@@ -66,12 +66,10 @@ export default {
     methods: {
         enterEmail() {
             if (this.email != "") {
-
                 // check if email exists
                 const usersRef = usersCollection.doc(this.email)
                 usersRef.get()
                 .then((docSnapshot) => {
-
                     // only allowed to enter password if email exists
                     if (docSnapshot.exists) {
                         this.emailEntered = !this.emailEntered;
@@ -89,9 +87,7 @@ export default {
         },
         loginEmployer() {
             if (this.password != "") {
-
                 const employersRef = employersCollection.doc(this.email)
-                
                 employersRef.get()
                 .then((docSnapshot) => {
                     if (docSnapshot.exists) {
@@ -106,8 +102,6 @@ export default {
                         alert('Log in as Employee instead.')
                     }
                 })
-                
-            
             } else {
                 alert("Please enter a valid password!");
             }
