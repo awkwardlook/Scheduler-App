@@ -61,11 +61,6 @@ const routes = [
 		name: 'Employee Timesheet',
 		component: () => import('../views/EmployeeTimesheet.vue')
 	},
-	{
-		path: '/mainschedule',
-		name: 'Main Schedule',
-		component: () => import('../views/MainSchedule.vue')
-	},
 ]
 
 const router = createRouter({
