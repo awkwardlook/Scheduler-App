@@ -83,39 +83,51 @@ export default {
 			this.showModal = !this.showModal;
 		},
 		async submit() {
-			const scheduleRef = db.collection('availabilities')
-			const user = await db.collection('employees').doc(this.$store.state.email).get()
-			const username = user.data().username
-			Array.from(this.addedTimings.values()).forEach(timing => {
-				scheduleRef.doc(timing.Date + " " + timing.Time).get()
-				.then((docSnapshot) => {
-					if (docSnapshot.exists) {
-						const indicatedEmployees = docSnapshot.data().employees
-						if (!indicatedEmployees.includes(username)) {
-							indicatedEmployees.push(username)
-							return scheduleRef.doc(timing.Date + " " + timing.Time).update({
-								employees: indicatedEmployees
+			if (confirm("You will not be able to make any changes to your weekly availabilities after form is submitted. Confirm submission?") == false) {
+				console.log("Submission cancelled")
+				return;
+				
+			} else {
+			
+				const scheduleRef = db.collection('availabilities')
+				const user = await db.collection('employees').doc(this.$store.state.email).get()
+				const username = user.data().username
+		
+				Array.from(this.addedTimings.values()).forEach(timing => {
+					scheduleRef.doc(timing.Date + " " + timing.Time).get()
+					.then((docSnapshot) => {
+						if (docSnapshot.exists) {
+							const indicatedEmployees = docSnapshot.data().employees
+							if (!indicatedEmployees.includes(username)) {
+								indicatedEmployees.push(username)
+								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
+									employees: indicatedEmployees
+								}).then(() => {
+									console.log("Successfully added availability")
+									this.addedTimings.clear()
+									this.showModal = false
+								
+								}).catch((e) => {
+									alert(e)
+								})
+							} 
+						} else {
+							scheduleRef.doc(timing.Date + " " + timing.Time).set({
+								Date: timing.Date,
+								Time: timing.Time,
+								employees: [username]
 							}).then(() => {
-								console.log("Successfully added availability")
+								console.log("Successfully added availability")	
 								this.addedTimings.clear()
+								this.showModal = false
+							
 							}).catch((e) => {
 								alert(e)
 							})
-						} 
-					} else {
-						scheduleRef.doc(timing.Date + " " + timing.Time).set({
-							Date: timing.Date,
-							Time: timing.Time,
-							employees: [username]
-						}).then(() => {
-							console.log("Successfully added availability")	
-							this.addedTimings.clear()
-						}).catch((e) => {
-							alert(e)
-						})
-					}
+						}
+					})
 				})
-			})
+			}
 		},
 		addTiming() {
 			if (this.timeslot != null) {
@@ -147,7 +159,8 @@ export default {
 		},
 		deleteSelection(timing) {
 			this.addedTimings.delete(timing);
-		}
+		},
+	
 	}
 }
 </script>
