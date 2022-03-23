@@ -9,11 +9,10 @@
 </style>
 
 <script>
-import EmployerHeader from '../components/Header/EmployerHeader.vue'
-import AvailList from '../components/EmployerSchedule/AvailList.vue'
+import EmployerHeader from '../Header/EmployerHeader.vue'
+import AvailList from './AvailList.vue'
 
 export default {
-    name: 'Employer Schedule',
     components: {
         EmployerHeader,
         AvailList
