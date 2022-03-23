@@ -42,6 +42,9 @@
 <script>
 import Datepicker from 'vue3-datepicker'
 import { ref } from 'vue'
+import firebase from 'firebase'
+
+const db = firebase.firestore()
 
 export default {
 	name: 'AvailForm',
@@ -70,12 +73,48 @@ export default {
 			]
 		}
 	},
+	computed: {
+		usertype() {
+			return this.$store.state.usertype
+		}
+	},
 	methods: {
 		toggleModal() {
 			this.showModal = !this.showModal;
 		},
-		submit() {
-			console.log(this.picked.toString());
+		async submit() {
+			const scheduleRef = db.collection('availabilities')
+			console.log(this.$store.state);
+			const user = await db.collection('employees').doc(this.$store.state.email).get()
+			const username = user.data().username
+			Array.from(this.addedTimings.values()).forEach(timing => {
+				scheduleRef.doc(timing.Date + " " + timing.Time).get()
+				.then((docSnapshot) => {
+					if (docSnapshot.exists) {
+						const indicatedEmployees = docSnapshot.data().employees
+						if (!indicatedEmployees.includes(username)) {
+							indicatedEmployees.push(username)
+							return scheduleRef.doc(timing.Date + " " + timing.Time).update({
+								employees: indicatedEmployees
+							}).then(() => {
+								console.log("Successfully added availability")
+							}).catch((e) => {
+								alert(e)
+							})
+						} 
+					} else {
+						scheduleRef.doc(timing.Date + " " + timing.Time).set({
+							Date: timing.Date,
+							Time: timing.Time,
+							employees: [username]
+						}).then(() => {
+							console.log("Successfully added availability")	
+						}).catch((e) => {
+							alert(e)
+						})
+					}
+				})
+			})
 		},
 		addTiming() {
 			if (this.timeslot != null) {

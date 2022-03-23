@@ -1,4 +1,5 @@
 <template>
+<EmployeeHeader/>
 <h1>Main Schedule</h1>
 
 <div class="mainschedule">
@@ -8,11 +9,13 @@
 
 <script>
 import AvailForm from '../components/MainSchedule/AvailForm.vue'
+import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
 
 export default {
 	name: 'MainSchedule',
 	components: {
-		AvailForm
+		AvailForm,
+		EmployeeHeader
 	}
 
 }

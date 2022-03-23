@@ -94,9 +94,7 @@ export default {
                 .then((docSnapshot) => {
                     if (docSnapshot.exists) {
                         auth.signInWithEmailAndPassword(this.email, this.password)
-                        .then((data) => {
-                            console.log(data),
-                            
+                        .then(() => {
                             store.commit("loginAsEmployer")
                             console.log(store.state.user);
                             this.router.replace('/employerschedule')
@@ -121,11 +119,10 @@ export default {
                 .then((docSnapshot) => {
                     if (docSnapshot.exists) {
                         auth.signInWithEmailAndPassword(this.email, this.password)
-                        .then((data) => {
-                            console.log(data),
-                            
+                        .then(() => {
                             store.commit("loginAsEmployee")
-                            console.log(store.state.user);
+                            store.commit("storeEmail", this.email)
+                            console.log(this.$store.state)
                             this.router.replace('/employeeschedule')
                         })
                         .catch(error => alert(error.message))

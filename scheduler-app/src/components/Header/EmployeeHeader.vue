@@ -1,6 +1,7 @@
 <template>
     <div class="header">
         <button @click="$router.push('/employeeschedule')">Schedule</button>
+        <button @click="$router.push('/mainschedule')">Main Schedule</button>
         <button @click="$router.push('/employeetimesheet')">Timesheet</button>
         <button @click="$router.push('/employeeprof')">Profile</button>
         <button @click="logout">Sign Out</button>
