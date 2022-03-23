@@ -1,5 +1,7 @@
 <template>
-<Header/>
+    <div class="header">
+        <Header/>
+    </div>
     <div class="loginbox">
         <div v-if = "emailEntered" class="backbuttondiv">
             <button class="bbutton" @click="editEmail()">Back</button>
@@ -148,8 +150,7 @@ export default {
         width: 382px;  
         height: 300px;
         overflow: hidden;  
-        margin: auto;  
-        margin: 20 0 0 450px;  
+        margin: 40%;
         padding: 80px;  
         background: #ffffff;  
         border-radius: 15px;
