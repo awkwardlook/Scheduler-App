@@ -22,6 +22,12 @@ const routes = [
 		component: () => import('../views/EmployerProf.vue')
 	},
 	{
+		path: '/employeeprof',
+		name: 'Employee Profile',
+		component: () => import('../views/EmployeeProf.vue')
+	},
+
+	{
 		path: '/employerschedule',
 		name: 'Employer Schedule',
 		component: () => import('../views/EmployerSchedule.vue')
