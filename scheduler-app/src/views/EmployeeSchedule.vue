@@ -6,6 +6,7 @@
 	<div class="mainschedule">
 		<AvailForm/>
 		<CancelShiftForm/>
+		<Availability/>
 
 	</div>
 </div>
@@ -15,6 +16,7 @@
 import AvailForm from '../components/EmployeeSchedule/AvailForm.vue'
 import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
 import CancelShiftForm from '../components/EmployeeSchedule/CancelShift.vue'
+import Availability from '../components/EmployeeSchedule/Availability.vue'
 import firebase from 'firebase'
 
 export default {
@@ -22,7 +24,8 @@ export default {
 	components: {
 		AvailForm,
 		EmployeeHeader,
-		CancelShiftForm
+		CancelShiftForm,
+		Availability,
 	},
 	data() {
 		return {
