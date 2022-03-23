@@ -6,7 +6,6 @@
             </div>
             <div class="buttons">
                 <button class="btn" @click="$router.push('/employeeschedule')">Schedule</button>
-                <button class="btn" @click="$router.push('/mainschedule')">Main Schedule</button>
                 <button class="btn" @click="$router.push('/employeetimesheet')">Timesheet</button>
                 <button class="btn" @click="$router.push('/employeeprof')">Profile</button>
                 <button class="btn" @click="logout">Sign Out</button>
