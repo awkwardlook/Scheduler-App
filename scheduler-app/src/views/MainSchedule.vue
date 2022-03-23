@@ -4,18 +4,22 @@
 
 <div class="mainschedule">
 	<AvailForm/>
+	<!-- <CancelShiftForm/> -->
+
 </div>
 </template>
 
 <script>
 import AvailForm from '../components/MainSchedule/AvailForm.vue'
 import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
+// import CancelShiftForm from '../components/MainSchedule/CancelShift.vue'
 
 export default {
 	name: 'MainSchedule',
 	components: {
 		AvailForm,
-		EmployeeHeader
+		EmployeeHeader,
+		// CancelShiftForm
 	}
 
 }
