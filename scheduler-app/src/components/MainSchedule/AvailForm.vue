@@ -84,7 +84,6 @@ export default {
 		},
 		async submit() {
 			const scheduleRef = db.collection('availabilities')
-			console.log(this.$store.state);
 			const user = await db.collection('employees').doc(this.$store.state.email).get()
 			const username = user.data().username
 			Array.from(this.addedTimings.values()).forEach(timing => {
@@ -98,6 +97,7 @@ export default {
 								employees: indicatedEmployees
 							}).then(() => {
 								console.log("Successfully added availability")
+								this.addedTimings.clear()
 							}).catch((e) => {
 								alert(e)
 							})
@@ -109,6 +109,7 @@ export default {
 							employees: [username]
 						}).then(() => {
 							console.log("Successfully added availability")	
+							this.addedTimings.clear()
 						}).catch((e) => {
 							alert(e)
 						})
