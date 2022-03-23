@@ -72,27 +72,27 @@
 </style>
 
 <script>
+import firebase from 'firebase'
 
-    import firebase from 'firebase'
+const auth = firebase.auth()
 
-    const auth = firebase.auth()
-
-    export default {
-        name: "employerheader",
-        methods: {
-            logout() {
-                auth.signOut()
-                .then(() => {
-                    this.$router.replace('/')
-                    alert('Successfully logged out!')
-                    console.log('Successfully logged out!')
-                })
-                .catch(error => {
-                    alert(error.message)
-                })
-            }
-
+export default {
+    name: "employerheader",
+    methods: {
+        logout() {
+            auth.signOut()
+            .then(() => {
+                window.localStorage.clear();
+                this.$router.replace('/')
+                alert('Successfully logged out!')
+                console.log('Successfully logged out!')
+            })
+            .catch(error => {
+                alert(error.message)
+            })
         }
+
     }
+}
     
 </script>

@@ -25,6 +25,7 @@
             logout() {
                 auth.signOut()
                 .then(() => {
+                    window.localStorage.clear();
                     this.$router.replace('/')
                     alert('Successfully logged out!')
                     console.log('Successfully logged out!')

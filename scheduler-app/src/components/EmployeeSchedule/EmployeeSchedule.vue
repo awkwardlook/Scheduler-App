@@ -1,4 +1,5 @@
 <template>
+<div v-if = "user">
 	<EmployeeHeader/>
 	<h1>Main Schedule</h1>
 
@@ -8,6 +9,7 @@
 		<Availability/>
 
 	</div>
+</div>
 </template>
 
 <script>
@@ -15,6 +17,9 @@ import AvailForm from './AvailForm.vue'
 import EmployeeHeader from '../Header/EmployeeHeader.vue'
 import CancelShiftForm from './CancelShift.vue'
 import Availability from './Availability.vue'
+import firebase from 'firebase'
+
+const auth = firebase.auth();
 
 export default {
 	components: {
@@ -22,6 +27,18 @@ export default {
 		EmployeeHeader,
 		CancelShiftForm,
 		Availability,
+	},
+	data() {
+		return {
+			user: false
+		}
+	},
+	mounted() {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				this.user = user;
+			}
+		});
 	}
 }
 </script>
