@@ -66,12 +66,10 @@ export default {
     methods: {
         enterEmail() {
             if (this.email != "") {
-
                 // check if email exists
                 const usersRef = usersCollection.doc(this.email)
                 usersRef.get()
                 .then((docSnapshot) => {
-
                     // only allowed to enter password if email exists
                     if (docSnapshot.exists) {
                         this.emailEntered = !this.emailEntered;
@@ -89,9 +87,7 @@ export default {
         },
         loginEmployer() {
             if (this.password != "") {
-
                 const employersRef = employersCollection.doc(this.email)
-                
                 employersRef.get()
                 .then((docSnapshot) => {
                     if (docSnapshot.exists) {
@@ -106,8 +102,6 @@ export default {
                         alert('Log in as Employee instead.')
                     }
                 })
-                
-            
             } else {
                 alert("Please enter a valid password!");
             }
@@ -162,13 +156,14 @@ export default {
         display: inline-block;
         font-size: 14px;
         width: 100px;
-
     }
 
     .bbutton:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         background-color: #25deff; /* Green */
         color: rgb(25, 27, 44);
+        transition-duration: 0.4s;
+        cursor: pointer;
     }
     .loginformheader{
         height: 50px;
@@ -196,6 +191,8 @@ export default {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         background-color: #25deff; /* Green */
         color: rgb(25, 27, 44);
+        transition-duration: 0.4s;
+        cursor: pointer;
     }
 
     /* email input  */
@@ -227,5 +224,7 @@ export default {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         background-color: #25deff; 
         color: rgb(25, 27, 44);
+        transition-duration: 0.4s;
+        cursor: pointer;
     }
 </style>
