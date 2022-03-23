@@ -9,8 +9,12 @@
 			<div class="modal" v-if="showModal">
 				
 				<h3>Select shift to cancel</h3>
-				<br>
-
+				<br><br>
+				
+				<label for="cancelremarks" id="remarks"> Remarks: </label>
+				<input type = "text" id = "remarksbox" required="" placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
+				
+				<br><br>
 				<button class="button" @click="toggleModal()">Back</button>
 				<button class="button" @click="toggleModal()">Request Cancellation</button>
 			</div>
@@ -27,7 +31,7 @@ export default {
 	data() {
 		
 		return {
-			showModal: false, 	// for rendering popup for
+			showModal: false, 	// for rendering popup form
 
 		}
 	},
@@ -113,5 +117,14 @@ h2 {
   margin-bottom: 15px;
  }
 
+}
+
+#remarksbox {
+	height: 50px;
+	width: 60%;
+	margin-left: 5px;
+	padding-left: 5px;
+	border-radius: 10px;
+	border: 1px solid steelblue;
 }
 </style>
