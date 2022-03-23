@@ -1,6 +1,7 @@
 <template>
+    <!-- weird gap at the top of login box cannot resolve --> 
     <header :class="{ 'scrolled-nav': scrollPosition }">
-        <nav>
+        <nav class="flexbox">
             <div class="branding">
                 <router-link to="/"><img src="@/assets/scheduler_logo2.png" alt=""/></router-link>
             </div>
@@ -10,25 +11,29 @@
 
 <style scoped>
     header {
-        background-color: #bebebe;
         z-index: 99;
         width: 100%;
         position: fixed;
     }
 
-    nav {
+    nav.flexbox {
         position: relative;
         display: flex;
         flex-direction: row;
-        padding: 10px 0;
-        transition: .5s ease all;
-        width: 95%;
+        align-items: center;
+        width: 100%;
         margin: 0 auto;
+        background-color: #bebebe;
     }
 
     .branding {
         display: flex;
         align-items: center;
+        padding: 10px 20px;
+    }
+
+    .branding:hover {
+        cursor: pointer;
     }
 
     img {

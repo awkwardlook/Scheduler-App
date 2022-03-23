@@ -22,6 +22,15 @@
         position: fixed;
         transition: 0.5 ease all;
         color: #fff;
+    }
+
+    nav.flexbox {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin: auto;
         background-color: #bebebe;
     }
 
@@ -30,31 +39,22 @@
         align-items: center;
         position: absolute;
         padding: 10px;
-        right: 24px;
-
-    }
-
-    nav.flexbox {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        margin: auto;
-        background-color: #bebebe;
+        right: 10px;
     }
 
     .btn {
         background-color: #0069e0;
         border-radius: 20px;
+        border-color: white;
         color:white;
-        padding: 5px 24px;
+        padding: 5px 20px;
         margin-left: 5px;
     }
 
     .btn:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        box-shadow: 0 3px 5px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         background-color: #25deff; /* Green */
-        color: rgb(25, 27, 44);
+        color: #212121;
         cursor: pointer;
         transition-duration: 0.4s;
     }
@@ -67,7 +67,6 @@
 
     img {
         width: 30px;
-        transition: 0.5 ease all;
     }
 
 </style>
