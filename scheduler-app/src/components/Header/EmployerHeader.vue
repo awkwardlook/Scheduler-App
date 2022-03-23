@@ -26,9 +26,9 @@
             logout() {
                 auth.signOut()
                 .then(() => {
+                    this.$router.replace('/')
                     alert('Successfully logged out!')
                     console.log('Successfully logged out!')
-                    this.$router.replace('/')
                 })
                 .catch(error => {
                     alert(error.message)
