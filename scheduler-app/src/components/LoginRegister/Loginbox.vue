@@ -95,7 +95,7 @@ export default {
                         .then(() => {
                             store.commit("loginAsEmployer")
                             console.log(store.state.user);
-                            this.router.replace('/employerschedule')
+                            this.router.replace('/schedule')
                         })
                         .catch(error => alert(error.message))
                     } else {
@@ -119,7 +119,7 @@ export default {
                             store.commit("loginAsEmployee")
                             store.commit("storeEmail", this.email)
                             console.log(this.$store.state)
-                            this.router.replace('/employeeschedule')
+                            this.router.replace('/schedule')
                         })
                         .catch(error => alert(error.message))
                     } else {

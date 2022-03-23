@@ -12,19 +12,9 @@ const routes = [
 		component: () => import('../views/Login.vue')
 	},
 	{
-		path: '/eregister',
-		name: 'EmployerRegister',
-		component: () => import('../views/EmployerRegister.vue')
-	},
-	{
 		path: '/employerprof',
 		name: 'Employer Profile',
 		component: () => import('../views/EmployerProf.vue')
-	},
-	{
-		path: '/employerschedule',
-		name: 'Employer Schedule',
-		component: () => import('../views/EmployerSchedule.vue')
 	},
 	{
 		path: '/employeranalytics',
@@ -42,14 +32,9 @@ const routes = [
 		component: () => import('../views/AddEmployee.vue')
 	},
 	{
-		path: '/employeeschedule',
-		name: 'Employee Schedule',
-		component: () => import('../views/EmployeeSchedule.vue')
-	},
-	{
-		path: '/employerschedule',
-		name: 'Employer Schedule',
-		component: () => import('../views/EmployerSchedule.vue')
+		path: '/schedule',
+		name: 'Schedule',
+		component: () => import('../views/Schedule.vue')
 	},
 	{
 		path: '/analytics',
