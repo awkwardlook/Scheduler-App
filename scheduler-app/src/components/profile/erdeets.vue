@@ -1,44 +1,45 @@
 <template>
     <form id="myform">
-    <div class = "mdeets">
-        <h1>Employer Details</h1>
-        <h2 id="ename">Employer's Name</h2>
-        <div class="eleft">
+        <div class = "mdeets">
+            <h1>Employer Details</h1>
+            <h2 id="ename">Employer's Name</h2>
+            <div class="eleft">
+                
+                <h2 id = "edept">Employer Department</h2>
+                <br/>
+                <img id="profphoto" alt="profile photo">
+            </div>
+
             
-            <h2 id = "edept">Employer Department</h2>
-            <br/>
-            <img id="profphoto" alt="profile photo">
-        </div>
-
+            <div class="eright">
+                <h2>Email</h2>
+                <input id="email" >
+                <h2>Phone Number</h2>
+                <input id="pnum" >
+                <br><br>
+                <h3>Gender</h3>
+                <input id="gender"><br><br>
+            </div>
         
-        <div class="eright">
-            <h2>Email</h2>
-            <input id="email" value="nemail">
-            <h2>Phone Number</h2>
-            <input id="pnum" value="npnum">
-            <br><br>
-            <h3>Gender</h3>
-            <input id="gender" value = "ngender"><br><br>
-        </div>
-       
 
-        
-        <!-- button id = "savebutton" type="button" v-on:click="savetofs()" style="color: rgb(0, 0, 0);"> SAVE </button><br><br> -->
-    </div>
-
-    <div class= "coydeets">
-        <h1>Company Details</h1>
-        <div class="left">
-            <h2 id = "coyname">Company Name</h2>
-            <img id = "coylogo" alt="company photo">
+            
+            <!-- button id = "savebutton" type="button" v-on:click="savetofs()" style="color: rgb(0, 0, 0);"> SAVE </button><br><br> -->
         </div>
 
-        <div class="right">
-            <h2>Company Description</h2>
-            <h5 id="coydesc">Wanted company description</h5>            
+        <div class= "coydeets">
+            <h1>Company Details</h1>
+            <div class="left">
+                <h2 id = "coyname">Company Name</h2>
+                <img id = "coylogo" alt="company photo">
+            </div>
+
+            <div class="right">
+                <h2>Company Description</h2>
+                <h5 id="coydesc">Wanted company description</h5>            
+            </div>
         </div>
-    </div>
     </form>
+
     <button id="Update" type="button" v-on:click="updatefs()"> Update </button>
 
 
@@ -60,72 +61,73 @@ const edward = employers.doc(email);
 const companies = db.collection("companies")
 const shopee = companies.doc("shopee")
 
+edward.onSnapshot(function(doc) {
+                let data = doc.data();
+                // gets the value of a field called field1 from the doc
+                // console.log(data)
+                
+                const ename = data.name
+                const edept = data.department
+                const dp = data.ephoto
+                const pnum = data.pnum
+                const gender = data.gender
+                // const username = data.username
+
+                document.getElementById("profphoto").src = dp
+                document.getElementById("ename").innerText = ename
+                document.getElementById("edept").innerText = edept
+                document.getElementById("email").value = email
+                document.getElementById("pnum").value = pnum
+                document.getElementById("gender").value = gender
+                })
+
+            shopee.onSnapshot(function(doc) {
+                let data = doc.data();
+                // gets the value of a field called field1 from the doc
+                console.log(data)
+                const cname = data.name
+                const desc = data.description
+                const clogo = data.clogo
+                document.getElementById("coyname").innerText = cname
+                document.getElementById("coydesc").innerText = desc
+                document.getElementById("coylogo").src = clogo
+            })
+
 // console.log(shopee)
 
 export default {
-    mounted(){
-    // need to obtain the loggin in email first -> determine if employee or employer
-    // then use the email to retrieve the respective info
-    edward.onSnapshot(function(doc) {
-        let data = doc.data();
-        // gets the value of a field called field1 from the doc
-        // console.log(data)
-        
-        const ename = data.name
-        const edept = data.department
-        const dp = data.ephoto
-        const pnum = data.pnum
-        const gender = data.gender
-        // const username = data.username
+    methods: {
+        mounted(){
+        // need to obtain the loggin in email first -> determine if employee or employer
+        // then use the email to retrieve the respective info
+            
+        },
 
-        document.getElementById("profphoto").src = dp
-        document.getElementById("ename").innerText = ename
-        document.getElementById("edept").innerText = edept
-        document.getElementById("email").placeholder = email
-        document.getElementById("pnum").placeholder = pnum
-        document.getElementById("gender").placeholder = gender
-        })
-
-
-
-    shopee.onSnapshot(function(doc) {
-        let data = doc.data();
-        // gets the value of a field called field1 from the doc
-        console.log(data)
-        const cname = data.name
-        const desc = data.description
-        const clogo = data.clogo
-        document.getElementById("coyname").innerText = cname
-        document.getElementById("coydesc").innerText = desc
-        document.getElementById("coylogo").src = clogo
-        
-
-        // let value1 = data.description;
-
-    })
-    //     
-    // }
-    // display()
-    },
-
-    async updatefs(){
-            console.log("updating")
-            var ename = document.getElementById("ename").innerText
-            var g = document.getElementById("ngender").value
-            var p = document.getElementById("npnum").value
-            var e = document.getElementById("nemail").value
-            alert("Updating details for : " + ename)
-            try{
-                edward.update({gender: g})
-                edward.update({email:e})
-                edward.update({pnum:p})
-                document.getElementById("myform").reset();
-                this.$emit("updated")
+        async updatefs(){
+                console.log("updating")
+                var ename = document.getElementById("ename").innerText
+                var g = document.getElementById("ngender").value
+                var p = document.getElementById("npnum").value
+                var e = document.getElementById("nemail").value
+                alert("Updating details for : " + ename)
+                try{
+                    if (g != null) {
+                        edward.update({gender: g})
+                    }
+                    if (e != null) {
+                        edward.update({email:e})
+                    }
+                    if (p != null) {
+                        edward.update({pnum:p})
+                    }
+                    
+                    this.$emit("updated")
+                    }
+                catch(error) {
+                    console.error("Error adding document: ", error);
                 }
-            catch(error) {
-                console.error("Error adding document: ", error);
             }
-        }
+    }
 }
 
 </script>
@@ -137,7 +139,7 @@ export default {
         text-align: center;
     }
     .mdeets{
-        margin-top: -80px;
+        margin-top: -0px;
         text-align: center;
         font-size: 24px;
         width: 1000px;  
