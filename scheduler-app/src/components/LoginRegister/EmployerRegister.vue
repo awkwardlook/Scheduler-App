@@ -9,8 +9,8 @@
     <input type = "text" id = "username" required="" placeholder="Username" v-model="username" /> 
     <br><br>
         
-    <label for="companyUEN"> Department: </label>
-    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" /> 
+    <label for="Department"> Department: </label>
+    <input type = "text" id = "Department" required="" placeholder="Department" v-model="Department" /> 
     <br><br>
         
     <label for="companyname"> Company Name: </label>
@@ -36,7 +36,7 @@
   // ref for all credentials
   const email = ref('')
   const username = ref('')
-  const companyUEN = ref('')
+  const Department = ref('')
   const companyName = ref('')
   const password = ref('')
 
@@ -57,7 +57,7 @@
         employersCollection.doc(email.value).set({
           email: email.value,
           username: username.value,
-          companyUEN: companyUEN.value,
+          Department: Department.value,
           companyName: companyName.value
         })
 

@@ -5,17 +5,20 @@
 		<!-- they are supposed to be side by side -->
 		<Deets/>
 	</div>
+	<AllEmployees/>
 </template>
 
 <script>
 import EmployerHeader from '../components/Header/EmployerHeader.vue'
 import Deets from '@/components/profile/erdeets.vue'
+import AllEmployees from '@/components/profile/allEm.vue'
 
 export default {
 	name: 'Employer Profile',
 	components: {
 		EmployerHeader,
-		Deets
+		Deets,
+		AllEmployees,
 	}
 }
 
@@ -27,11 +30,13 @@ export default {
         font-size: 24px;
         width: 1000px;  
         overflow: hidden;  
-        margin: auto;  
-        margin: 0 0 10 550px;  
+        margin: auto;
 		/* top right bottom left */
         padding: 80px;  
         background: #ffffff;  
         border-radius: 15px ;
+
+		/* can we make more away from the bottom */
+
     }
 </style>

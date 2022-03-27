@@ -76,9 +76,9 @@ edward.onSnapshot(function(doc) {
                 document.getElementById("profphoto").src = dp
                 document.getElementById("ename").innerText = ename
                 document.getElementById("edept").innerText = edept
-                document.getElementById("email").value = email
-                document.getElementById("pnum").value = pnum
-                document.getElementById("gender").value = gender
+                document.getElementById("email").placeholder = email
+                document.getElementById("pnum").placeholder = pnum
+                document.getElementById("gender").placeholder = gender
                 })
 
             shopee.onSnapshot(function(doc) {
@@ -97,18 +97,20 @@ edward.onSnapshot(function(doc) {
 
 export default {
     methods: {
-        mounted(){
+        // mounted(){
         // need to obtain the loggin in email first -> determine if employee or employer
         // then use the email to retrieve the respective info
             
-        },
+        // },
 
         async updatefs(){
                 console.log("updating")
-                var ename = document.getElementById("ename").innerText
-                var g = document.getElementById("ngender").value
-                var p = document.getElementById("npnum").value
-                var e = document.getElementById("nemail").value
+                const ename = document.getElementById("ename").innerText
+                console.log(ename)
+                var g = document.getElementById("gender").value
+                console.log(g)
+                var p = document.getElementById("pnum").value
+                var e = document.getElementById("email").value
                 alert("Updating details for : " + ename)
                 try{
                     if (g != null) {
