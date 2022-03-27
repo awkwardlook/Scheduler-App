@@ -1,5 +1,5 @@
 <template>
-
+    <form id="myform">
     <div class = "mdeets">
         <h1>Employer Details</h1>
         <h2 id="ename">Employer's Name</h2>
@@ -7,25 +7,30 @@
             
             <h2 id = "edept">Employer Department</h2>
             <br/>
-            <img id="profphoto" alt="profile pgoto">
+            <img id="profphoto" alt="profile photo">
         </div>
 
-
+        
         <div class="eright">
             <h2>Email</h2>
-            <h3 id="email"> Email </h3>
+            <input id="email" value="nemail">
             <h2>Phone Number</h2>
-            <h3 id = "pnum">Phone Number</h3>
-            <h2> Gender </h2>
-            <h3 id = "gender">Gender</h3>
+            <input id="pnum" value="npnum">
+            <br><br>
+            <h3>Gender</h3>
+            <input id="gender" value = "ngender"><br><br>
         </div>
+       
+
+        
+        <!-- button id = "savebutton" type="button" v-on:click="savetofs()" style="color: rgb(0, 0, 0);"> SAVE </button><br><br> -->
     </div>
-    <br>
+
     <div class= "coydeets">
         <h1>Company Details</h1>
         <div class="left">
             <h2 id = "coyname">Company Name</h2>
-            <h5 id = "coylogo">-Company Logo-</h5>
+            <img id = "coylogo" alt="company photo">
         </div>
 
         <div class="right">
@@ -33,7 +38,8 @@
             <h5 id="coydesc">Wanted company description</h5>            
         </div>
     </div>
-
+    </form>
+    <button id="Update" type="button" v-on:click="updatefs()"> Update </button>
 
 
 </template>
@@ -41,11 +47,12 @@
 <script>
 
 import firebase from 'firebase'
-// import { doc, getDoc } from "firebase/firestore";
+// import { doc, setDoc } from "firebase/firestore";
 
 const db = firebase.firestore()
 const employers = db.collection("employers");
 const email = "employer1@gmail.com" ;
+// to obtain from authentication
 const edward = employers.doc(email);
 
 // var storageRef = firebase.storage().ref();
@@ -67,18 +74,16 @@ export default {
         const ename = data.name
         const edept = data.department
         const dp = data.ephoto
-        const email = data.email
         const pnum = data.pnum
         const gender = data.gender
         // const username = data.username
 
-        document.getElementById("profphoto").src = "https://firebasestorage.googleapis.com/v0/b/scheduler-app-bt3103.appspot.com/o/Passport%20photo.jpeg?alt=media&token=2d50e94d-483e-4aee-9298-74d764065b51"
+        document.getElementById("profphoto").src = dp
         document.getElementById("ename").innerText = ename
         document.getElementById("edept").innerText = edept
-        document.getElementById("dp").innerText = dp
-        document.getElementById("email").innerText = email
-        document.getElementById("pnum").innerText = pnum
-        document.getElementById("gender").innerText = gender
+        document.getElementById("email").placeholder = email
+        document.getElementById("pnum").placeholder = pnum
+        document.getElementById("gender").placeholder = gender
         })
 
 
@@ -92,7 +97,7 @@ export default {
         const clogo = data.clogo
         document.getElementById("coyname").innerText = cname
         document.getElementById("coydesc").innerText = desc
-        document.getElementById("coylogo").innerText = clogo
+        document.getElementById("coylogo").src = clogo
         
 
         // let value1 = data.description;
@@ -101,13 +106,36 @@ export default {
     //     
     // }
     // display()
-    }
+    },
+
+    async updatefs(){
+            console.log("updating")
+            var ename = document.getElementById("ename").innerText
+            var g = document.getElementById("ngender").value
+            var p = document.getElementById("npnum").value
+            var e = document.getElementById("nemail").value
+            alert("Updating details for : " + ename)
+            try{
+                edward.update({gender: g})
+                edward.update({email:e})
+                edward.update({pnum:p})
+                document.getElementById("myform").reset();
+                this.$emit("updated")
+                }
+            catch(error) {
+                console.error("Error adding document: ", error);
+            }
+        }
 }
 
 </script>
 
 <style scoped>
-
+    input {
+        font-size: 30px;
+        height: 36px;
+        text-align: center;
+    }
     .mdeets{
         margin-top: -80px;
         text-align: center;
