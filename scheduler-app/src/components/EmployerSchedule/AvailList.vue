@@ -9,7 +9,7 @@
 	</thead>
 	
 	<!-- loop through all documents in availabilities collection -->
-	<tbody v-for="{ id, employees } in avails" :key="id">
+	<tbody v-for="{ id, employees, states } in avails" :key="id">
 		
 		<!-- loop through all employees (e) in each doc -->
 		<tr  v-for="e in employees" v-bind:key="e">
@@ -22,7 +22,12 @@
 				
 			<!-- 3rd column -->
 			<td class="action">
-				<ApproveDeclineBtn/>
+				<div v-if="states[e] === 'Pending'">
+					<button class="btn" id="decline" @click="changeState(id, e, 'Declined')">Decline</button>
+					<button class="btn" id="approve" @click="changeState(id, e, 'Approved')">Approve</button>
+				</div>
+
+				<p v-else> {{ states[e] }} </p>
 			</td>
 
 
@@ -35,15 +40,10 @@
 <script>
 import firebase from 'firebase'
 import { ref, onUnmounted } from 'vue'
-import ApproveDeclineBtn from './ApproveDeclineBtn.vue'
 
 const db = firebase.firestore()
 
 export default {
-	components: {
-		ApproveDeclineBtn
-	},
-	
 	setup() {
 		const avails = ref([])
 		const availCollection = db.collection("availabilities")
@@ -59,11 +59,29 @@ export default {
 		)
 
 		onUnmounted(getAvail)
-
 		return {
 			avails,
 		} 
 
+	},
+	methods: {
+		changeState(id, e, newState) {
+			
+			const avails = db.collection("availabilities") 
+			
+			avails.doc(id).get()
+			.then((docSnapshot) => {
+				const currentStates = docSnapshot.data().states
+				currentStates[[e]] = newState
+
+				return avails.doc(id).update({
+					states: currentStates
+				})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+		}
 	}
 }
 </script>
@@ -97,6 +115,23 @@ th {
 
 tr {
 	background-color: aliceblue;	
+}
+
+.btn {
+	width: 75px;
+	margin: 5px;
+	padding: 5px;
+	color: white;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+#approve {
+	background-color: rgb(94, 207, 94);
+}
+
+#decline {
+	background-color: rgb(221, 98, 98);
 }
 
 </style>
