@@ -73,7 +73,7 @@ export default {
 
 #welcome{
   position: relative;
-  top: -180px;
+  /* top: -180px; */
 }
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
