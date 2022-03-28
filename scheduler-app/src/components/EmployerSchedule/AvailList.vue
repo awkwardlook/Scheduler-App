@@ -22,8 +22,7 @@
 				
 			<!-- 3rd column -->
 			<td class="action">
-				<button class="btn" id="decline">Decline</button>
-				<button class="btn" id="approve">Approve</button>
+				<ApproveDeclineBtn/>
 			</td>
 
 
@@ -36,9 +35,15 @@
 <script>
 import firebase from 'firebase'
 import { ref, onUnmounted } from 'vue'
+import ApproveDeclineBtn from './ApproveDeclineBtn.vue'
+
 const db = firebase.firestore()
 
 export default {
+	components: {
+		ApproveDeclineBtn
+	},
+	
 	setup() {
 		const avails = ref([])
 		const availCollection = db.collection("availabilities")
@@ -94,20 +99,4 @@ tr {
 	background-color: aliceblue;	
 }
 
-.btn {
-	width: 75px;
-	margin: 5px;
-	padding: 5px;
-	color: white;
-	font-weight: bold;
-	border-radius: 3px;
-}
-
-#approve {
-	background-color: rgb(94, 207, 94);
-}
-
-#decline {
-	background-color: rgb(221, 98, 98);
-}
 </style>
