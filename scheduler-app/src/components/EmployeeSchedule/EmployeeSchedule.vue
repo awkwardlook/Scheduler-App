@@ -54,7 +54,5 @@ h1 {
 	align-items: center;
 	justify-content: center;
 }
-
-
 </style>
 
