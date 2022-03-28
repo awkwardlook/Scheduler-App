@@ -24,13 +24,8 @@ export default {
     },
     data() {
         return {
-            usertype: this.$store.state.usertype
+            usertype: window.localStorage.getItem('usertype')
         }
-    },
-    mounted() {
-        if (!this.usertype) {
-            this.usertype = window.localStorage.getItem('usertype');
-        }       
     }
 }
 </script>
