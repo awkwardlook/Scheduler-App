@@ -113,8 +113,9 @@ export default {
 							} 
 						} else {
 							scheduleRef.doc(timing.Date + " " + timing.Time).set({
-								Date: timing.Date,
-								Time: timing.Time,
+								date: timing.Date,
+								start: timing.Date + "T" + timing.Time.slice(0, 5) + ":00",
+								end: timing.Date + "T" + timing.Time.slice(6, 11) + ":00",
 								employees: [username]
 							}).then(() => {
 								console.log("Successfully added availability")	
