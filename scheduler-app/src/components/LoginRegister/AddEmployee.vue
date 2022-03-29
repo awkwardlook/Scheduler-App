@@ -1,20 +1,16 @@
 <template>
 <div class="AddEmployeeForm">
     
-       <label for="name"> Name: </label>
-    <input type = "text" id = "name" required="" placeholder="Name" v-model="name" /> 
-    <br><br>
-
     <label for="email"> Email: </label>
     <input type="text" id = "email" required="" placeholder="Email" v-model="email" /> 
     <br><br>
-
-    <label for="gender"> Gender: </label>
-    <input type = "text" id = "gender" required="" placeholder="Male/Female" v-model="gender" />     
+        
+    <label for="username"> Username: </label>
+    <input type = "text" id = "username" required="" placeholder="Username" v-model="username" /> 
     <br><br>
         
-    <label for="department"> Department: </label>
-    <input type = "text" id = "department" required="" placeholder="Department" v-model="department" />     
+    <label for="companyUEN"> Department: </label>
+    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" />     
     <br><br>
         
     <label for="companyname"> Company Name: </label> 
@@ -25,65 +21,59 @@
     <input type="password" id="password" required="" placeholder="Password" v-model="password" />
     <br><br>
         
-    <p><button type="submit" id="regbutton" @click="addEmployee">Register Employee</button></p>
+    <p><button type="submit" id="regbutton" @click="addEmployee()">Register Employee</button></p>
 
 </div>
 </template>
 
-<script setup>
-  import { ref } from 'vue'
-  import firebase from 'firebase'
-  import { useRouter } from 'vue-router' // import router
-  
-  const router = useRouter() // get reference to vue router
-  
-  // ref for all credentials
-  const email = ref('')
-  const password = ref('')
-  const name = ref('')
-  const gender = ref('')
-  const department = ref('')
-  const companyName = ref('')
+<script>
+import firebase from 'firebase'
+import { useRouter } from 'vue-router' // import router
 
-  const db = firebase.firestore()
-  const auth = firebase.auth()
-  const employeesCollection = db.collection('employees')
-  const usersCollection = db.collection('users')
+const db = firebase.firestore()
+const auth = firebase.auth()
+const employeesCollection = db.collection('employees')
+const usersCollection = db.collection('users')
 
-
-const addEmployee = () => {
-    
-    auth.createUserWithEmailAndPassword(email.value, password.value)
-	
-    .then(() => {
-        
-        employeesCollection.doc(email.value).set({
-            email: email.value,
-            username: name.value,
-            Department: department.value,
-            Gender: gender.value,
-            companyName: companyName.value,
-            password: password.value	
-        })
-
-        usersCollection.doc(email.value).set({
-		// email: email.value,
-		// username: username.value,
-		// Department: Department.value,
-		// companyName: companyName.value	
-        }) 
-
-        alert('Successully added employee!')
-		console.log('Successully added employee!')
-		router.push('/employerprof')
-    })
-    
-    .catch(error => {
-		console.log(error.code)
-		alert(error.message)
-	});
+export default {
+    data() {
+        return {
+            email: "",
+            username: "",
+            companyUEN: "",
+            companyName: "",
+            password: "",
+            router: useRouter()
+        }
+    },
+    methods: {
+        async addEmployee() {
+            try {
+                // firebase authentication
+                await auth.createUserWithEmailAndPassword(this.email, this.password);
+                await auth.currentUser.updateProfile({
+                    username: this.username,
+                    companyUEN: this.companyUEN,
+                    companyName: this.companyName
+                });
+                // user collection in  firestore
+                await usersCollection.doc(this.email).set({});
+                // employees collection in firestore
+                await employeesCollection.doc(this.email).set({
+                    email: this.email,
+                    username: this.username,
+                    companyUEN: this.companyUEN,
+                    companyName: this.companyName,
+                    password: this.password
+                });
+                alert('Sucessfully added employee!');
+                this.router.push('/employerprof');
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+    }
 }
-
 </script>
 
 
