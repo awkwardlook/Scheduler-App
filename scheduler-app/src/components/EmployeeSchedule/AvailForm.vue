@@ -101,15 +101,12 @@ export default {
 					scheduleRef.doc(timing.Date + " " + timing.Time).get()
 					.then((docSnapshot) => {
 						if (docSnapshot.exists) {
-							const indicatedEmployees = docSnapshot.data().employees
 							const indicatedStates = docSnapshot.data().states
 
-							if (!indicatedEmployees.includes(username)) {
-								indicatedEmployees.push(username)
+							if (!indicatedStates.has(username)) {
 								indicatedStates[username] = 'Pending'
 
 								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
-									employees: indicatedEmployees,
 									states: indicatedStates
 								}).then(() => {
 									console.log("Successfully added availability")
@@ -125,7 +122,6 @@ export default {
 								date: timing.Date,
 								start: timing.Date + "T" + timing.Time.slice(0, 5) + ":00",
 								end: timing.Date + "T" + timing.Time.slice(6, 11) + ":00",
-								employees: [username],
 								states: { [username] : 'Pending' },
 								approved: false
 
