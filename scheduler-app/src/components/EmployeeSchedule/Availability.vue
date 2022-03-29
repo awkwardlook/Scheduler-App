@@ -8,7 +8,10 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import firebase from 'firebase'
+
 const db = firebase.firestore()
+const auth = firebase.auth()
+
 export default {
     components: {
         FullCalendar // make the <FullCalendar> tag available
@@ -30,50 +33,56 @@ export default {
           slotMaxTime: "21:00:00",
           slotMinTime: "09:00:00",
           events: [],
-        }
+        },
+        user: false
       }
     },
-    created() {
-      this.getEvents()
+    mounted() {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          this.user = user; 
+          this.getEvents();
+        }
+      });
     },
-    
     methods: {
       async getEvents() {
-        const user = await db.collection('employees').doc(this.$store.state.email).get()
-				const username = user.data().username
-        db.collection("availabilities").onSnapshot((querySnapshot) => {
-           this.calendarOptions.events = [];
-          querySnapshot.forEach((doc) => {
-            console.log(doc.data());
-            let availability 
-            
-            if (doc.data().states.includes(username)){
-              availability = {
-                'start': doc.data().start,
-                'end': doc.data().end,
-                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
-                'color': '#7FFF00'
+        db.collection('employees').doc(this.user.email).get().then((userdoc) => {
+          const user = userdoc.data()
+          db.collection("availabilities").onSnapshot((querySnapshot) => {
+            this.calendarOptions.events = [];
+            querySnapshot.forEach((availdoc) => {
+              console.log(availdoc.data());
+              let availability 
+              
+              if (availdoc.data().states.has(user.username)){
+                availability = {
+                  'start': availdoc.data().start,
+                  'end': availdoc.data().end,
+                  'title': (availdoc.data().employees).toString().replace(/,/g, '\n'),
+                  'color': '#7FFF00'
+                }
+              } else if (availdoc.data().employees.length == 1) {
+                availability = {
+                  'start': availdoc.data().start,
+                  'end': availdoc.data().end,
+                  'title': (availdoc.data().employees).toString().replace(/,/g, '\n'),
+                  'color': 	'#ffd700'
+                }
+              } else {
+                availability = {
+                  'start': availdoc.data().start,
+                  'end': availdoc.data().end,
+                  'title': (availdoc.data().employees).toString().replace(/,/g, '\n'),
+                  'color': '#FF0000'
+                }
               }
-            } else if (doc.data().employees.length == 1) {
-              availability = {
-                'start': doc.data().start,
-                'end': doc.data().end,
-                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
-                'color': 	'#ffd700'
-              }
-            } else {
-              availability = {
-                'start': doc.data().start,
-                'end': doc.data().end,
-                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
-                'color': '#FF0000'
-              }
-            }
-            console.log(availability);
-            this.calendarOptions.events.push(availability);
+              console.log(availability);
+              this.calendarOptions.events.push(availability);
+            })
           });
         });
-      },
+      }
     }
 }
 </script>
