@@ -39,7 +39,7 @@ export default {
     
     methods: {
       async getEvents() {
-        const user = await db.collection('employees').doc(this.$store.state.email).get()
+        const user = await db.collection('employees').doc(this.user.email).get()
 				const username = user.data().username
         db.collection("availabilities").onSnapshot((querySnapshot) => {
            this.calendarOptions.events = [];
