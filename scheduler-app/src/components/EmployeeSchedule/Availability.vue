@@ -1,5 +1,5 @@
 <template>
-    <FullCalendar :options="calendarOptions" style="width:100%;" />
+    <FullCalendar :options="calendarOptions" />
 </template>
 
 <script>
@@ -13,8 +13,6 @@ export default {
     components: {
         FullCalendar // make the <FullCalendar> tag available
     },
-
-
     data() {
       return {
         calendarOptions: {
@@ -26,56 +24,66 @@ export default {
               left:'',
               right:'',
           },
+          height: "auto",
           allDaySlot: false,
           scrollTime: "09:00:00",
           slotMaxTime: "21:00:00",
           slotMinTime: "09:00:00",
           events: [],
-          eventColor: '',
-          aspectRatio: 1.54,
         }
       }
     },
-
     created() {
       this.getEvents()
     },
     
-
     methods: {
-      getEvents() {
+      async getEvents() {
+        const user = await db.collection('employees').doc(this.$store.state.email).get()
+				const username = user.data().username
         db.collection("availabilities").onSnapshot((querySnapshot) => {
            this.calendarOptions.events = [];
           querySnapshot.forEach((doc) => {
             console.log(doc.data());
-            let availability = {
-            'start': doc.data().start,
-            'end': doc.data().end,
-            'title': (doc.data().employees).toString().replace(/,/g, '\n'),
+            let availability 
+            
+            if (doc.data().states.includes(username)){
+              availability = {
+                'start': doc.data().start,
+                'end': doc.data().end,
+                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
+                'color': '#7FFF00'
+              }
+            } else if (doc.data().employees.length == 1) {
+              availability = {
+                'start': doc.data().start,
+                'end': doc.data().end,
+                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
+                'color': 	'#ffd700'
+              }
+            } else {
+              availability = {
+                'start': doc.data().start,
+                'end': doc.data().end,
+                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
+                'color': '#FF0000'
+              }
             }
             console.log(availability);
             this.calendarOptions.events.push(availability);
           });
         });
       },
-
     }
-
-
 }
 </script>
 
 <style>
-.fc-day-today
-{
-  background-color:inherit !important;
+#calendar  .fc-scrollgrid {
+  border: none !important;
 }
 
-#calendar .fc-view {
-    background-color: #EEEEEE;
+#calendar .fc-scrollgrid td:last-of-type {
+  border-right: none !important;
 }
-#calendar  {
-    --fc-page-bg-color: #EEEEEE;
-}
-
 </style>
