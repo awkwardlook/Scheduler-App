@@ -51,7 +51,7 @@ export default {
               availability = {
                 'start': doc.data().start,
                 'end': doc.data().end,
-                'title': (doc.data().employees).toString().replace(/,/g, '\n'),
+                'title': username,
                 'color': '#7FFF00'
               }
             } else if (doc.data().employees.length == 1) {
