@@ -46,37 +46,40 @@ export default {
       });
     },
     methods: {
-      getEvents() {
-        db.collection("availabilities").onSnapshot((querySnapshot) => {
-          this.calendarOptions.events = [];
-          querySnapshot.forEach((doc) => {
-            const avail = doc.data();
-            let availability;
-            
-            if (avail.approved) {
-              availability = {
-                'start': avail.start,
-                'end': avail.end,
-                'title': (avail.approvedEmp),
-                'color': '#7FFF00'
+      async getEvents() {
+        db.collection('employees').doc(this.user.email).get().then((userdoc) => {
+          const user = userdoc.data()
+          db.collection("availabilities").onSnapshot((querySnapshot) => {
+            this.calendarOptions.events = [];
+            querySnapshot.forEach((availdoc) => {
+              console.log(availdoc.data());
+              let availability 
+              
+              if (user.username in availdoc.data().states) {
+                availability = {
+                  'start': availdoc.data().start,
+                  'end': availdoc.data().end,
+                  'title': (availdoc.data().employees).toString().replace(/,/g, '\n'),
+                  'color': '#7FFF00'
+                }
+              } else if (availdoc.data().employees.length == 1) {
+                availability = {
+                  'start': availdoc.data().start,
+                  'end': availdoc.data().end,
+                  'title': (availdoc.data().employees).toString().replace(/,/g, '\n'),
+                  'color': 	'#ffd700'
+                }
+              } else {
+                availability = {
+                  'start': availdoc.data().start,
+                  'end': availdoc.data().end,
+                  'title': (availdoc.data().employees).toString().replace(/,/g, '\n'),
+                  'color': '#FF0000'
+                }
               }
-            } else if (Object.keys(avail.states).length == 1) {
-              availability = {
-                'start': avail.start,
-                'end': avail.end,
-                'title': (Object.keys(avail.states)).toString().replace(/,/g, '\n'),
-                'color': 	'#ffd700'
-              }
-            } else {
-              availability = {
-                'start': avail.start,
-                'end': avail.end,
-                'title': (Object.keys(avail.states)).toString().replace(/,/g, '\n'),
-                'color': '#FF0000'
-              }
-            }
-            console.log(availability);
-            this.calendarOptions.events.push(availability);
+              console.log(availability);
+              this.calendarOptions.events.push(availability);
+            })
           })
         });
       }

@@ -1,20 +1,16 @@
 <template>
 <div class="AddEmployeeForm">
     
-       <label for="name"> Name: </label>
-    <input type = "text" id = "name" required="" placeholder="Name" v-model="name" /> 
-    <br><br>
-
     <label for="email"> Email: </label>
     <input type="text" id = "email" required="" placeholder="Email" v-model="email" /> 
     <br><br>
-
-    <label for="gender"> Gender: </label>
-    <input type = "text" id = "gender" required="" placeholder="Male/Female" v-model="gender" />     
+        
+    <label for="username"> Username: </label>
+    <input type = "text" id = "username" required="" placeholder="Username" v-model="username" /> 
     <br><br>
         
-    <label for="department"> Department: </label>
-    <input type = "text" id = "department" required="" placeholder="Department" v-model="department" />     
+    <label for="companyUEN"> Department: </label>
+    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" />     
     <br><br>
         
     <label for="companyname"> Company Name: </label> 
