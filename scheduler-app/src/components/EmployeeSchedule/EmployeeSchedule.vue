@@ -7,7 +7,7 @@
 	<div class="mainschedule">
 		<AvailForm/>
 		<CancelShiftForm/>
-		<div id='calendar' style="width: 80%; height:100%; padding-right:15px; padding-bottom:20px">
+		<div id='calendar' style="width: 80%; height:100%; padding-right:30px; padding-bottom:20px">
 			<Availability/>
 		</div> 
 
