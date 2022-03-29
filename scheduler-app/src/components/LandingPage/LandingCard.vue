@@ -1,11 +1,9 @@
 <template>
    <div class='hero-container'>
-        <img src="@/assets/scheduler_logo2.png" alt="logo" height= '160px' width='160px'>
-        <h1 id='welcome'>Welcome to Scheduler</h1>
         <div>
           <img src="@/assets/scheduler_logo2.png" alt="logo" width='180px'>
         </div>
-        <p>Welcome</p>
+        <p>Welcome to Scheduler</p>
         <p>Plan your schedule</p>
         <p>Plan their schedule</p>
         <div class='hero-btns'>
@@ -75,7 +73,7 @@ export default {
 
 #welcome{
   position: relative;
-  top: -180px;
+  /* top: -180px; */
 }
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
