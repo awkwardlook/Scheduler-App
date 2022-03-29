@@ -4,15 +4,18 @@
         <br>
             <table id = "table" class = "auto=index">
                     <tr>
-                        <img>
+                        <th>No.</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Department</th>
+                        <th>Delete</th>
                     </tr>
                 </table>
         <br><br><br><br>
     </div>
+
+    <br>
 </template>
 
 <script>
@@ -98,13 +101,13 @@ export default {
     width: 1000px;  
     overflow: hidden;  
     margin: auto;
-    margin-left: -100px;
+    margin-left: -50px;
 }
 
 .allEm {
     text-align: center;
     font-size: 24px;
-    width: 800px;  
+    width: 900px;  
     overflow: hidden;  
     margin: auto;
     /* top right bottom left */
@@ -117,7 +120,7 @@ export default {
 table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 60%;
+    width: 55%;
     margin: auto;
 }
 
