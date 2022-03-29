@@ -110,7 +110,7 @@ export default {
 								}).then(() => {
 									console.log("Successfully added availability")
 									this.addedTimings.clear()
-									this.showModal = false
+									this.toggleModal()
 								
 								}).catch((e) => {
 									alert(e)
@@ -127,7 +127,7 @@ export default {
 							}).then(() => {
 								console.log("Successfully added availability")	
 								this.addedTimings.clear()
-								this.showModal = false
+								this.toggleModal()
 							
 							}).catch((e) => {
 								alert(e)
