@@ -94,7 +94,8 @@ export default {
                         auth.signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                             store.commit("loginAsEmployer")
-                            console.log(store.state.user);
+                            store.commit("storeEmail", this.email)
+                            window.localStorage.setItem('usertype', 'employer')
                             this.router.replace('/schedule')
                         })
                         .catch(error => alert(error.message))
@@ -118,7 +119,7 @@ export default {
                         .then(() => {
                             store.commit("loginAsEmployee")
                             store.commit("storeEmail", this.email)
-                            console.log(this.$store.state)
+                            window.localStorage.setItem('usertype', 'employee')
                             this.router.replace('/schedule')
                         })
                         .catch(error => alert(error.message))

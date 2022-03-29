@@ -7,13 +7,11 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
-import firebase from 'firebase'
-const db = firebase.firestore()
+
 export default {
-    components: {
+     components: {
         FullCalendar // make the <FullCalendar> tag available
     },
-
 
     data() {
       return {
@@ -37,31 +35,6 @@ export default {
       }
     },
 
-    created() {
-      this.getEvents()
-    },
-    
-
-    methods: {
-      getEvents() {
-        db.collection("availabilities").onSnapshot((querySnapshot) => {
-           this.calendarOptions.events = [];
-          querySnapshot.forEach((doc) => {
-            console.log(doc.data());
-            let availability = {
-            'start': doc.data().start,
-            'end': doc.data().end,
-            'title': (doc.data().employees).toString().replace(/,/g, '\n'),
-            }
-            console.log(availability);
-            this.calendarOptions.events.push(availability);
-          });
-        });
-      },
-
-    }
-
-
 }
 </script>
 
@@ -77,5 +50,4 @@ export default {
 #calendar  {
     --fc-page-bg-color: #EEEEEE;
 }
-
 </style>

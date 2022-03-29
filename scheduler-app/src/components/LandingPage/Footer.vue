@@ -3,7 +3,7 @@
         <div className='footer-links'>
             <div className="footer-link-wrapper">
                 <div className="footer-link-items">
-                    <img src="@/assets/scheduler_logo2.png" alt="logo" style="margin-top:10px"/>
+                    <img src="@/assets/scheduler_logo2.png" alt="logo"/>
                 </div>
                 <div className="footer-link-items">
                     <h2>Features</h2>
