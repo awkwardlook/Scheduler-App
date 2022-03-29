@@ -3,7 +3,7 @@
         <div className='footer-links'>
             <div className="footer-link-wrapper">
                 <div className="footer-link-items">
-                    <img src="/img/logo.png" alt="logo" style="margin-top:10px"/>
+                    <img src="@/assets/scheduler_logo2.png" alt="logo" style="margin-top:10px"/>
                 </div>
                 <div className="footer-link-items">
                     <h2>Features</h2>
@@ -115,6 +115,10 @@ export default {
     color: #fff;
     text-decoration: none;
     margin-bottom: 0.5rem;
+  }
+
+  .img {
+    width: 30px;
   }
 
 </style>
