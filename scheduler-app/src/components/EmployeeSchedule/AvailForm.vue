@@ -2,7 +2,7 @@
 	<div class="availform">
 		
 		<!-- Add availabilities button -->
-		<button class="button" @click="toggleModal()">Add Availabilities</button>
+		<button class="button" @click="toggleAddAvail()">Add Availabilities</button>
 
 		<div class="modal-overlay" v-if="showModal" @click="toggleModal()"></div>
 		
@@ -72,17 +72,28 @@ export default {
 					id: 2
 				},
 			],
-			user: false
+			user: false,
+			addAvail: false
 		}
 	},	
 	mounted() {
 		auth.onAuthStateChanged((user) => {
             if (user) {
                 this.user = user;
+				db.collection("permissions").doc("add availabilities").get().then((doc) => {
+					this.addAvail = doc.data().granted
+				})
             }
         });
 	},
 	methods: {
+		toggleAddAvail() {
+			if (this.addAvail) {
+				this.toggleModal();
+			} else {
+				alert("Employer has not given permission to add availabilities")
+			}
+		},
 		toggleModal() {
 			this.showModal = !this.showModal;
 		},
@@ -103,7 +114,7 @@ export default {
 						if (docSnapshot.exists) {
 							const indicatedStates = docSnapshot.data().states
 
-							if (!indicatedStates.has(username)) {
+							if (!(username in indicatedStates)) {
 								indicatedStates[username] = 'Pending'
 
 								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
