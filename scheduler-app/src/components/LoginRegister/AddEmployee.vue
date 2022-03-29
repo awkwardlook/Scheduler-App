@@ -25,65 +25,59 @@
     <input type="password" id="password" required="" placeholder="Password" v-model="password" />
     <br><br>
         
-    <p><button type="submit" id="regbutton" @click="addEmployee">Register Employee</button></p>
+    <p><button type="submit" id="regbutton" @click="addEmployee()">Register Employee</button></p>
 
 </div>
 </template>
 
-<script setup>
-  import { ref } from 'vue'
-  import firebase from 'firebase'
-  import { useRouter } from 'vue-router' // import router
-  
-  const router = useRouter() // get reference to vue router
-  
-  // ref for all credentials
-  const email = ref('')
-  const password = ref('')
-  const name = ref('')
-  const gender = ref('')
-  const department = ref('')
-  const companyName = ref('')
+<script>
+import firebase from 'firebase'
+import { useRouter } from 'vue-router' // import router
 
-  const db = firebase.firestore()
-  const auth = firebase.auth()
-  const employeesCollection = db.collection('employees')
-  const usersCollection = db.collection('users')
+const db = firebase.firestore()
+const auth = firebase.auth()
+const employeesCollection = db.collection('employees')
+const usersCollection = db.collection('users')
 
-
-const addEmployee = () => {
-    
-    auth.createUserWithEmailAndPassword(email.value, password.value)
-	
-    .then(() => {
-        
-        employeesCollection.doc(email.value).set({
-            email: email.value,
-            username: name.value,
-            Department: department.value,
-            Gender: gender.value,
-            companyName: companyName.value,
-            password: password.value	
-        })
-
-        usersCollection.doc(email.value).set({
-		// email: email.value,
-		// username: username.value,
-		// Department: Department.value,
-		// companyName: companyName.value	
-        }) 
-
-        alert('Successully added employee!')
-		console.log('Successully added employee!')
-		router.push('/employerprof')
-    })
-    
-    .catch(error => {
-		console.log(error.code)
-		alert(error.message)
-	});
+export default {
+    data() {
+        return {
+            email: "",
+            username: "",
+            companyUEN: "",
+            companyName: "",
+            password: "",
+            router: useRouter()
+        }
+    },
+    methods: {
+        async addEmployee() {
+            try {
+                // firebase authentication
+                await auth.createUserWithEmailAndPassword(this.email, this.password);
+                await auth.currentUser.updateProfile({
+                    username: this.username,
+                    companyUEN: this.companyUEN,
+                    companyName: this.companyName
+                });
+                // user collection in  firestore
+                await usersCollection.doc(this.email).set({});
+                // employees collection in firestore
+                await employeesCollection.doc(this.email).set({
+                    email: this.email,
+                    username: this.username,
+                    companyUEN: this.companyUEN,
+                    companyName: this.companyName,
+                    password: this.password
+                });
+                alert('Sucessfully added employee!');
+                this.router.push('/employerprof');
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+    }
 }
-
 </script>
 
 
