@@ -84,7 +84,7 @@ edward.onSnapshot(function(doc) {
             shopee.onSnapshot(function(doc) {
                 let data = doc.data();
                 // gets the value of a field called field1 from the doc
-                console.log(data)
+                // console.log(data)
                 const cname = data.name
                 const desc = data.description
                 const clogo = data.clogo

@@ -5,6 +5,7 @@
 		<!-- they are supposed to be side by side -->
 		<Deets/>
 	</div>
+	<br><br>
 	<AllEmployees/>
 </template>
 
