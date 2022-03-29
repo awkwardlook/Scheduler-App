@@ -103,7 +103,7 @@ export default {
 						if (docSnapshot.exists) {
 							const indicatedStates = docSnapshot.data().states
 
-							if (!indicatedStates.has(username)) {
+							if (!(username in indicatedStates)) {
 								indicatedStates[username] = 'Pending'
 
 								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
