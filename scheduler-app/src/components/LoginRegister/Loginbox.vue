@@ -40,7 +40,6 @@
 
 
 <script>
-import store from '../../store.js'
 import { useRouter } from 'vue-router'
 import firebase from 'firebase'
 import Header from '../Header/Header.vue'
@@ -93,8 +92,6 @@ export default {
                     if (docSnapshot.exists) {
                         auth.signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
-                            store.commit("loginAsEmployer")
-                            store.commit("storeEmail", this.email)
                             window.localStorage.setItem('usertype', 'employer')
                             this.router.replace('/schedule')
                         })
@@ -117,8 +114,6 @@ export default {
                     if (docSnapshot.exists) {
                         auth.signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
-                            store.commit("loginAsEmployee")
-                            store.commit("storeEmail", this.email)
                             window.localStorage.setItem('usertype', 'employee')
                             this.router.replace('/schedule')
                         })
@@ -139,13 +134,17 @@ export default {
 
 <style scoped>
     .loginbox{  
+        text-align: center;
+        font-size: 14px;
         width: 382px;  
-        height: 300px;
-        overflow: hidden;  
-        margin: 40%;
+        overflow: hidden;   
+        margin: auto;
+        margin-top: 200px;
+        /* margin: 180px 150px 150px 700px;   */
+        /* top right bottom left */
         padding: 80px;  
         background: #ffffff;  
-        border-radius: 15px;
+        border-radius: 15px ;
     }
     .bbutton{
         background-color: #0069e0; 
@@ -154,6 +153,8 @@ export default {
         padding: 10px 24px;
         text-align: center;
         text-decoration: none;
+        margin-left: -300px;
+        margin-top: -300px;
         display: inline-block;
         font-size: 14px;
         width: 100px;

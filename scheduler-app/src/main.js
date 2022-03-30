@@ -2,10 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import firebase from 'firebase'
-import store from './store.js'
 import VueChartkick from 'vue-chartkick'
 import 'chartkick/chart.js'
-
 
 const firebaseConfig = {
 	apiKey: "AIzaSyC1skHWlJ4I4B089I0L9fQ220M53gootqQ",
@@ -17,4 +15,4 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig)
-createApp(App).use(router).use(store).use(VueChartkick).mount('#app')
+createApp(App).use(router).use(VueChartkick).mount('#app')

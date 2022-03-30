@@ -6,29 +6,26 @@
         <EmployerSchedule/>
     </div>
     <div v-else>
-        Store error
+        <ErrorPage/>
     </div>
 </template>
 
 <script>
 import EmployeeSchedule from '../components/EmployeeSchedule/EmployeeSchedule.vue'
 import EmployerSchedule from '../components/EmployerSchedule/EmployerSchedule.vue'
+import ErrorPage from '../components/ErrorPage.vue'
 
 export default {
     name: 'Schedule',
     components: {
         EmployeeSchedule,
-        EmployerSchedule
+        EmployerSchedule,
+        ErrorPage
     },
     data() {
         return {
-            usertype: this.$store.state.usertype
+            usertype: window.localStorage.getItem('usertype')
         }
-    },
-    mounted() {
-        if (!this.usertype) {
-            this.usertype = window.localStorage.getItem('usertype');
-        }       
     }
 }
 </script>

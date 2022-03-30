@@ -5,7 +5,9 @@
 		<!-- they are supposed to be side by side -->
 		<Deets/>
 	</div>
+	<br><br>
 	<AllEmployees/>
+	<br><br>
 </template>
 
 <script>
@@ -35,8 +37,6 @@ export default {
         padding: 80px;  
         background: #ffffff;  
         border-radius: 15px ;
-
 		/* can we make more away from the bottom */
-
     }
 </style>

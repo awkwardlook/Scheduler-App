@@ -45,6 +45,7 @@ import { ref } from 'vue'
 import firebase from 'firebase'
 
 const db = firebase.firestore()
+const auth = firebase.auth()
 
 export default {
 	name: 'AvailForm',
@@ -70,13 +71,16 @@ export default {
 					text: "15:00-21:00",
 					id: 2
 				},
-			]
+			],
+			user: false
 		}
-	},
-	computed: {
-		usertype() {
-			return this.$store.state.usertype
-		}
+	},	
+	mounted() {
+		auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.user = user;
+            }
+        });
 	},
 	methods: {
 		toggleModal() {
@@ -90,22 +94,19 @@ export default {
 			} else {
 			
 				const scheduleRef = db.collection('availabilities')
-				const user = await db.collection('employees').doc(this.$store.state.email).get()
+				const user = await db.collection('employees').doc(this.user.email).get()
 				const username = user.data().username
 		
 				Array.from(this.addedTimings.values()).forEach(timing => {
 					scheduleRef.doc(timing.Date + " " + timing.Time).get()
 					.then((docSnapshot) => {
 						if (docSnapshot.exists) {
-							const indicatedEmployees = docSnapshot.data().employees
 							const indicatedStates = docSnapshot.data().states
 
-							if (!indicatedEmployees.includes(username)) {
-								indicatedEmployees.push(username)
+							if (!(username in indicatedStates)) {
 								indicatedStates[username] = 'Pending'
 
 								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
-									employees: indicatedEmployees,
 									states: indicatedStates
 								}).then(() => {
 									console.log("Successfully added availability")
@@ -121,8 +122,8 @@ export default {
 								date: timing.Date,
 								start: timing.Date + "T" + timing.Time.slice(0, 5) + ":00",
 								end: timing.Date + "T" + timing.Time.slice(6, 11) + ":00",
-								employees: [username],
-								states: { [username] : 'Pending' }
+								states: { [username] : 'Pending' },
+								approved: false
 
 							}).then(() => {
 								console.log("Successfully added availability")	
