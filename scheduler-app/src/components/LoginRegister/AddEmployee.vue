@@ -1,12 +1,16 @@
 <template>
 <div class="AddEmployeeForm">
-    
+    <h1> Add Employee </h1>
        <label for="name"> Name: </label>
     <input type = "text" id = "name" required="" placeholder="Name" v-model="name" /> 
     <br><br>
 
     <label for="email"> Email: </label>
     <input type="text" id = "email" required="" placeholder="Email" v-model="email" /> 
+    <br><br>
+
+    <label for="gender"> Phone Number: </label>
+    <input type = "text" id = "pnum" required="" placeholder="12345678" v-model="pnum" />     
     <br><br>
 
     <label for="gender"> Gender: </label>
@@ -17,13 +21,15 @@
     <input type = "text" id = "department" required="" placeholder="Department" v-model="department" />     
     <br><br>
         
-    <label for="companyname"> Company Name: </label> 
-    <input type = "text" id = "companyname" required="" placeholder="Company Name" v-model="companyName" /> 
+    <label for="company"> Company Name: </label> 
+    <input type = "text" id = "company" required="" placeholder="Company Name" v-model="company" /> 
     <br><br>
 
     <label for="password"> Default Password: </label>
     <input type="password" id="password" required="" placeholder="Password" v-model="password" />
     <br><br>
+
+
         
     <p><button type="submit" id="regbutton" @click="addEmployee()">Register Employee</button></p>
 
@@ -43,10 +49,12 @@ export default {
     data() {
         return {
             email: "",
-            username: "",
-            companyUEN: "",
-            companyName: "",
+            name: "",
+            gender: "",
+            pnum: "",
             password: "",
+            department: "",
+            company: "",
             router: useRouter()
         }
     },
@@ -56,18 +64,24 @@ export default {
                 // firebase authentication
                 await auth.createUserWithEmailAndPassword(this.email, this.password);
                 await auth.currentUser.updateProfile({
-                    username: this.username,
-                    companyUEN: this.companyUEN,
-                    companyName: this.companyName
+                    email: this.email,
+                    name: this.name,
+                    company: this.company,
+                    gender: this.gender,
+                    pnum: this.pnum,
+                    department: this.department,
+                    password: this.password
                 });
                 // user collection in  firestore
                 await usersCollection.doc(this.email).set({});
                 // employees collection in firestore
                 await employeesCollection.doc(this.email).set({
                     email: this.email,
-                    username: this.username,
-                    companyUEN: this.companyUEN,
-                    companyName: this.companyName,
+                    name: this.name,
+                    company: this.company,
+                    gender: this.gender,
+                    pnum: this.pnum,
+                    department: this.department,
                     password: this.password
                 });
                 alert('Sucessfully added employee!');
@@ -112,8 +126,7 @@ export default {
         font-size: 24px;
         width: 382px;  
         overflow: hidden;  
-        margin: auto;  
-        margin: 20 0 0 450px;  
+        margin: auto;   
         padding: 80px;  
         background: #ffffff;  
         border-radius: 15px ;

@@ -7,7 +7,7 @@
 	</div>
 	<br><br>
 	<AllEmployees/>
-	<br><br>
+
 </template>
 
 <script>

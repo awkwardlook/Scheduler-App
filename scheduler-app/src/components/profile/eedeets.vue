@@ -1,11 +1,11 @@
 <template>
     <form id="myform">
         <div class = "mdeets">
-            <h1>Employee Details</h1>
-            <h2 id="ename">Employee's Name</h2>
+            <h1>Employer Details</h1>
+            <h2 id="ename">Employer's Name</h2>
             <div class="eleft">
                 
-                <h2 id = "edept">Department</h2>
+                <h2 id = "edept">Employer Department</h2>
                 <br/>
                 <img id="profphoto" alt="profile photo">
             </div>
@@ -51,10 +51,10 @@ import firebase from 'firebase'
 // import { doc, setDoc } from "firebase/firestore";
 
 const db = firebase.firestore()
-const employees = db.collection("employees");
-const email = "employee1@outlook.com" ;
+const employers = db.collection("employers");
+const email = "employer1@gmail.com" ;
 // to obtain from authentication
-const edward = employees.doc(email);
+const edward = employers.doc(email);
 
 // var storageRef = firebase.storage().ref();
 // var photo = storageRef.child('Passport photo.jpg');
@@ -84,7 +84,7 @@ edward.onSnapshot(function(doc) {
             shopee.onSnapshot(function(doc) {
                 let data = doc.data();
                 // gets the value of a field called field1 from the doc
-                console.log(data)
+                // console.log(data)
                 const cname = data.name
                 const desc = data.description
                 const clogo = data.clogo

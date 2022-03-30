@@ -1,19 +1,39 @@
 <template>
-    <EmployeeHeader/>
-    <br><br>
-    <h1>Employee Profile Page</h1>
-    <CompanyProfile/>
+	<EmployeeHeader/>
+	<br><br>
+	<div class="deets">
+		<!-- they are supposed to be side by side -->
+		<Deets/>
+	</div>
+	<br><br>
+
 </template>
 
 <script>
 import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
-import CompanyProfile from '@/components/profile/eedeets.vue'
+import Deets from '@/components/profile/eedeets.vue'
 
 export default {
-	name: 'Employee Profile',
+	name: 'Employer Profile',
 	components: {
 		EmployeeHeader,
-		CompanyProfile,
-    }
+		Deets,
+	}
 }
+
 </script>
+
+<style>
+.deets{
+        text-align: center;
+        font-size: 24px;
+        width: 1000px;  
+        overflow: hidden;  
+        margin: auto;
+		/* top right bottom left */
+        padding: 80px;  
+        background: #ffffff;  
+        border-radius: 15px ;
+		/* can we make more away from the bottom */
+    }
+</style>
