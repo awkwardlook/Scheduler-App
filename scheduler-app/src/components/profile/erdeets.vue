@@ -2,27 +2,29 @@
     <form id="myform">
         <div class = "mdeets">
             <h1>Employer Details</h1>
-            <h2 id="ename">Employer's Name</h2>
+            <h2 id="ename">{{user.email}}</h2>
             <div class="eleft">
                 
-                <h2 id = "edept">Employer Department</h2>
-                <br/>
-                <img id="profphoto" alt="profile photo">
-            </div>
-
-            
-            <div class="eright">
-                <h2>Email</h2>
-                <input id="email" >
-                <h2>Phone Number</h2>
-                <input id="pnum" >
+                <h2 id = "edept">Department</h2>
+                <input id="department" v-model="department" placeholder="Enter department">
                 <br><br>
-                <h3>Gender</h3>
-                <input id="gender"><br><br>
+                <img id="profphoto" alt="profile photo"/>
             </div>
-        
 
-            
+            <div class="eright">
+                <h2>Username</h2>
+                <input id="username" v-model="username" placeholder="Enter username">
+                <h2>Phone Number</h2>
+                <input type="text" id="pnum" v-model="pnum" placeholder="Enter phone number">
+                <br><br>
+                <h2>Gender</h2>
+                <input type="radio" id="male" v-model="gender" value="Male">
+                <label for="gender">Male</label>
+                <br>
+                <input type="radio" id="female" v-model="gender" value="Female">
+                <label for="gender">Female</label>
+                <br><br>
+            </div>
             <!-- button id = "savebutton" type="button" v-on:click="savetofs()" style="color: rgb(0, 0, 0);"> SAVE </button><br><br> -->
         </div>
 
@@ -30,134 +32,119 @@
             <h1>Company Details</h1>
             <div class="left">
                 <h2 id = "coyname">Company Name</h2>
-                <img id = "coylogo" alt="company photo">
+                <input id="companyName" v-model="companyName" placeholder="Enter company name">
             </div>
 
             <div class="right">
                 <h2>Company Description</h2>
-                <h5 id="coydesc">Wanted company description</h5>            
+                <input id="companyUEN" v-model="companyUEN" placeholder="Enter company UEN">            
             </div>
         </div>
     </form>
 
-    <button id="Update" type="button" v-on:click="updatefs()"> Update </button>
-
-
+    <button class="button" @click="updatefs()"> Update </button>
 </template>
 
 <script>
 
 import firebase from 'firebase'
-import { getAuth } from "@firebase/auth";
-// import { doc, setDoc } from "firebase/firestore";
 
 const auth = firebase.auth();
 const db = firebase.firestore();
 const employers = db.collection("employers");
-this.fbuser = auth.currentUser.email;
-
-console.log(auth)
+const users = db.collection("users");
 
 export default {
     data() {
         return {
-            user: false
+            user: false,
+            department: "",
+            username: "",
+            pnum: "",
+            gender: "",
+            companyName: "",
+            companyUEN: ""
         }
     },
-
     mounted() {
-        const auth = getAuth();
         auth.onAuthStateChanged((user) => {
             if (user) {
                 this.user = user;
-                console.log("can i get my user")
-                // console.log(user.email.get())?
+                this.username = user.displayName ? user.displayName : user.email;
+                this.fetchProfile();
             }
         });
-
-        const user = db.collection('employers').doc(this.user.email).get();
-        // to obtain from authentication
-        const edward = employers.doc(email);
-
-        // var storageRef = firebase.storage().ref();
-        // var photo = storageRef.child('Passport photo.jpg');
-        const companies = db.collection("companies")
-        // const usercompany = companies.doc(user.company)
-        const shopee = companies.doc("shopee")
-
-        edward.onSnapshot(function(doc) {
-            let data = doc.data();
-            // gets the value of a field called field1 from the doc
-            // console.log(data)
-            
-            const ename = data.name
-            const edept = data.department
-            const dp = data.ephoto
-            const pnum = data.pnum
-            const gender = data.gender
-            // const username = data.username
-
-            document.getElementById("profphoto").src = dp
-            document.getElementById("ename").innerText = ename
-            document.getElementById("edept").innerText = edept
-            document.getElementById("email").placeholder = email
-            document.getElementById("pnum").placeholder = pnum
-            document.getElementById("gender").placeholder = gender
-            })
     },
-
     methods: {
-        async updatefs(){
-            console.log("updating")
-            const ename = document.getElementById("ename").innerText
-            console.log(ename)
-            const user = await db.collection('employers').doc(this.user.email).get()
-            var g = document.getElementById("gender").value
-            console.log(g)
-            var p = document.getElementById("pnum").value
-            var e = document.getElementById("email").value
-            alert("Updating details for : " + ename)
-            try{
-                if (g != null) {
-                    user.update({gender: g})
+        fetchProfile() {
+            employers.doc(this.user.email).get().then((docSnapshot) => {
+                if (docSnapshot.exists) {
+                    const user = docSnapshot.data();
+                    this.department = user.department;
+                    this.pnum = user.pnum;
+                    this.gender = user.gender;
+                    this.companyName = user.companyName;
+                    this.companyUEN = user.companyUEN;
+                    document.getElementById("profphoto").src = user.ephoto;
                 }
-                if (e != null) {
-                    user.update({email:e})
+            })    
+        },
+        async updatefs() {
+            try {
+                await auth.currentUser.updateProfile({
+                    displayName: this.username
+                });
+                const userDoc = await users.doc(this.user.email).get();
+                if (userDoc.exists) {
+                    await employers.doc(this.user.email).update({
+                        username: this.username,
+                        department: this.department,
+                        pnum: this.pnum,
+                        gender: this.gender,
+                        companyName: this.companyName,
+                        companyUEN: this.companyUEN
+                    });
+                } else {
+                    await users.doc(this.user.email).set({});
+                    await employers.doc(this.user.email).set({
+                        email: this.user.email,
+                        username: this.username,
+                        department: this.department,
+                        pnum: this.pnum,
+                        gender: this.gender,
+                        companyName: this.companyName,
+                        companyUEN: this.companyUEN
+                    });
                 }
-                if (p != null) {
-                    user.update({pnum:p})
-                }
-                
-                this.$emit("updated")
-                }
-            catch(error) {
-                console.error("Error adding document: ", error);
+                alert("Profile info updated")
+            } catch (e) {
+                alert(e.message);
             }
         }
+    }
 }
-}
-
-
-
-shopee.onSnapshot(function(doc) {
-    let data = doc.data();
-    // gets the value of a field called field1 from the doc
-    // console.log(data)
-    const cname = data.name
-    const desc = data.description
-    const clogo = data.clogo
-    document.getElementById("coyname").innerText = cname
-    document.getElementById("coydesc").innerText = desc
-    document.getElementById("coylogo").src = clogo
-})
-
-
-
-    
-
 </script>
 
 <style scoped>
+    .button {
+        margin: 6px;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+        color:white;
+        background-color: #0069e0;
+        font-size: 24px;
+        height: 60px;
+        width: 240px;
+        padding: 10px 24px;;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color: #25deff; /* Green */
+        color: rgb(25, 27, 44);
+    }
+
     input {
         font-size: 30px;
         height: 36px;

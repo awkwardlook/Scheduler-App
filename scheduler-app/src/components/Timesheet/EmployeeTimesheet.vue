@@ -7,7 +7,11 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import firebase from 'firebase'
 
+const db = firebase.firestore()
+const auth = firebase.auth()
+const shift = db.collection("Shift")
 export default {
      components: {
         FullCalendar // make the <FullCalendar> tag available
@@ -30,24 +34,49 @@ export default {
           slotMinTime: "09:00:00",
           events: [],
           eventColor: '',
-          aspectRatio: 1.54,
+          height: "auto",
         }
       }
     },
 
+    mounted() {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          this.user = user;
+          this.getShifts();
+        }
+      });
+    },
+
+    methods: {
+      async getShifts() {
+        const user = await db.collection('employees').doc(this.user.email).get()
+				const username = user.data().username
+        shift.onSnapshot((querySnapshot) => {
+          this.calendarOptions.events = [];
+          querySnapshot.forEach((doc) => {
+            const avail = doc.data();
+            if (avail.emp_username == username) {
+              let emp_shift = {
+                  start: avail.start,
+                  end: avail.end,
+              }
+              console.log(emp_shift);
+              this.calendarOptions.events.push(emp_shift);
+            }
+          })
+        });
+      }
+    }
 }
 </script>
 
 <style>
-.fc-day-today
-{
-  background-color:inherit !important;
+#calendar  .fc-scrollgrid {
+  border: none !important;
 }
 
-#calendar .fc-view {
-    background-color: #EEEEEE;
-}
-#calendar  {
-    --fc-page-bg-color: #EEEEEE;
+#calendar .fc-scrollgrid td:last-of-type {
+  border-right: none !important;
 }
 </style>

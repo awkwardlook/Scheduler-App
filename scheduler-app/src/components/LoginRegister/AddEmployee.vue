@@ -9,7 +9,7 @@
     <input type="text" id = "email" required="" placeholder="Email" v-model="email" /> 
     <br><br>
 
-    <label for="gender"> Phone Number: </label>
+    <label for="pnum"> Phone Number: </label>
     <input type = "text" id = "pnum" required="" placeholder="12345678" v-model="pnum" />     
     <br><br>
 
@@ -17,8 +17,8 @@
     <input type = "text" id = "gender" required="" placeholder="Male/Female" v-model="gender" />     
     <br><br>
         
-    <label for="department"> Department: </label>
-    <input type = "text" id = "department" required="" placeholder="Department" v-model="department" />     
+    <label for="companyUEN"> Department: </label>
+    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" />     
     <br><br>
         
     <label for="company"> Company Name: </label> 
@@ -65,7 +65,7 @@ export default {
                 await auth.createUserWithEmailAndPassword(this.email, this.password);
                 await auth.currentUser.updateProfile({
                     email: this.email,
-                    name: this.name,
+                    username: this.name,
                     company: this.company,
                     gender: this.gender,
                     pnum: this.pnum,
@@ -77,7 +77,7 @@ export default {
                 // employees collection in firestore
                 await employeesCollection.doc(this.email).set({
                     email: this.email,
-                    name: this.name,
+                    username: this.name,
                     company: this.company,
                     gender: this.gender,
                     pnum: this.pnum,

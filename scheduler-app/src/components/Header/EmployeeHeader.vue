@@ -7,7 +7,7 @@
             <div class="buttons">
                 <button class="btn" @click="$router.push('/schedule')">Schedule</button>
                 <button class="btn" @click="$router.push('/employeetimesheet')">Timesheet</button>
-                <button class="btn" @click="$router.push('/employeeprof')">Profile</button>
+                <button class="btn" @click="$router.push('/profile')">Profile</button>
                 <button class="btn" @click="logout">Sign Out</button>
             </div>
         </nav>

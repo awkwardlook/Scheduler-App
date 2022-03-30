@@ -72,11 +72,35 @@ export default {
 			avails.doc(id).get()
 			.then((docSnapshot) => {
 				const currentStates = docSnapshot.data().states
-				currentStates[[e]] = newState
 
-				return avails.doc(id).update({
-					states: currentStates
-				})
+				if (newState == 'Declined') {
+					currentStates[[e]] = newState
+					
+					return avails.doc(id).update({
+						states: currentStates
+					})
+
+				} else {
+					const approved = docSnapshot.data().approved
+
+					if (approved == false) { // if slot has never been approved before
+
+						// Decline all employees who indicated this slot
+						for (const key of Object.keys(currentStates)) {
+							currentStates[key] = 'Declined'
+						}
+
+						// Approve this employee
+						currentStates[[e]] = newState
+						
+						return avails.doc(id).update({
+							states: currentStates,
+							approved: true,
+							approvedEmp: e
+						})	
+					} 
+				}
+
 			})
 			.catch((e) => {
 				console.log(e)

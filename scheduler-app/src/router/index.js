@@ -12,24 +12,19 @@ const routes = [
 		component: () => import('../views/Login.vue')
 	},
 	{
-		path: '/employerprof',
-		name: 'Employer Profile',
-		component: () => import('../views/EmployerProf.vue')
-	},
-	{
 		path: '/employeranalytics',
 		name: 'Employer Analytics',
 		component: () => import('../views/EmployerAnalytics.vue')
 	},
 	{
-		path: '/employeeprof',
-		name: 'Employee Profile',
-		component: () => import('../views/EmployeeProf.vue')
-	},
-	{
 		path: '/addemployee',
 		name: 'Add Employee',
 		component: () => import('../views/AddEmployee.vue')
+	},
+	{
+		path: '/profile',
+		name: 'Profile',
+		component: () => import('../views/Profile.vue')
 	},
 	{
 		path: '/schedule',
