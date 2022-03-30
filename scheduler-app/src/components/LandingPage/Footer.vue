@@ -6,10 +6,12 @@
                     <img src="@/assets/scheduler_logo2.png" alt="logo"/>
                 </div>
                 <div className="footer-link-items">
-                    <h2>Features</h2>
-                    <p>Scheduling</p>
-                    <p>Smart Timesheet</p>
-                    <p>Real Time Analytics</p>
+                    <h2>Created by</h2>
+                    <p>Vanessa</p>
+                    <p>Zhen Hong</p>
+                    <p>Zhi Qian</p>
+                    <p>Jia Shang</p>
+                    <p>Edward</p>
                 </div>
             </div>
         </div>
@@ -101,7 +103,11 @@ export default {
     text-align: left;
     width: 160px;
     box-sizing: border-box;
+    text-indent: 22px ;
+    line-height: 0.3;
+
   }
+
   
   .footer-link-items h2 {
     margin-bottom: 16px;
