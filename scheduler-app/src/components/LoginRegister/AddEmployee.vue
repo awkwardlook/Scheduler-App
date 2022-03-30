@@ -1,6 +1,6 @@
 <template>
 <div class="AddEmployeeForm">
-    
+    <h1> Add Employees </h1>
        <label for="name"> Name: </label>
     <input type = "text" id = "name" required="" placeholder="Name" v-model="name" /> 
     <br><br>
@@ -24,6 +24,8 @@
     <label for="password"> Default Password: </label>
     <input type="password" id="password" required="" placeholder="Password" v-model="password" />
     <br><br>
+
+    
         
     <p><button type="submit" id="regbutton" @click="addEmployee()">Register Employee</button></p>
 
@@ -112,8 +114,7 @@ export default {
         font-size: 24px;
         width: 382px;  
         overflow: hidden;  
-        margin: auto;  
-        margin: 20 0 0 450px;  
+        margin: auto;   
         padding: 80px;  
         background: #ffffff;  
         border-radius: 15px ;
