@@ -6,7 +6,7 @@
             </div>
             <div class="buttons">
                 <button class="btn" @click="$router.push('/schedule')">Schedule</button>
-                <button class="btn" @click="$router.push('/employerprof')">Profiles</button>
+                <button class="btn" @click="$router.push('/profile')">Profiles</button>
                 <button class="btn" @click="$router.push('/analytics')">Analytics</button>
                 <button class="btn" @click="$router.push('/addemployee')">Add Employee</button>
                 <button class="btn" @click="logout">Sign Out</button>
@@ -32,6 +32,7 @@
         width: 100%;
         margin: auto;
         background-color: #bebebe;
+        box-shadow: 0px 0px 10px 7px #5290adba;
     }
 
     .buttons {

@@ -113,12 +113,13 @@ export default {
 					.then((docSnapshot) => {
 						if (docSnapshot.exists) {
 							const indicatedStates = docSnapshot.data().states
-
+							const indicatedEmployees = docSnapshot.data().employees
 							if (!(username in indicatedStates)) {
 								indicatedStates[username] = 'Pending'
-
+								indicatedEmployees.push(username)
 								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
-									states: indicatedStates
+									states: indicatedStates,
+									employees: indicatedEmployees
 								}).then(() => {
 									console.log("Successfully added availability")
 									this.addedTimings.clear()
@@ -133,9 +134,9 @@ export default {
 								date: timing.Date,
 								start: timing.Date + "T" + timing.Time.slice(0, 5) + ":00",
 								end: timing.Date + "T" + timing.Time.slice(6, 11) + ":00",
-								states: { [username] : 'Pending' },
-								approved: false
-
+								states: {[username] : 'Pending' },
+								approved: false,
+								employees: [username]
 							}).then(() => {
 								console.log("Successfully added availability")	
 								this.addedTimings.clear()
