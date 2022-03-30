@@ -134,13 +134,17 @@ export default {
 
 <style scoped>
     .loginbox{  
+        text-align: center;
+        font-size: 14px;
         width: 382px;  
-        height: 300px;
-        overflow: hidden;  
-        margin: 40%;
+        overflow: hidden;   
+        margin: auto;
+        margin-top: 200px;
+        /* margin: 180px 150px 150px 700px;   */
+        /* top right bottom left */
         padding: 80px;  
         background: #ffffff;  
-        border-radius: 15px;
+        border-radius: 15px ;
     }
     .bbutton{
         background-color: #0069e0; 
@@ -149,6 +153,8 @@ export default {
         padding: 10px 24px;
         text-align: center;
         text-decoration: none;
+        margin-left: -300px;
+        margin-top: -300px;
         display: inline-block;
         font-size: 14px;
         width: 100px;

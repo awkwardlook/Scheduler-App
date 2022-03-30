@@ -1,3 +1,4 @@
+
 <template>
 <div v-if = "user">
 	<EmployeeHeader/>
@@ -6,7 +7,7 @@
 	<div class="mainschedule">
 		<AvailForm/>
 		<CancelShiftForm/>
-		<div id='calendar' style="width: 80%; height:100%; display: inline-block;padding-right:15px; padding-bottom:20px">
+		<div id='calendar' style="width: 80%; height:100%; padding-right:30px; padding-bottom:20px">
 			<Availability/>
 		</div> 
 
@@ -20,9 +21,7 @@ import EmployeeHeader from '../Header/EmployeeHeader.vue'
 import CancelShiftForm from './CancelShift.vue'
 import Availability from './Availability.vue'
 import firebase from 'firebase'
-
 const auth = firebase.auth();
-
 export default {
 	components: {
 		AvailForm,
@@ -55,4 +54,3 @@ h1 {
 	justify-content: center;
 }
 </style>
-

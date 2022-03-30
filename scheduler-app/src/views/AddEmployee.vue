@@ -2,7 +2,6 @@
 	<!-- /addemployee to reach this page -->
 	<EmployerHeader/>
 	<br><br>
-	<h1>Add Employee</h1>
 	<AddEmployeeForm/>
 </template>
 

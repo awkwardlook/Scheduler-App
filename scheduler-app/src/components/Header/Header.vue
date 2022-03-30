@@ -24,6 +24,7 @@
         width: 100%;
         margin: 0 auto;
         background-color: #bebebe;
+        box-shadow: 0px 0px 10px 7px #5290adba;
     }
 
     .branding {
