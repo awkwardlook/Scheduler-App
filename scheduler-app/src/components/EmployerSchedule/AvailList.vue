@@ -9,10 +9,10 @@
 	</thead>
 	
 	<!-- loop through all documents in availabilities collection -->
-	<tbody v-for="{ id, states } in avails" :key="id">
+	<tbody v-for="{ id, employees, states } in avails" :key="id">
 		
 		<!-- loop through all employees (e) in each doc -->
-		<tr  v-for="e in Object.keys(states)" v-bind:key="e">
+		<tr  v-for="e in employees" v-bind:key="e">
 			
 			<!-- 1st column -->
 			<td class="shift">{{ id }}</td>
