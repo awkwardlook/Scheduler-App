@@ -107,7 +107,6 @@ export default {
                     await users.doc(this.user.email).set({});
                     await employers.doc(this.user.email).set({
                         email: this.user.email,
-                        password: this.user.password,
                         username: this.username,
                         department: this.department,
                         pnum: this.pnum,
@@ -123,18 +122,6 @@ export default {
         }
     }
 }
-/*shopee.onSnapshot(function(doc) {
-    let data = doc.data();
-    // gets the value of a field called field1 from the doc
-    // console.log(data)
-    const cname = data.name
-    const desc = data.description
-    const clogo = data.clogo
-    document.getElementById("coyname").innerText = cname
-    document.getElementById("coydesc").innerText = desc
-    document.getElementById("coylogo").src = clogo
-})
-*/
 </script>
 
 <style scoped>
