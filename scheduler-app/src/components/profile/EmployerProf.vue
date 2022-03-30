@@ -1,23 +1,26 @@
 <template>
-	<EmployeeHeader/>
+	<EmployerHeader/>
 	<br><br>
 	<div class="deets">
 		<!-- they are supposed to be side by side -->
 		<Deets/>
 	</div>
 	<br><br>
+	<AllEmployees/>
 
 </template>
 
 <script>
-import EmployeeHeader from '../components/Header/EmployeeHeader.vue'
-import Deets from '@/components/profile/eedeets.vue'
+import EmployerHeader from '../Header/EmployerHeader.vue'
+import Deets from '@/components/profile/erdeets.vue'
+import AllEmployees from '@/components/profile/allEm.vue'
 
 export default {
 	name: 'Employer Profile',
 	components: {
-		EmployeeHeader,
+		EmployerHeader,
 		Deets,
+		AllEmployees,
 	}
 }
 

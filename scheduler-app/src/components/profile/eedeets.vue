@@ -20,6 +20,7 @@
                 <h2>Gender</h2>
                 <input type="radio" id="male" v-model="gender" value="Male">
                 <label for="gender">Male</label>
+                <br>
                 <input type="radio" id="female" v-model="gender" value="Female">
                 <label for="gender">Female</label>
                 <br><br>
