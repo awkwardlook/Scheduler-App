@@ -40,14 +40,14 @@ export default {
     mounted(){            
     
         async function display(){
-            console.log("display() is running")
+            // console.log("display() is running")
             let z = await employees.get()
             // let z = await db.collection("Portfolio").get()
             let ind = 1
 
             z.forEach((docs) => {
                 let yy = docs.data()
-                console.log(yy)
+                // console.log(yy)
                 var table = document.getElementById("table")
                 var row = table.insertRow(ind)
 
@@ -56,7 +56,7 @@ export default {
                 var pnum = (yy.pnum)
                 var dept = (yy.department)
 
-                console.log(dept)
+                // console.log(dept)
 
                 var cell1 = row.insertCell(0); var cell2 = row.insertCell(1); var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3); var cell5 = row.insertCell(4); var cell6 = row.insertCell(5); 

@@ -48,89 +48,112 @@
 <script>
 
 import firebase from 'firebase'
+import { getAuth } from "@firebase/auth";
 // import { doc, setDoc } from "firebase/firestore";
 
-const db = firebase.firestore()
+const auth = firebase.auth();
+const db = firebase.firestore();
 const employers = db.collection("employers");
-const email = "employer1@gmail.com" ;
-// to obtain from authentication
-const edward = employers.doc(email);
+this.fbuser = auth.currentUser.email;
 
-// var storageRef = firebase.storage().ref();
-// var photo = storageRef.child('Passport photo.jpg');
-const companies = db.collection("companies")
-const shopee = companies.doc("shopee")
-
-edward.onSnapshot(function(doc) {
-                let data = doc.data();
-                // gets the value of a field called field1 from the doc
-                // console.log(data)
-                
-                const ename = data.name
-                const edept = data.department
-                const dp = data.ephoto
-                const pnum = data.pnum
-                const gender = data.gender
-                // const username = data.username
-
-                document.getElementById("profphoto").src = dp
-                document.getElementById("ename").innerText = ename
-                document.getElementById("edept").innerText = edept
-                document.getElementById("email").placeholder = email
-                document.getElementById("pnum").placeholder = pnum
-                document.getElementById("gender").placeholder = gender
-                })
-
-            shopee.onSnapshot(function(doc) {
-                let data = doc.data();
-                // gets the value of a field called field1 from the doc
-                // console.log(data)
-                const cname = data.name
-                const desc = data.description
-                const clogo = data.clogo
-                document.getElementById("coyname").innerText = cname
-                document.getElementById("coydesc").innerText = desc
-                document.getElementById("coylogo").src = clogo
-            })
-
-// console.log(shopee)
+console.log(auth)
 
 export default {
-    methods: {
-        // mounted(){
-        // need to obtain the loggin in email first -> determine if employee or employer
-        // then use the email to retrieve the respective info
-            
-        // },
+    data() {
+        return {
+            user: false
+        }
+    },
 
-        async updatefs(){
-                console.log("updating")
-                const ename = document.getElementById("ename").innerText
-                console.log(ename)
-                var g = document.getElementById("gender").value
-                console.log(g)
-                var p = document.getElementById("pnum").value
-                var e = document.getElementById("email").value
-                alert("Updating details for : " + ename)
-                try{
-                    if (g != null) {
-                        edward.update({gender: g})
-                    }
-                    if (e != null) {
-                        edward.update({email:e})
-                    }
-                    if (p != null) {
-                        edward.update({pnum:p})
-                    }
-                    
-                    this.$emit("updated")
-                    }
-                catch(error) {
-                    console.error("Error adding document: ", error);
-                }
+    mounted() {
+        const auth = getAuth();
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.user = user;
+                console.log("can i get my user")
+                // console.log(user.email.get())?
             }
-    }
+        });
+
+        const user = db.collection('employers').doc(this.user.email).get();
+        // to obtain from authentication
+        const edward = employers.doc(email);
+
+        // var storageRef = firebase.storage().ref();
+        // var photo = storageRef.child('Passport photo.jpg');
+        const companies = db.collection("companies")
+        // const usercompany = companies.doc(user.company)
+        const shopee = companies.doc("shopee")
+
+        edward.onSnapshot(function(doc) {
+            let data = doc.data();
+            // gets the value of a field called field1 from the doc
+            // console.log(data)
+            
+            const ename = data.name
+            const edept = data.department
+            const dp = data.ephoto
+            const pnum = data.pnum
+            const gender = data.gender
+            // const username = data.username
+
+            document.getElementById("profphoto").src = dp
+            document.getElementById("ename").innerText = ename
+            document.getElementById("edept").innerText = edept
+            document.getElementById("email").placeholder = email
+            document.getElementById("pnum").placeholder = pnum
+            document.getElementById("gender").placeholder = gender
+            })
+    },
+
+    methods: {
+        async updatefs(){
+            console.log("updating")
+            const ename = document.getElementById("ename").innerText
+            console.log(ename)
+            const user = await db.collection('employers').doc(this.user.email).get()
+            var g = document.getElementById("gender").value
+            console.log(g)
+            var p = document.getElementById("pnum").value
+            var e = document.getElementById("email").value
+            alert("Updating details for : " + ename)
+            try{
+                if (g != null) {
+                    user.update({gender: g})
+                }
+                if (e != null) {
+                    user.update({email:e})
+                }
+                if (p != null) {
+                    user.update({pnum:p})
+                }
+                
+                this.$emit("updated")
+                }
+            catch(error) {
+                console.error("Error adding document: ", error);
+            }
+        }
 }
+}
+
+
+
+shopee.onSnapshot(function(doc) {
+    let data = doc.data();
+    // gets the value of a field called field1 from the doc
+    // console.log(data)
+    const cname = data.name
+    const desc = data.description
+    const clogo = data.clogo
+    document.getElementById("coyname").innerText = cname
+    document.getElementById("coydesc").innerText = desc
+    document.getElementById("coylogo").src = clogo
+})
+
+
+
+    
 
 </script>
 
