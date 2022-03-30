@@ -85,7 +85,7 @@ export default {
                     password: this.password
                 });
                 alert('Sucessfully added employee!');
-                this.router.push('/employerprof');
+                this.router.push('/profile');
             } catch (e) {
                 alert(e.message);
             }
