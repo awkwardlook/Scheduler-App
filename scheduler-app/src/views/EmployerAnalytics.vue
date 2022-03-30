@@ -1,18 +1,26 @@
 <template>
     <EmployerHeader/>
-    <br><br>
-    <h1>Analytics Page</h1>
+    <div class="analytics">
+        <h1>Analytics Page</h1><br><br>
+        <Charts/>
+    </div>
 </template>
 
 <script>
 import EmployerHeader from '../components/Header/EmployerHeader.vue'
+import Charts from '../components/Chart.vue'
 
 export default {
     name: 'Analytics',
     components: {
-        EmployerHeader
+        EmployerHeader,
+        Charts
     }
 }
 </script>
 
-<style></style>
+<style>
+    .analytics {
+        padding: 80px;
+    }
+</style>

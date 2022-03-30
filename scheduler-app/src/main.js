@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router/index.js'
 import firebase from 'firebase'
 import store from './store.js'
+import VueChartkick from 'vue-chartkick'
+import 'chartkick/chart.js'
 
 
 const firebaseConfig = {
@@ -15,4 +17,4 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig)
-createApp(App).use(router).use(store).mount('#app')
+createApp(App).use(router).use(store).use(VueChartkick).mount('#app')

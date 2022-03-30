@@ -1,1 +1,6 @@
-{}
+{
+  "dependencies": {
+    "chart.js": "^3.7.1",
+    "vue-chartkick": "^1.1.0"
+  }
+}
