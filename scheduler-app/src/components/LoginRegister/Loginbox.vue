@@ -93,6 +93,8 @@ export default {
                         auth.signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                             window.localStorage.setItem('usertype', 'employer')
+                            window.localStorage.setItem('email', this.email)
+                            window.localStorage.setItem('password', this.password)
                             this.router.replace('/schedule')
                         })
                         .catch(error => alert(error.message))
@@ -115,6 +117,8 @@ export default {
                         auth.signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                             window.localStorage.setItem('usertype', 'employee')
+                            window.localStorage.setItem('email', this.email)
+                            window.localStorage.setItem('password', this.password)
                             this.router.replace('/schedule')
                         })
                         .catch(error => alert(error.message))

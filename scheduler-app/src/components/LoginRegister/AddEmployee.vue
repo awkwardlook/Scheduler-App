@@ -48,6 +48,7 @@ const usersCollection = db.collection('users')
 export default {
     data() {
         return {
+            user: false,
             email: "",
             name: "",
             gender: "",
@@ -58,19 +59,21 @@ export default {
             router: useRouter()
         }
     },
+    mounted() {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.user = user;
+            }
+        })
+    },
     methods: {
         async addEmployee() {
             try {
                 // firebase authentication
                 await auth.createUserWithEmailAndPassword(this.email, this.password);
                 await auth.currentUser.updateProfile({
-                    email: this.email,
-                    username: this.name,
-                    company: this.company,
-                    gender: this.gender,
-                    pnum: this.pnum,
-                    department: this.department,
-                    password: this.password
+                    displayName: this.name
+                    // profile pic can be added here
                 });
                 // user collection in  firestore
                 await usersCollection.doc(this.email).set({});
@@ -84,8 +87,12 @@ export default {
                     department: this.department,
                     password: this.password
                 });
-                alert('Sucessfully added employee!');
-                this.router.push('/profile');
+                auth.signOut().then(() => {
+                    auth.signInWithEmailAndPassword(window.localStorage.getItem('email'), window.localStorage.getItem('password')).then(() => {
+                        alert('Successfully added employee')
+                        this.router.push('/profile');                  
+                    });
+                });
             } catch (e) {
                 alert(e.message);
             }
