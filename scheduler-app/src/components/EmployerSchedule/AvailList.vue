@@ -74,31 +74,42 @@ export default {
 				const currentStates = docSnapshot.data().states
 
 				if (newState == 'Declined') {
-					currentStates[[e]] = newState
+					if (confirm("Decline the following shift allocation?\n" + "\nEmployee: "+ e + "\nShift: " + id + 
+					"\n\nThis action cannot be undone.")) {
+						
+						currentStates[[e]] = newState
 					
-					return avails.doc(id).update({
-						states: currentStates
-					})
+						return avails.doc(id).update({
+							states: currentStates
+						})
+					}
 
 				} else {
-					const approved = docSnapshot.data().approved
 
-					if (approved == false) { // if slot has never been approved before
-
-						// Decline all employees who indicated this slot
-						for (const key of Object.keys(currentStates)) {
-							currentStates[key] = 'Declined'
-						}
-
-						// Approve this employee
-						currentStates[[e]] = newState
+					if (confirm("Confirm the following shift allocation?\n" + "\nEmployee: "+ e + "\nShift: " + id + 
+					"\n\nThis action cannot be undone and all other employees with this shift will be declined.")) {
 						
-						return avails.doc(id).update({
-							states: currentStates,
-							approved: true,
-							approvedEmp: e
-						})	
-					} 
+						const approved = docSnapshot.data().approved
+						if (approved == false) { // if slot has never been approved before
+
+							// Decline all employees who indicated this slot
+							for (const key of Object.keys(currentStates)) {
+								currentStates[key] = 'Declined'
+							}
+
+							// Approve this employee
+							currentStates[[e]] = newState
+						
+							return avails.doc(id).update({
+								states: currentStates,
+								approved: true,
+								approvedEmp: e
+							})
+						}	
+					
+					} else {
+						return;
+					}
 				}
 
 			})
