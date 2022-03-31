@@ -19,79 +19,93 @@
 </template>
 
 <script>
-
 import firebase from 'firebase'
-// import { doc, setDoc } from "firebase/firestore";
-import {  doc, deleteDoc } from "firebase/firestore";
 
+const auth = firebase.auth()
 const db = firebase.firestore()
-const employees = db.collection("employees");
-
-// employees.get().then(function(querySnapshot) {
-//     querySnapshot.forEach(function(doc) {
-//         // doc.data() is never undefined for query doc snapshots
-//         console.log(doc.id, " => ", doc.data());
-//     });
-// });
-
-// console.log(shopee)
+const users = db.collection("users")
+const employees = db.collection("employees")
 
 export default {
-    mounted(){            
-    
-        async function display(){
-            // console.log("display() is running")
-            let z = await employees.get()
-            // let z = await db.collection("Portfolio").get()
-            let ind = 1
-
-            z.forEach((docs) => {
-                let yy = docs.data()
-                // console.log(yy)
-                var table = document.getElementById("table")
-                var row = table.insertRow(ind)
-
-                var name = (yy.name)
-                var email = (yy.email)
-                var pnum = (yy.pnum)
-                var dept = (yy.department)
-
-                // console.log(dept)
-
-                var cell1 = row.insertCell(0); var cell2 = row.insertCell(1); var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3); var cell5 = row.insertCell(4); var cell6 = row.insertCell(5); 
-
-                cell1.innerHTML = ind; cell2.innerHTML = name; cell3.innerHTML = email; cell4.innerHTML = pnum; cell5.innerHTML = dept;
-
-
-                var bu = document.createElement("button")
-                bu.className = "bwt"
-                bu.id = String(name)
-                bu.innerHTML = "Delete"
-                bu.onclick = function(){
-                    deleteinstrument2(name)
-                }
-                cell6.appendChild(bu)
-            ind+= 1
-            })
+    data() {
+        return {
+            user: false
         }
-        display()
-
-        async function deleteinstrument2(coin){
-            var x = coin
-            alert("You are going to delete " + x)
-            await deleteDoc(doc(db, "Portfolio", x))
-            console.log("Document successfully deleted!" , x);
-            let tb = document.getElementById("table")
-            while (tb.rows.length > 1){
+    },
+    mounted() {       
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.user = user;
+                this.display();
+            }
+        });
+    },
+    methods: {
+        cleanTable(tb) {
+            while (tb.rows.length > 1) {
                 tb.deleteRow(1)
-                }
-            document.getElementById("totalProfit").innerHTML=""
-            display()
+            }
+            return tb;
+        },
+        display() {
+            var ind = 1;
+            var table = document.getElementById("table");
+            table = this.cleanTable(table);
+            employees.get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const employee = doc.data();
+                    var row = table.insertRow(ind);
+
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+                    var cell6 = row.insertCell(5);
+
+                    cell1.innerHTML = ind;
+                    cell2.innerHTML = employee.username;
+                    cell3.innerHTML = employee.email;
+                    cell4.innerHTML = employee.pnum;
+                    cell5.innerHTML = employee.department;
+
+                    var button = document.createElement("button");
+                    button.innerHTML = "Delete";
+                    button.onclick = () => this.deleteinstrument(employee.email, employee.username, employee.password);
+                    cell6.appendChild(button);
+                    ind += 1;
+                });
+            }).catch((e) => {
+                alert(e.message);
+            });
+        },
+        async deleteinstrument(email, username, password) {
+            alert("You are going to delete " + username);
+            try {
+                await users.doc(email).delete();
+                await employees.doc(email).delete();
+                auth.signOut().then(() => {
+                    auth.signInWithEmailAndPassword(email, password).then(() => {
+                        auth.currentUser.delete().then(() => {
+                            auth.signOut().then(() => {
+                                auth.signInWithEmailAndPassword(window.localStorage.getItem('email'), window.localStorage.getItem('password')).then(() => {
+                                    var tb = document.getElementById("table");
+                                    while (tb.rows.length > 1) {
+                                        tb.deleteRow(1)
+                                    }
+                                    this.display();
+                                    alert("Sucessfully deleted " + username);
+                                });
+                            });
+                        });
+                    });
+                });
+            } catch (e) {
+                alert(e.message);
+            }
         }
     }
 }
-
 </script>
 
 <style scoped>
