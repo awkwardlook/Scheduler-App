@@ -7,7 +7,7 @@
 
     <div class="pie">
         <h2>Work Strength</h2>
-        <button class="button" @click="setup()">Update</button><br><br><br>
+        <button class="button" @click="update()">Update</button><br><br><br>
         <pie-chart width =500px :data= "chartdata"></pie-chart>
     </div>
 </template>
@@ -16,7 +16,6 @@
 import firebase from 'firebase'
 
 const db = firebase.firestore()
-const shifts = db.collection("availabilities")
 
 export default {
     //import firebase dated data 
@@ -28,29 +27,37 @@ export default {
         return{
             
             chartdata2: {'Blueberry':44, 'Strawberry':23},
-
             chartdata: {},
-            
             selected:""
         }
     },
+    
     methods:{
-
-        setup(){
+        update() {
             var data = {"morning": 0, "afternoon": 0};
-            shifts.get().then((docSnapshot) => {
-                if (docSnapshot.exists) {
-                    const dates = docSnapshot.data();
-                    if (dates.start.slice(11, 19) == "09:00:00") {
-                        data["morning"] = data["morning"] + 1
+            const shifts = db.collection("availabilities")
+
+            shifts.get().then((querySnapshot) => {
+                const temp = []
+                querySnapshot.forEach((doc) => {
+                    temp.push({ id: doc.id, ...doc.data() })
+
+                    if (doc.data().approved) {
+                        const time = doc.id.slice(11,16)
+
+                        if (time == "09:00") {
+                            data["morning"] += 1
+
+                        } else {
+                            data["afternoon"] += 1
+                        }
                     }
-                    if (dates.start.slice(11, 19) == "15:00:00") {
-                        data["afternoon"] = data["afternoon"] + 1
-                    }
-                }
-            })
-            console.log("data")
-            return data;   
+
+                    console.log(data)
+                    this.chartdata = data
+                })
+                
+            }) 
         },
 
         updateMe: function (){
