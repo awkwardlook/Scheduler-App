@@ -12,6 +12,7 @@ import firebase from 'firebase'
 const db = firebase.firestore()
 const auth = firebase.auth()
 const shift = db.collection("Shift")
+
 export default {
      components: {
         FullCalendar // make the <FullCalendar> tag available
@@ -23,19 +24,14 @@ export default {
           default: 'standard',
           plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
           initialView: 'timeGridWeek',
-          headerToolbar: {
-              center: 'title',
-              left:'',
-              right:'',
-          },
+          height: "auto",
           allDaySlot: false,
           scrollTime: "09:00:00",
           slotMaxTime: "21:00:00",
           slotMinTime: "09:00:00",
           events: [],
-          eventColor: '',
-          height: "auto",
-        }
+        },
+        user: false
       }
     },
 
@@ -48,6 +44,7 @@ export default {
       });
     },
 
+
     methods: {
       async getShifts() {
         const user = await db.collection('employees').doc(this.user.email).get()
@@ -55,16 +52,19 @@ export default {
         shift.onSnapshot((querySnapshot) => {
           this.calendarOptions.events = [];
           querySnapshot.forEach((doc) => {
-            const avail = doc.data();
-            if (avail.emp_username == username) {
+            const shifts = doc.data();
+            console.log(shifts.employee_username)
+            if (shifts.employee_username == username) {
               let emp_shift = {
-                  start: avail.start,
-                  end: avail.end,
+                  'title': '',
+                  'start': shifts.start,
+                  'end': shifts.end,
               }
               console.log(emp_shift);
               this.calendarOptions.events.push(emp_shift);
             }
-          })
+          }
+          )
         });
       }
     }
@@ -72,6 +72,11 @@ export default {
 </script>
 
 <style>
+.fc .fc-timegrid-col.fc-day-today 
+{
+  background-color:inherit !important;
+}
+
 #calendar  .fc-scrollgrid {
   border: none !important;
 }
