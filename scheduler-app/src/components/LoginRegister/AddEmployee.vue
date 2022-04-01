@@ -17,8 +17,8 @@
     <input type = "text" id = "gender" required="" placeholder="Male/Female" v-model="gender" />     
     <br><br>
         
-    <label for="companyUEN"> Department: </label>
-    <input type = "text" id = "companyUEN" required="" placeholder="Department" v-model="companyUEN" />     
+    <label for="department"> Department: </label>
+    <input type = "text" id = "department" required="" placeholder="Department" v-model="department" />     
     <br><br>
         
     <label for="company"> Company Name: </label> 
