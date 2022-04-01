@@ -1,14 +1,14 @@
 <template>
     <div class="line">
         <h2>Current Week's Work Strength</h2>
-        <button class="button" @click="updateMe2()">Update</button><br><br><br>
-        <line-chart class = 'user' width =500px :data = "chartdata2"></line-chart >
+        <button class="button" @click="updateBar()">Update</button><br><br><br>
+        <line-chart class = 'user' width =500px :data = "barchartdata"></line-chart >
     </div><br><br>
 
     <div class="pie">
         <h2>Work Strength</h2>
-        <button class="button" @click="update()">Update</button><br><br><br>
-        <pie-chart width =500px :data= "chartdata"></pie-chart>
+        <button class="button" @click="updatePie()">Update</button><br><br><br>
+        <pie-chart width =500px :data= "piechartdata"></pie-chart>
     </div>
 </template>
 
@@ -25,16 +25,15 @@ export default {
     data(){
 
         return{
-            
-            chartdata2: {'Blueberry':44, 'Strawberry':23},
-            chartdata: {},
+            barchartdata: {"Monday": 0, "Tuesday": 0, "Wednesday": 0, "Thursday": 0, "Friday": 0},
+            piechartdata: {"Morning": 0, "Afternoon": 0},
             selected:""
         }
     },
     
     methods:{
-        update() {
-            var data = {"morning": 0, "afternoon": 0};
+        updatePie() {
+            var data = {"Morning": 0, "Afternoon": 0};
             const shifts = db.collection("availabilities")
 
             shifts.get().then((querySnapshot) => {
@@ -46,25 +45,22 @@ export default {
                         const time = doc.id.slice(11,16)
 
                         if (time == "09:00") {
-                            data["morning"] += 1
+                            data["Morning"] += 1
 
                         } else {
-                            data["afternoon"] += 1
+                            data["Afternoon"] += 1
                         }
                     }
 
                     console.log(data)
-                    this.chartdata = data
+                    this.piechartdata = data
                 })
                 
             }) 
         },
 
-        updateMe: function (){
-            this.chartdata = {'Monday': Math.random()*5, 'Tuesday': 5, 'Wednesday': Math.random()* 5, 'Thursday': 5, 'Friday':6}
-        },
-        updateMe2: function (){
-            this.chartdata2 = {'Blueberry':Math.random()*30, 'Strawberry':23,'Balckberry':23}
+        updateBar: function (){
+            this.barchartdata = {'Monday': Math.random()*5, 'Tuesday': 5, 'Wednesday': Math.random()* 5, 'Thursday': 5, 'Friday':6}
         },
 
     },
