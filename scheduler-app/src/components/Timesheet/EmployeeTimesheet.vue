@@ -40,7 +40,6 @@ export default {
         if (user) {
           this.user = user;
           this.getShifts();
-          console.log(this.calendarOptions.events);
         }
       });
     },
@@ -50,7 +49,6 @@ export default {
       async getShifts() {
         const user = await db.collection('employees').doc(this.user.email).get()
 				const username = user.data().username
-        console.log(username)
         shift.onSnapshot((querySnapshot) => {
           this.calendarOptions.events = [];
           querySnapshot.forEach((doc) => {
