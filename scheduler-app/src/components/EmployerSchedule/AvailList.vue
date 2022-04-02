@@ -85,34 +85,39 @@ export default {
 					}
 
 				} else {
-					const approved = docSnapshot.data().approved
+					if (confirm("Confirm the following shift allocation?\n" + "\nEmployee: "+ e + "\nShift: " + id + 
+					"\n\nThis action cannot be undone and all other employees with this shift will be declined.")) {
+					
+						const approved = docSnapshot.data().approved
 
-					if (approved == false) { // if slot has never been approved before
+						if (approved == false) { // if slot has never been approved before
 
-						// Decline all employees who indicated this slot
-						for (const key of Object.keys(currentStates)) {
-							currentStates[key] = 'Declined'
-						}
+							// Decline all employees who indicated this slot
+							for (const key of Object.keys(currentStates)) {
+								currentStates[key] = 'Declined'
+							}
 
-						// Approve this employee
-						currentStates[[e]] = newState
-						db.collection("Shift").add({
-							employee_username: e,
-							start: docSnapshot.data().start,
-							end: docSnapshot.data().end,
-						})
-						.then((docRef) => {
-							console.log("Successfully adding document", docRef);
-						})
-						.catch((error) => {
-							console.error("Error adding document: ", error);
-						});
-						return avails.doc(id).update({
-							states: currentStates,
-							approved: true,
-							approvedEmp: e
-						})	
-					} 
+							// Approve this employee
+							currentStates[[e]] = newState
+							db.collection("shifts").add({
+								employee_username: e,
+								start: docSnapshot.data().start,
+								end: docSnapshot.data().end,
+							})
+							.then((docRef) => {
+								console.log("Successfully added document", docRef);
+							})
+							.catch((error) => {
+								console.error("Error adding document: ", error);
+							});
+							
+							return avails.doc(id).update({
+								states: currentStates,
+								approved: true,
+								approvedEmp: e
+							})	
+						} 
+					}
 				}
 
 			})
