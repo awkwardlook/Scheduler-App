@@ -99,7 +99,8 @@ export default {
 
 							// Approve this employee
 							currentStates[[e]] = newState
-							db.collection("shifts").add({
+							
+							db.collection("Shift").add({
 								employee_username: e,
 								start: docSnapshot.data().start,
 								end: docSnapshot.data().end,
