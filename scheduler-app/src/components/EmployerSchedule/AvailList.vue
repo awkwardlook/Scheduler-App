@@ -74,11 +74,15 @@ export default {
 				const currentStates = docSnapshot.data().states
 				
 				if (newState == 'Declined') {
-					currentStates[[e]] = newState
+					if (confirm("Decline the following shift allocation?\n" + "\nEmployee: "+ e + "\nShift: " + id + 
+					"\n\nThis action cannot be undone.")) {
+						
+						currentStates[[e]] = newState
 					
-					return avails.doc(id).update({
-						states: currentStates
-					})
+						return avails.doc(id).update({
+							states: currentStates
+						})
+					}
 
 				} else {
 					const approved = docSnapshot.data().approved
