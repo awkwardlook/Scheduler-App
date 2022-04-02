@@ -72,7 +72,7 @@ export default {
 			avails.doc(id).get()
 			.then((docSnapshot) => {
 				const currentStates = docSnapshot.data().states
-
+				
 				if (newState == 'Declined') {
 					currentStates[[e]] = newState
 					
@@ -92,7 +92,17 @@ export default {
 
 						// Approve this employee
 						currentStates[[e]] = newState
-						
+						db.collection("Shift").add({
+							employee_username: e,
+							start: docSnapshot.data().start,
+							end: docSnapshot.data().end,
+						})
+						.then((docRef) => {
+							console.log("Successfully adding document", docRef);
+						})
+						.catch((error) => {
+							console.error("Error adding document: ", error);
+						});
 						return avails.doc(id).update({
 							states: currentStates,
 							approved: true,
