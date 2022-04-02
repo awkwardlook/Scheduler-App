@@ -20,8 +20,11 @@ const db = firebase.firestore()
 export default {
     //import firebase dated data 
     //collect dates based on if statements into days of the week/collect by months
-    
-    name:'Charts',
+    mounted() {
+        this.updateLineChart();
+        this.updatePieChart();
+    },
+
     data(){
 
         return{
