@@ -7,15 +7,17 @@
       <!-- Content of popup cancel shift form below-->
     <div class="modal" v-if="showModal">
       
-      <h3>Select shift to cancel</h3>
-      <br><br>
+      <h3>Request Shift Cancellation</h3>
+      <p> Day: {{ this.calendarEvent['day'] }} </p>
+      <p> Time: {{ this.calendarEvent['start'] }} - {{ this.calendarEvent['end'] }} </p>
+      <br>
       
       <label for="cancelremarks" id="remarks"> Remarks: </label>
       <input type = "text" id = "remarksbox" required="" placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
       
       <br><br>
       <button class="button" @click="toggleModal()">Back</button>
-      <button class="button" @click="toggleModal()">Request Cancellation</button>
+      <button class="button" @click="submit()">Submit</button>
     </div>
 	</div>
 </template>
@@ -50,13 +52,16 @@ export default {
         events: [],
         eventClick: info => {
           this.showModal = !this.showModal;
-          this.calendarEvent = info.event.id;
-          console.log("Open")
+          
+          this.calendarEvent['day'] = info.event.start.toString().slice(0,16)
+          this.calendarEvent['start'] = info.event.start.toString().slice(17,25)
+          this.calendarEvent['end'] = info.event.end.toString().slice(17,25)
         }
       },
       user: false,
       showModal: false,
-      calendarEvent: "",
+      calendarEvent: {'day':'','start':'', 'end': ''},
+      remarks:''
     }
   },
 
@@ -94,6 +99,10 @@ export default {
     toggleModal() {
       this.showModal = !this.showModal;
     },
+    submit() {
+
+      this.showModal = false;
+    }
   }
 }
 </script>
