@@ -7,7 +7,11 @@
         <div style="width: 2.5%;"></div>
         <button class="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
     </div>
-    <AvailList/>
+    <div>
+        <AvailList/>
+        <br>
+        <CancelList/>
+    </div>
     <div id='calendar' style="width: 80%; height:100%; display: inline-block;padding:15px; padding-bottom:20px">
         <Availability/>
     </div> 
@@ -30,6 +34,7 @@
 <script>
 import EmployerHeader from '../Header/EmployerHeader.vue'
 import AvailList from './AvailList.vue'
+import CancelList from './CancelList.vue'
 import Availability from '../EmployeeSchedule/Availability.vue'
 import firebase from 'firebase'
 
@@ -41,6 +46,7 @@ export default {
     components: {
         EmployerHeader,
         AvailList,
+        CancelList,
         Availability
     },
     data() {
