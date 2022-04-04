@@ -54,14 +54,16 @@ export default {
           this.showModal = !this.showModal;
           
           this.calendarEvent['id'] = info.event.id
+          this.calendarEvent['employee'] = info.event.employee
           this.calendarEvent['day'] = info.event.start.toString().slice(0,16)
           this.calendarEvent['start'] = info.event.start.toString().slice(17,25)
           this.calendarEvent['end'] = info.event.end.toString().slice(17,25)
         }
       },
+      employee: '',
       user: false,
       showModal: false,
-      calendarEvent: {'id':'','day':'','start':'', 'end': ''},
+      calendarEvent: {'id':'', 'day':'','start':'', 'end': ''},
       remarks:''
     }
   },
@@ -91,6 +93,7 @@ export default {
                 'start': shifts.start,
                 'end': shifts.end,
             }
+            this.employee = username;
             console.log(emp_shift);
             this.calendarOptions.events.push(emp_shift);
           }
@@ -103,20 +106,24 @@ export default {
     },
     submit() {
 
-      const shift = db.collection('Shift')
-      shift.doc(this.calendarEvent['id']).update({
-        cancelRequested: true,
-        cancelRemarks: this.remarks
+      const cancellations = db.collection('cancellations')
+      const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+      
+      cancellations.doc(this.calendarEvent['id']).set({
+        employee: this.employee,
+        remarks: this.remarks,
+        shift: shift,
+        status: 'Pending'
       })
       
       .then((doc) => {
-        console.log("Successfully updated document ", doc)
+        console.log("Successfully added document ", doc)
         this.showModal = false
         this.remarks = ''
       })
       
       .catch((e) => {
-        console.log("Error updating document: ", e)
+        console.log("Error added document: ", e)
       })
     }
   }
