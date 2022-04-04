@@ -34,6 +34,12 @@ export default {
           slotMaxTime: "21:00:00",
           slotMinTime: "09:00:00",
           events: [],
+
+          eventTimeFormat: {
+            hour:'2-digit',
+            minute:'2-digit',
+            hour12: false
+          },
         },
         user: false
       }

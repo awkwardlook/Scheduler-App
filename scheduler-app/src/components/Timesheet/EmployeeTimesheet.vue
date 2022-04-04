@@ -50,14 +50,21 @@ export default {
         slotMaxTime: "21:00:00",
         slotMinTime: "09:00:00",
         events: [],
+        
+        eventTimeFormat: {
+          hour:'2-digit',
+          minute:'2-digit',
+          hour12: false
+        },
+  
         eventClick: info => {
           this.showModal = !this.showModal;
           
           this.calendarEvent['id'] = info.event.id
           this.calendarEvent['employee'] = info.event.employee
           this.calendarEvent['day'] = info.event.start.toString().slice(0,16)
-          this.calendarEvent['start'] = info.event.start.toString().slice(17,25)
-          this.calendarEvent['end'] = info.event.end.toString().slice(17,25)
+          this.calendarEvent['start'] = info.event.start.toString().slice(16,21)
+          this.calendarEvent['end'] = info.event.end.toString().slice(16,21)
         }
       },
       employee: '',
