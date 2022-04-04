@@ -88,7 +88,7 @@ export default {
 					if (confirm("Confirm the following shift cancellation request?\n" + "\nEmployee: "+ employee + "\nShift: " + shift + 
 					"\n\nThis action cannot be undone.")) {
 
-						db.collection("Shift").doc(id).delete()
+						db.collection("shifts").doc(id).delete()
 						
 						.then((docRef) => {
 							console.log("Successfully deleted document", docRef);
