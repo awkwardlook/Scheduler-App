@@ -7,11 +7,14 @@
         <div style="width: 2.5%;"></div>
         <button class="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
     </div>
-    <div>
+
+    <div class="tbl">
         <AvailList/>
-        <br>
+    </div>
+    <div class="tbl">
         <CancelList/>
     </div>
+    <br>
     <div id='calendar' style="width: 80%; height:100%; display: inline-block;padding:15px; padding-bottom:20px">
         <Availability/>
     </div> 
@@ -28,6 +31,12 @@
         display: inline-block;
         font-size: 14px;
         width: 160px;
+}
+
+.tbl {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 30px;
 }
 </style>
 
