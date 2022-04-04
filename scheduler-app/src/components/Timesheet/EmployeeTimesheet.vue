@@ -53,6 +53,7 @@ export default {
         eventClick: info => {
           this.showModal = !this.showModal;
           
+          this.calendarEvent['id'] = info.event.id
           this.calendarEvent['day'] = info.event.start.toString().slice(0,16)
           this.calendarEvent['start'] = info.event.start.toString().slice(17,25)
           this.calendarEvent['end'] = info.event.end.toString().slice(17,25)
@@ -60,7 +61,7 @@ export default {
       },
       user: false,
       showModal: false,
-      calendarEvent: {'day':'','start':'', 'end': ''},
+      calendarEvent: {'id':'','day':'','start':'', 'end': ''},
       remarks:''
     }
   },
@@ -85,6 +86,7 @@ export default {
           console.log(shifts.employee_username)
           if (shifts.employee_username == username) {
             let emp_shift = {
+                'id': doc.id,
                 'title': '',
                 'start': shifts.start,
                 'end': shifts.end,
@@ -101,7 +103,21 @@ export default {
     },
     submit() {
 
-      this.showModal = false;
+      const shift = db.collection('Shift')
+      shift.doc(this.calendarEvent['id']).update({
+        cancelRequested: true,
+        cancelRemarks: this.remarks
+      })
+      
+      .then((doc) => {
+        console.log("Successfully updated document ", doc)
+        this.showModal = false
+        this.remarks = ''
+      })
+      
+      .catch((e) => {
+        console.log("Error updating document: ", e)
+      })
     }
   }
 }
