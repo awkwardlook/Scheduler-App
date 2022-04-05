@@ -8,6 +8,7 @@
         <div style="width: 2.5%;"></div>
         <button class="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
         <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
+        <button class="btn" @click="resetWeek()">Reset Week</button>
     </div>
 
     <div class="tbl">
@@ -34,6 +35,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const permissions = db.collection("permissions");
 const availabilities = db.collection("availabilities");
+const cancellations = db.collection("cancellations");
 
 export default {
     components: {
@@ -72,7 +74,7 @@ export default {
             });
         },
         confirmSchedule() {
-            if (confirm("Confirm employees' schedule?" + "\n" + "All unapproved availabilities will be declined")) {
+            if (confirm("Confirm employees' schedule?\n"  + "All unapproved availabilities will be declined")) {
                 availabilities.get().then((querySnapshot) => {
                     querySnapshot.forEach(async (doc) => {
                         const avail = doc.data();
@@ -93,6 +95,28 @@ export default {
                     this.availabilityKey += 1;
                     alert("Schedule has been confirmed");
                 });
+            }
+        },
+        async resetWeek() {
+            if (confirm("Reset the week for employees?\n" + "This will remove all existing shifts and cancellation requests")) {
+                availabilities.get().then((querySnapshot) => {
+                    querySnapshot.forEach(async (doc) => {
+                        await availabilities.doc(doc.id).delete();
+                    });
+                });
+                cancellations.get().then((querySnapshot) => {
+                    querySnapshot.forEach(async (doc) => {
+                        await cancellations.doc(doc.id).delete();
+                    })
+                })
+                await permissions.doc("add availabilities").update({
+                    granted: true
+                });
+                await permissions.doc("confirm schedule").update({
+                    confirmed: false
+                });
+                this.availabilityKey += 1;
+                alert("Week has been reset");
             }
         }
     }
