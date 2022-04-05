@@ -4,11 +4,11 @@
             <h1>Employee Details</h1>
             <h2 id="ename">{{user.email}}</h2>
             <div class="eleft">
+                <img id="dp" alt="display photo">
                 
+                <br><br>
                 <h2 id = "edept">Department</h2>
                 <input id="department" v-model="department" placeholder="Enter department">
-                <br><br>
-                <img id="profphoto" alt="profile photo"/>
             </div>
 
             <div class="eright">
@@ -63,7 +63,8 @@ export default {
             pnum: "",
             gender: "",
             company: "",
-            description: ""
+            description: "",
+            dp : ""
         }
     },
     mounted() {
@@ -84,7 +85,7 @@ export default {
                     this.pnum = user.pnum;
                     this.gender = user.gender;
                     this.company = user.company;
-                    // add employee profile pic here
+                    document.getElementById('dp').src = user.dp;
                     this.fetchCompany(this.company);
                 }
             }).catch((e) => {

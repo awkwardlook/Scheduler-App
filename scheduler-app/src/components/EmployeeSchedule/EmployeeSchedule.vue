@@ -7,10 +7,9 @@
 	<div class="mainschedule">
 		<AvailForm/>
 		<CancelShiftForm/>
-		<div id='calendar' style="width: 80%; height:100%; padding-right:30px; padding-bottom:20px">
+		<div id='calendar'>
 			<Availability/>
 		</div> 
-
 	</div>
 </div>
 </template>
@@ -45,12 +44,30 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-	text-align: center;	
-}
+
 .mainschedule {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+    /* overflow: hidden;  
+    margin: auto;
+    padding: 1px;  
+    background: #ffffff;  
+    border-radius: 15px ; */
 }
+.calendar {
+    width: 80%; 
+    height: 100%;
+    display: inline-block;
+    /* background: aliceblue;
+    overflow: hidden; 
+    margin: auto;
+    padding: 40px;  
+    background: #ffffff;  
+    border-radius: 15px ; */
+}
+h1 {
+	text-align: center;	
+}
+
 </style>

@@ -4,11 +4,11 @@
             <h1>Employer Details</h1>
             <h2 id="ename">{{user.email}}</h2>
             <div class="eleft">
-                
+                <img id="dp" alt="profile photo"/>
+                <br><br>
                 <h2 id = "edept">Department</h2>
                 <input id="department" v-model="department" placeholder="Enter department">
-                <br><br>
-                <img id="profphoto" alt="profile photo"/>
+                
             </div>
 
             <div class="eright">
@@ -85,7 +85,7 @@ export default {
                     this.gender = user.gender;
                     this.companyName = user.companyName;
                     this.companyUEN = user.companyUEN;
-                    document.getElementById("profphoto").src = user.ephoto;
+                    document.getElementById("dp").src = user.dp;
                 }
             })    
         },

@@ -2,7 +2,8 @@
 <div v-if = "user">
     <EmployerHeader/>
     <br><br>
-    <div style="display: flex; flex-direction;">
+    <br>
+    <div class="tbl">
         <h1>Employer Schedule Page</h1>
         <div style="width: 2.5%;"></div>
         <button class="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
@@ -11,8 +12,8 @@
 
     <div class="tbl">
         <AvailList/>
-    </div>
-    <div class="tbl">
+        <br>
+        <p><strong>Cancellation Requests</strong></p>
         <CancelList/>
     </div>
     <br>
@@ -21,25 +22,6 @@
     </div> 
 </div>
 </template>
-
-<style scoped>
-.btn {
-        background-color: #0069e0; 
-        border-radius: 8px;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        width: 160px;
-}
-
-.tbl {
-    display: inline-block;
-    vertical-align: top;
-    padding-left: 30px;
-}
-</style>
 
 <script>
 import EmployerHeader from '../Header/EmployerHeader.vue'
@@ -116,3 +98,52 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.tbl {
+    text-align: center;
+    font-size: 18px;
+    width: 73%;  
+    overflow: hidden;  
+    margin: auto;
+    /* top right bottom left */
+    padding: 40px;  
+    background: #ffffff;  
+    border-radius: 15px ;
+}
+
+#btn {
+        background-color: #0069e0; 
+        border-radius: 8px;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        width: 250px;
+        height: 50px;
+        margin: 6px;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+#btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #25deff; /* Green */
+    color: rgb(25, 27, 44);
+}
+
+.calendar {
+    width: 73%; 
+    height: 100%;
+    display: flex;
+    background: aliceblue;
+    overflow: hidden; 
+    margin: auto;
+    /* top right bottom left */
+    padding: 40px;  
+    background: #ffffff;  
+    border-radius: 15px ;
+}
+</style>
