@@ -4,11 +4,11 @@
             <h1>Employer Details</h1>
             <h2 id="ename">{{user.email}}</h2>
             <div class="eleft">
-                
+                <img id="profphoto" alt="profile photo"/>
+                <br><br>
                 <h2 id = "edept">Department</h2>
                 <input id="department" v-model="department" placeholder="Enter department">
-                <br><br>
-                <img id="profphoto" alt="profile photo"/>
+                
             </div>
 
             <div class="eright">
