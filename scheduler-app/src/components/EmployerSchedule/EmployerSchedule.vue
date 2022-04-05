@@ -6,6 +6,7 @@
         <h1>Employer Schedule Page</h1>
         <div style="width: 2.5%;"></div>
         <button class="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
+        <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
     </div>
 
     <div class="tbl">
@@ -16,7 +17,7 @@
     </div>
     <br>
     <div id='calendar' style="width: 80%; height:100%; display: inline-block;padding:15px; padding-bottom:20px">
-        <Availability/>
+        <Availability :key="availabilityKey"/>
     </div> 
 </div>
 </template>
@@ -50,6 +51,7 @@ import firebase from 'firebase'
 const auth = firebase.auth();
 const db = firebase.firestore();
 const permissions = db.collection("permissions");
+const availabilities = db.collection("availabilities");
 
 export default {
     components: {
@@ -61,7 +63,8 @@ export default {
     data() {
         return {
             user: false,
-            availStatus: ""
+            availStatus: "",
+            availabilityKey: 0
         }
     },
     mounted() {
@@ -85,6 +88,30 @@ export default {
                     newStatus ? alert("Enabled add availabilities") : alert("Disabled add availabilities")
                 });
             });
+        },
+        confirmSchedule() {
+            if (confirm("Confirm employees' schedule?" + "\n" + "All unapproved availabilities will be declined")) {
+                availabilities.get().then((querySnapshot) => {
+                    querySnapshot.forEach(async (doc) => {
+                        const avail = doc.data();
+                        if (!avail.approved) {
+                            const currentStates = avail.states;
+                            for (const key of Object.keys(currentStates)) {
+                                currentStates[key] = "Declined"
+                            }
+                            await availabilities.doc(doc.id).update({
+                                states: currentStates
+                            });
+                        }
+                    });
+                });
+                permissions.doc("confirm schedule").set({
+                    "confirmed": true
+                }).then(() => {
+                    this.availabilityKey += 1;
+                    alert("Schedule has been confirmed");
+                });
+            }
         }
     }
 }
