@@ -29,6 +29,26 @@
     <input type="password" id="password" required="" placeholder="Password" v-model="password" />
     <br><br>
 
+    <label for="dp"> Profile Picture </label>
+    <v-layout row>
+      <v-flex  md6 offset-sm3 >
+       <div>
+         <div >
+           <v-btn @click="click1">choose a photo</v-btn>
+           <input type="file" ref="input1"
+            style="display: none"
+            @change="previewImage" accept="image/*" >                
+         </div>
+ 
+       <div v-if="imageData!=null">                     
+          <img class="preview" height="268" width="356" :src="img1">
+       <br>
+       </div>   
+      
+       </div>
+       </v-flex>
+    </v-layout>
+
 
         
     <p><button type="submit" id="regbutton" @click="addEmployee()">Register Employee</button></p>
@@ -56,6 +76,8 @@ export default {
             password: "",
             department: "",
             company: "",
+            img1: '',
+            imageData: null,
             router: useRouter()
         }
     },
@@ -75,8 +97,11 @@ export default {
                     displayName: this.name
                     // profile pic can be added here
                 });
+                var linktodp = "";
                 // user collection in  firestore
                 await usersCollection.doc(this.email).set({});
+
+                
                 // employees collection in firestore
                 await employeesCollection.doc(this.email).set({
                     email: this.email,
@@ -85,7 +110,8 @@ export default {
                     gender: this.gender,
                     pnum: this.pnum,
                     department: this.department,
-                    password: this.password
+                    password: this.password,
+                    dp: linktodp
                 });
                 auth.signOut().then(() => {
                     auth.signInWithEmailAndPassword(window.localStorage.getItem('email'), window.localStorage.getItem('password')).then(() => {
@@ -96,7 +122,32 @@ export default {
             } catch (e) {
                 alert(e.message);
             }
-        }
+        },
+        click1() {
+        this.$refs.input1.click()   
+        },
+
+        previewImage(event) {
+        this.uploadValue=0;
+        this.img1=null;
+        this.imageData = event.target.files[0];
+        this.onUpload()
+        },
+
+        onUpload(){
+        this.img1=null;
+        const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+        storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+            }, error=>{console.log(error.message)},
+        ()=>{this.uploadValue=100;
+            storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+                this.img1 =url;
+                console.log(this.img1)
+                });
+            }      
+            );
+        },
     }
 }
 </script>
