@@ -136,7 +136,7 @@ export default {
     border-radius: 15px ;
 }
 
-#btn {
+.btn {
         background-color: #0069e0; 
         border-radius: 8px;
         color: white;
