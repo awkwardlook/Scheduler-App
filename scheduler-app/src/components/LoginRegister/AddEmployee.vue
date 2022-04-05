@@ -29,12 +29,11 @@
     <input type="password" id="password" required="" placeholder="Password" v-model="password" />
     <br><br>
 
-    <label for="dp"> Profile Picture </label>
     <v-layout row>
       <v-flex  md6 offset-sm3 >
        <div>
          <div >
-           <v-btn @click="click1">choose a photo</v-btn>
+           <v-btn @click="click1">Upload Profile Picture</v-btn>
            <input type="file" ref="input1"
             style="display: none"
             @change="previewImage" accept="image/*" >                
