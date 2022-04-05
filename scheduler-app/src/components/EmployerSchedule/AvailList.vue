@@ -131,6 +131,7 @@ export default {
 </script>
 
 <style>
+
 .shift {
 	width: 200px;
 }
@@ -143,12 +144,20 @@ export default {
 	width: 160px;
 }
 
-table,th,td {
+.table {
+	margin: auto;
+	/* top right bottom left */
+	padding: 80px;  
+	background: #ffffff;  
+	border-radius: 15px ;
+}
+
+th,td {
 	text-align: center;
-	padding: 5px;
+	padding: 15px;
 	border: 1px solid white;
 	border-collapse: collapse;
-	margin-left: 20px;		
+	margin-left: 200px;		
 }
 
 th {
