@@ -29,6 +29,7 @@ export default {
     mounted() {
         this.updateLineChart();
         this.updatePieChart();
+        this.updateLineChart2();
     },
 
     data(){
@@ -91,7 +92,6 @@ export default {
             }) 
         },
 
-        
         getWeek() {
             var onejan = new Date(this.getFullYear(),0,1);
             return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
@@ -99,29 +99,33 @@ export default {
 
         updateLineChart2() {
             var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-            var data = {"Monday": 0, "Tuesday": 0, "Wednesday": 0, "Thursday": 0, "Friday": 0};
+            var data2 = {"Monday": 0, "Tuesday": 0, "Wednesday": 0, "Thursday": 0, "Friday": 0};
             
-            const shifts = db.collection("availabilities")
+            const shifts = db.collection("shifts")
 
             shifts.get().then((querySnapshot) => {
                 const temp = []
                 querySnapshot.forEach((doc) => {
                     temp.push({ id: doc.id, ...doc.data() })
-
-                    if (doc.data().approved) {
+                        //todays date
                         const today = new Date() 
+                        //document date
                         const date = doc.id.slice(0,10)
-                        if (new Date(date).getWeek() == new Date(today).getWeek()) {
-                            const day = new Date(date).getDay()
+                        const dayofWeek = new Date(date)
+                        //day of the week of document date
+                        const day = new Date(date).getDay()
+                        //sunday of the week
+                        const sunday = new Date(dayofWeek).setDate(-day)
+                        //day of the week of today's date
+                        const currentDay = new Date(today).getDay()
+                        //sunday of today's week
+                        const currentWeek = new Date(today).setDate(-currentDay)
+                        if (new Date(sunday).toString().slice(0, 15) == new Date(currentWeek).toString().slice(0,15)) {                
                             const dayOfWeek = days[day]
-
-                            data[dayOfWeek] += 1
-                        }
-                    }
+                            data2[dayOfWeek] += 1
+                        }                 
                 })
- 
-                console.log(data)
-                this.linechartdata2 = data  
+                this.linechartdata2 = data2
             }) 
         },
 
