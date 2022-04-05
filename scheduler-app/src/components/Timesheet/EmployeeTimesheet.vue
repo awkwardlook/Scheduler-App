@@ -31,7 +31,7 @@ import firebase from 'firebase'
 
 const db = firebase.firestore()
 const auth = firebase.auth()
-const shift = db.collection("Shift")
+const shift = db.collection("shifts")
 
 export default {
     components: {

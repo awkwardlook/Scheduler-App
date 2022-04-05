@@ -45,23 +45,22 @@ export default {
         updatePieChart() {
             var data = {"Morning": 0, "Afternoon": 0};
             
-            const shifts = db.collection("availabilities")
+            const shifts = db.collection("shifts")
 
             shifts.get().then((querySnapshot) => {
                 const temp = []
                 querySnapshot.forEach((doc) => {
                     temp.push({ id: doc.id, ...doc.data() })
 
-                    if (doc.data().approved) {
-                        const time = doc.id.slice(11,16)
+                    const time = doc.id.slice(11,16)
 
-                        if (time == "09:00") {
-                            data["Morning"] += 1
+                    if (time == "09:00") {
+                        data["Morning"] += 1
 
-                        } else {
-                            data["Afternoon"] += 1
-                        }
+                    } else {
+                        data["Afternoon"] += 1
                     }
+                    
                 })
                 console.log(data)
                 this.piechartdata = data
@@ -72,20 +71,19 @@ export default {
             var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
             var data = {"Monday": 0, "Tuesday": 0, "Wednesday": 0, "Thursday": 0, "Friday": 0};
             
-            const shifts = db.collection("availabilities")
+            const shifts = db.collection("shifts")
 
             shifts.get().then((querySnapshot) => {
                 const temp = []
                 querySnapshot.forEach((doc) => {
                     temp.push({ id: doc.id, ...doc.data() })
 
-                    if (doc.data().approved) {
-                        const date = doc.id.slice(0,10)
-                        const day = new Date(date).getDay()
-                        const dayOfWeek = days[day]
+                    const date = doc.id.slice(0,10)
+                    const day = new Date(date).getDay()
+                    const dayOfWeek = days[day]
 
-                        data[dayOfWeek] += 1
-                    }
+                    data[dayOfWeek] += 1
+           
                 })
 
                 console.log(data)
