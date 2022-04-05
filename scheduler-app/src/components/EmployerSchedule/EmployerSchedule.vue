@@ -6,8 +6,10 @@
     <div class="tbl">
         <h1>Employer Schedule Page</h1>
         <button id="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
+        <p><strong>Shifts for Current Week</strong></p>
         <AvailList/>
         <br>
+        <p><strong>Cancellation Requests</strong></p>
         <CancelList/>
     </div>
     <br>
@@ -70,15 +72,15 @@ export default {
 <style scoped>
 .tbl {
     text-align: center;
-    font-size: 24px;
-    width: 1000px;  
+    font-size: 18px;
+    width: 73%;  
     overflow: hidden;  
     margin: auto;
     /* top right bottom left */
-    padding: 25px;  
+    padding: 40px;  
     background: #ffffff;  
     border-radius: 15px ;
-    }
+}
 
 #btn {
         background-color: #0069e0; 
@@ -103,9 +105,9 @@ export default {
 }
 
 .calendar {
-    width: 80%; 
+    width: 73%; 
     height: 100%;
-    display: inline-block;
+    display: flex;
     background: aliceblue;
     overflow: hidden; 
     margin: auto;

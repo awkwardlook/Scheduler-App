@@ -65,7 +65,7 @@ export default {
                 'start': avail.start,
                 'end': avail.end,
                 'title': (avail.approvedEmp),
-                'color': '#7FFF00'
+                'color': '#5ECF5E'
               }
             } else if (Object.keys(avail.states).length == 1) {
               availability = {
@@ -79,7 +79,7 @@ export default {
                 'start': avail.start,
                 'end': avail.end,
                 'title': (Object.keys(avail.states)).toString().replace(/,/g, '\n'),
-                'color': '#FF0000'
+                'color': '#DD6262'
               }
             }
             console.log(availability);
