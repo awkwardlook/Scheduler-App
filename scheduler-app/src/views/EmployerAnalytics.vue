@@ -8,7 +8,7 @@
 
 <script>
 import EmployerHeader from '../components/Header/EmployerHeader.vue'
-import Charts from '../components/Chart.vue'
+import Charts from '../components/Analytics/Chart.vue'
 
 export default {
     name: 'Analytics',

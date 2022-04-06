@@ -64,16 +64,16 @@
         display: flex;
         align-items: center;
         position: absolute;
-        padding: 10px;
         right: 10px;
     }
 
     .btn {
+        
         background-color: #0069e0;
         border-radius: 20px;
         border-color: white;
         color:white;
-        padding: 5px 20px;
+        padding: 5px 3px 5px 3px;
         margin-left: 5px;
     }
 

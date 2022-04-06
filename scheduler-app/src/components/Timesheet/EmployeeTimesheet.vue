@@ -7,15 +7,17 @@
       <!-- Content of popup cancel shift form below-->
     <div class="modal" v-if="showModal">
       
-      <h3>Select shift to cancel</h3>
-      <br><br>
+      <h3>Request Shift Cancellation</h3>
+      <p> Day: {{ this.calendarEvent['day'] }} </p>
+      <p> Time: {{ this.calendarEvent['start'] }} - {{ this.calendarEvent['end'] }} </p>
+      <br>
       
       <label for="cancelremarks" id="remarks"> Remarks: </label>
       <input type = "text" id = "remarksbox" required="" placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
       
       <br><br>
       <button class="button" @click="toggleModal()">Back</button>
-      <button class="button" @click="toggleModal()">Request Cancellation</button>
+      <button class="button" @click="submit()">Submit</button>
     </div>
 	</div>
 </template>
@@ -29,7 +31,7 @@ import firebase from 'firebase'
 
 const db = firebase.firestore()
 const auth = firebase.auth()
-const shift = db.collection("Shift")
+const shift = db.collection("shifts")
 
 export default {
     components: {
@@ -53,15 +55,28 @@ export default {
         slotMaxTime: "21:00:00",
         slotMinTime: "09:00:00",
         events: [],
+        
+        eventTimeFormat: {
+          hour:'2-digit',
+          minute:'2-digit',
+          hour12: false
+        },
+  
         eventClick: info => {
           this.showModal = !this.showModal;
-          this.calendarEvent = info.event.id;
-          console.log("Open")
+          
+          this.calendarEvent['id'] = info.event.id
+          this.calendarEvent['employee'] = info.event.employee
+          this.calendarEvent['day'] = info.event.start.toString().slice(0,16)
+          this.calendarEvent['start'] = info.event.start.toString().slice(16,21)
+          this.calendarEvent['end'] = info.event.end.toString().slice(16,21)
         }
       },
+      employee: '',
       user: false,
       showModal: false,
-      calendarEvent: "",
+      calendarEvent: {'id':'', 'day':'','start':'', 'end': ''},
+      remarks:''
     }
   },
 
@@ -85,10 +100,12 @@ export default {
           console.log(shifts.employee_username)
           if (shifts.employee_username == username) {
             let emp_shift = {
+                'id': doc.id,
                 'title': '',
                 'start': shifts.start,
                 'end': shifts.end,
             }
+            this.employee = username;
             console.log(emp_shift);
             this.calendarOptions.events.push(emp_shift);
           }
@@ -99,6 +116,28 @@ export default {
     toggleModal() {
       this.showModal = !this.showModal;
     },
+    submit() {
+
+      const cancellations = db.collection('cancellations')
+      const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+      
+      cancellations.doc(this.calendarEvent['id']).set({
+        employee: this.employee,
+        remarks: this.remarks,
+        shift: shift,
+        status: 'Pending'
+      })
+      
+      .then((doc) => {
+        console.log("Successfully added document ", doc)
+        this.showModal = false
+        this.remarks = ''
+      })
+      
+      .catch((e) => {
+        console.log("Error added document: ", e)
+      })
+    }
   }
 }
 </script>
