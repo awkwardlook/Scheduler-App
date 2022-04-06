@@ -121,6 +121,7 @@ export default {
                 await permissions.doc("confirm schedule").update({
                     confirmed: false
                 });
+                this.availStatus = "Disable";
                 this.availabilityKey += 1;
                 alert("Week has been reset");
             }
