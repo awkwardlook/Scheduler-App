@@ -45,6 +45,11 @@ export default {
         plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
         initialView: 'timeGridWeek',
         height: "auto",
+        headerToolbar:
+        {
+          start: '',
+          center: 'title',
+        },
         allDaySlot: false,
         scrollTime: "09:00:00",
         slotMaxTime: "21:00:00",

@@ -6,7 +6,7 @@
     <div class="tbl">
         <h1>Employer Schedule Page</h1>
         <div style="width: 2.5%;"></div>
-        <button class="btn" @click="toggleAvail()">{{availStatus}} add availability</button>
+        <button class="btn" @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</button>
         <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
         <button class="btn" @click="resetWeek()">Reset Week</button>
     </div>
@@ -36,6 +36,7 @@ const db = firebase.firestore();
 const permissions = db.collection("permissions");
 const availabilities = db.collection("availabilities");
 const cancellations = db.collection("cancellations");
+const shifts = db.collection("shifts");
 
 export default {
     components: {
@@ -108,6 +109,11 @@ export default {
                     querySnapshot.forEach(async (doc) => {
                         await cancellations.doc(doc.id).delete();
                     })
+                });
+                shifts.get().then((querySnapshot) => {
+                    querySnapshot.forEach(async (doc) => {
+                        await shifts.doc(doc.id).delete();
+                    })
                 })
                 await permissions.doc("add availabilities").update({
                     granted: true
@@ -115,6 +121,7 @@ export default {
                 await permissions.doc("confirm schedule").update({
                     confirmed: false
                 });
+                this.availStatus = "Disable";
                 this.availabilityKey += 1;
                 alert("Week has been reset");
             }
