@@ -4,22 +4,24 @@
     <br><br>
     <br>
     <div class="tbl">
-        <h1>Employer Schedule Page</h1>
-        <div style="width: 2.5%;"></div>
-        <button class="btn" @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</button>
-        <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
-        <button class="btn" @click="resetWeek()">Reset Week</button>
-    </div>
+        <div>
+            <h1>Employer Schedule Page</h1>
+            <div style="width: 2.5%;"></div>
+            <button class="btn" @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</button>
+            <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
+            <button class="btn" @click="resetWeek()">Reset Week</button>
+        </div>
 
-    <div class="tbl">
-        <AvailList/>
+        <div class="tbl">
+            <AvailList/>
+            <br>
+            <p><strong>Cancellation Requests</strong></p>
+            <CancelList/>
+        </div>
         <br>
-        <p><strong>Cancellation Requests</strong></p>
-        <CancelList/>
-    </div>
-    <br>
-    <div id='calendar' style="width: 80%; height:100%; display: inline-block;padding:15px; padding-bottom:20px">
-        <Availability :key="availabilityKey"/>
+        <div id='calendar' style="width: 80%; height:100%; display: inline-block;padding:15px; padding-bottom:20px">
+            <Availability :key="availabilityKey"/>
+        </div>
     </div> 
 </div>
 </template>
@@ -141,6 +143,8 @@ export default {
     padding: 40px;  
     background: #ffffff;  
     border-radius: 15px ;
+    margin-bottom: auto;
+    /* can't get extra space at bottom leh */
 }
 
 .btn {
@@ -159,7 +163,7 @@ export default {
         cursor: pointer;
     }
 
-#btn:hover {
+.btn:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     background-color: #25deff; /* Green */
     color: rgb(25, 27, 44);

@@ -171,6 +171,8 @@ export default {
         transition-duration: 0.4s;
         cursor: pointer;
     }
+
+    /* to copy */
     .loginformheader{
         height: 50px;
         text-align: center;
