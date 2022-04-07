@@ -70,6 +70,7 @@ export default {
                   'title': (avail.approvedEmp),
                   'color': '#7FFF00'
                 }
+              // grey if declined or ignored
               } else {
                 availability = {
                   'start': avail.start,

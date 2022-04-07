@@ -88,12 +88,14 @@ export default {
 	},
 	methods: {
 		toggleAddAvail() {
+			// check if employer has enabled employees to add availabilities
 			if (this.addAvail) {
 				this.toggleModal();
 			} else {
 				alert("Employer has not given permission to add availabilities")
 			}
 		},
+		// toggle visibility of add availability form
 		toggleModal() {
 			this.showModal = !this.showModal;
 		},
@@ -110,13 +112,13 @@ export default {
 		
 				Array.from(this.addedTimings.values()).forEach(timing => {
 					scheduleRef.doc(timing.Date + " " + timing.Time).get()
-					.then((docSnapshot) => {
-						if (docSnapshot.exists) {
+					.then((docSnapshot) => { 
+						if (docSnapshot.exists) { // if someone else indicated availability for this timing
 							const indicatedStates = docSnapshot.data().states
 							const indicatedEmployees = docSnapshot.data().employees
 							if (!(username in indicatedStates)) {
 								indicatedStates[username] = 'Pending'
-								indicatedEmployees.push(username)
+								indicatedEmployees.push(username) // append employee's name to array
 								return scheduleRef.doc(timing.Date + " " + timing.Time).update({
 									states: indicatedStates,
 									employees: indicatedEmployees
@@ -129,7 +131,7 @@ export default {
 									alert(e)
 								})
 							} 
-						} else {
+						} else { // no one else indicated availability for this timing
 							scheduleRef.doc(timing.Date + " " + timing.Time).set({
 								date: timing.Date,
 								start: timing.Date + "T" + timing.Time.slice(0, 5) + ":00",
@@ -150,13 +152,14 @@ export default {
 				})
 			}
 		},
-		addTiming() {
+		addTiming() { // add timings to selection before submitting
 			if (this.timeslot != null) {
 				const newTiming = {
 					'Date': this.formatDate(this.picked.getDate(), this.picked.getMonth() + 1, this.picked.getFullYear()),
 					'Time': this.timeslot
 				};
 				this.addedTimings.add(newTiming);
+				// use Set to ensure no duplicates added
 				const newValues = [...new Set(Array.from(this.addedTimings.values()).map(JSON.stringify))].map(JSON.parse);
 				this.addedTimings = new Set(newValues);
 				this.timeslot = null;
