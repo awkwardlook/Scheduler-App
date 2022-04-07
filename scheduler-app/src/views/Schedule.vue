@@ -1,4 +1,5 @@
 <template>
+<!-- check whether it is employee or employer account -->
     <div v-if = "usertype == 'employee'">
         <EmployeeSchedule/>
     </div>

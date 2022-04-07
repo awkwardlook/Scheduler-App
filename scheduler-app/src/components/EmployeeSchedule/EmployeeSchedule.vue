@@ -5,9 +5,12 @@
 	<h1>Main Schedule</h1>
 
 	<div class="mainschedule">
+		<!-- add availabilties for employees -->
 		<AvailForm/>
+		<!-- request to cancel approved shifts -->
 		<CancelShiftForm/>
 		<div id='calendar'>
+			<!-- availabilities of own and other employees -->
 			<Availability/>
 		</div> 
 	</div>
