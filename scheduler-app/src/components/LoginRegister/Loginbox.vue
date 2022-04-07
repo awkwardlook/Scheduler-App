@@ -3,6 +3,7 @@
         <Header/>
     </div>
     <div class="loginbox">
+        <!-- fill in email first -->
         <div v-if = "emailEntered" class="backbuttondiv">
             <button class="bbutton" @click="editEmail()">Back</button>
         </div>
@@ -24,11 +25,13 @@
             </div>
 
             <div v-else>
+                <!-- enter password if email exists -->
                 <div class="loginforminput">
                     <input type="password" v-model = "password" id="loginforminputbox" placeholder="Password" required> 
                 </div>
                 <br><br>
                 <div style="text-align: center;">
+                    <!-- either login as employer or employee -->
                     <button class = "passwordbutton" type="button" @click="loginEmployer()">Login As Employer</button>
                     <button class = "passwordbutton" type="button" @click="loginEmployee()">Login As Employee</button>
                 </div>
@@ -81,9 +84,11 @@ export default {
                 alert("Please ensure email is filled in!");
             }
         },
+        // check which login box to display
         editEmail() {
             this.emailEntered = !this.emailEntered;
         },
+        // login as employer
         loginEmployer() {
             if (this.password != "") {
                 const employersRef = employersCollection.doc(this.email)
@@ -106,6 +111,7 @@ export default {
                 alert("Please enter a valid password!");
             }
         },
+        // login as employee
         loginEmployee() {
             if (this.password != "") {
 
