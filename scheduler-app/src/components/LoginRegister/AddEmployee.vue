@@ -94,9 +94,8 @@ export default {
                 await auth.createUserWithEmailAndPassword(this.email, this.password);
                 await auth.currentUser.updateProfile({
                     displayName: this.name
-                    // profile pic can be added here
+                    
                 });
-                var linktodp = "";
                 // user collection in  firestore
                 await usersCollection.doc(this.email).set({});
 
@@ -110,7 +109,8 @@ export default {
                     pnum: this.pnum,
                     department: this.department,
                     password: this.password,
-                    dp: linktodp
+                    // profile pic can be added here
+                    dp: this.img1
                 });
                 auth.signOut().then(() => {
                     auth.signInWithEmailAndPassword(window.localStorage.getItem('email'), window.localStorage.getItem('password')).then(() => {
@@ -141,7 +141,7 @@ export default {
             }, error=>{console.log(error.message)},
         ()=>{this.uploadValue=100;
             storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-                this.img1 =url;
+                this.img1 = url;
                 console.log(this.img1)
                 });
             }      
