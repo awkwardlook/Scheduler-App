@@ -178,6 +178,14 @@ export default {
         font-size: 24px;
     }
 
+    #regbutton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #25deff; /* Green */
+    color: rgb(25, 27, 44);
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+
     .AddEmployeeForm{
         text-align: center;
         font-size: 24px;
