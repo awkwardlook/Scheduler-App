@@ -125,10 +125,10 @@ export default {
     overflow: hidden;  
     margin: auto;
     /* top right bottom left */
-    padding: 80px;  
+    padding: 40px;  
     background: #ffffff;  
     border-radius: 15px ;
-    margin-bottom: -100px;
+    margin-bottom: -300px;
 }
 
 table {

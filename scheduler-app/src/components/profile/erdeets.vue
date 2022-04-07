@@ -41,7 +41,7 @@
             </div>
         </div>
     </form>
-
+    <br>
     <button class="button" @click="updatefs()"> Update </button>
 </template>
 
@@ -172,6 +172,7 @@ export default {
         margin-left: 10px;
         margin-top: 10px;
         padding: 5px;
+        
         /* border: 2px solid blue; */
     }
     .coydeets{
