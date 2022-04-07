@@ -6,19 +6,25 @@
     <div class="tbl">
         <h1>Employer Schedule Page</h1>
         <div style="width: 2.5%;"></div>
+        <!-- enable/disable employees from adding new availabilities -->
         <button class="btn" @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</button>
+        <!-- automatically declined non-approved shifts -->
         <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
+        <!-- delete all shifts and cancellation requests for the week -->
         <button class="btn" @click="resetWeek()">Reset Week</button>
     </div>
 
     <div class="tbl">
+        <!-- show all indicated availabilities pending for approval/decline -->
         <AvailList/>
         <br>
         <p><strong>Cancellation Requests</strong></p>
+        <!-- requests for cancellation of shifts -->
         <CancelList/>
     </div>
     <br>
     <div id='calendar' style="width: 80%; height:100%; display: inline-block;padding:15px; padding-bottom:20px">
+        <!-- indicated availabilities by employees -->
         <Availability :key="availabilityKey"/>
     </div> 
 </div>
@@ -79,7 +85,7 @@ export default {
                 availabilities.get().then((querySnapshot) => {
                     querySnapshot.forEach(async (doc) => {
                         const avail = doc.data();
-                        if (!avail.approved) {
+                        if (!avail.approved) { // decline all non-approved availabilities
                             const currentStates = avail.states;
                             for (const key of Object.keys(currentStates)) {
                                 currentStates[key] = "Declined"
@@ -102,24 +108,24 @@ export default {
             if (confirm("Reset the week for employees?\n" + "This will remove all existing shifts and cancellation requests")) {
                 availabilities.get().then((querySnapshot) => {
                     querySnapshot.forEach(async (doc) => {
-                        await availabilities.doc(doc.id).delete();
+                        await availabilities.doc(doc.id).delete(); // delete all availabilities
                     });
                 });
                 cancellations.get().then((querySnapshot) => {
                     querySnapshot.forEach(async (doc) => {
-                        await cancellations.doc(doc.id).delete();
+                        await cancellations.doc(doc.id).delete(); // delete all cancellation requests
                     })
                 });
                 shifts.get().then((querySnapshot) => {
                     querySnapshot.forEach(async (doc) => {
-                        await shifts.doc(doc.id).delete();
+                        await shifts.doc(doc.id).delete(); // delete all current shifts
                     })
                 })
                 await permissions.doc("add availabilities").update({
-                    granted: true
+                    granted: true // enable employees to add availabilities
                 });
                 await permissions.doc("confirm schedule").update({
-                    confirmed: false
+                    confirmed: false // reset the schedule to be in unconfirmed state
                 });
                 this.availStatus = "Disable";
                 this.availabilityKey += 1;
