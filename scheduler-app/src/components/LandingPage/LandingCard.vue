@@ -1,47 +1,47 @@
 <template>
    <div class='hero-container'>
-        <div>
-          <img src="@/assets/scheduler_logo2.png" alt="logo" width='180px'>
+      <div>
+        <img src="@/assets/scheduler_logo2.png" alt="logo" id="logo"/>
+      </div>
+      <h1>Welcome to Scheduler</h1>
+      <p>Plan your schedule</p>
+      <p>Plan their schedule</p>
+      <div class='hero-btns'>
+      <a href="/login" class='hero-start'>
+        <v-button id="start-btn">GET STARTED</v-button>
+      </a>
+      </div>
+    </div>
+    <br/>
+    <div>
+      <h1 style="color:black"> Our Clients</h1>
+      <div class="row">
+        <div class="column">
+          <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> 
         </div>
-        <p>Welcome to Scheduler</p>
-        <p>Plan your schedule</p>
-        <p>Plan their schedule</p>
-        <div class='hero-btns'>
-        <a href="/login" class='hero-start'>
-          <v-button id="start-btn">GET STARTED</v-button>
-        </a>
+        <div class="column">
+          <img src="/img/google.png" alt="Google" style="width:50%" id="google"> 
+        </div>
+        <div class="column">
+          <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> 
+        </div>
+        <div class="column">
+          <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> 
+        </div>
+        <div class="column">
+          <img src="/img/intel.png" alt="Intel" style="width:50%"> 
         </div>
       </div>
       <br/>
-      <div>
-        <h1 style="color:black"> Our Clients</h1>
-        <div class="row">
-          <div class="column">
-            <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> 
-          </div>
-          <div class="column">
-            <img src="/img/google.png" alt="Google" style="width:50%" id="google"> 
-          </div>
-          <div class="column">
-            <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> 
-          </div>
-          <div class="column">
-            <img src="/img/IBM.jpg" alt="IBM" style="width:50%"> 
-          </div>
-          <div class="column">
-            <img src="/img/intel.png" alt="Intel" style="width:50%"> 
-          </div>
+      <div class="container">
+        <div class="text">
+        <h1>What is Scheduler?</h1>
+        <p>We are a platform for you to plan the schedule for your employees and for your clients for meetings, 
+          work and timetables.</p>
         </div>
-        <br/>
-        <div class="container">
-          <div class="text">
-          <h1>What is Scheduler?</h1>
-          <p>We are a platform for you to plan the schedule for your employees and for your clients for meetings, 
-            work and timetables.</p>
-          </div>
-          <div class="functionImage">
-            <img src="/img/gg.gif">
-        </div>
+        <div class="functionImage">
+          <img src="/img/gg.gif" style="width:70%">
+      </div>
     </div>
     <Card/>    
     <Schedule/>
@@ -71,10 +71,15 @@ export default {
   font-family: "Rosario";
 }
 
+#logo {
+  width: 50%;
+}
+ 
 #welcome{
   position: relative;
   /* top: -180px; */
 }
+
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),  url('/img/landingpagebg.jpg') center center/cover no-repeat; 
   background-repeat: no-repeat;
@@ -93,7 +98,6 @@ export default {
 .hero-container > h1 {
   color: #fff;
   font-size: 70px;
-  margin-top: -100px;
 }
 
 .hero-container > p {
@@ -114,7 +118,6 @@ export default {
   font-weight: bold;
   height: 60px;
 }
-
 
 .fa-play-circle {
   margin-left: 4px;
@@ -140,10 +143,6 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #fff;
-}
-
-img {
-  max-width: 100%
 }
 
 .functionImage {
