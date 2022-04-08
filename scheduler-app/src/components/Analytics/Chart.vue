@@ -1,25 +1,26 @@
 <template>
     <div class="line">
         <h2>Daily Work Strength</h2>
-        <button class="button" @click="updateLineChart()">Update</button><br><br><br>
+        <v-button id="button" @click="updateLineChart()">Update</v-button><br><br><br>
         <line-chart class = 'user' width =500px :data = "linechartdata"></line-chart >
     </div><br><br>
 
     <div class="line2">
         <h2>Current Week's Work Strength</h2>
-        <button class="button" @click="updateLineChart2()">Update</button><br><br><br>
+        <v-button id="button" @click="updateLineChart2()">Update</v-button><br><br><br>
         <line-chart class = 'user' width =500px :data = "linechartdata2"></line-chart >
     </div><br><br>
 
     <div class="pie">
         <h2>Morning/Afternoon Work Strength</h2>
-        <button class="button" @click="updatePieChart()">Update</button><br><br><br>
+        <v-button id="button" @click="updatePieChart()">Update</v-button><br><br><br>
         <pie-chart width =500px :data= "piechartdata" ></pie-chart>
     </div>
 </template>
 
 <script>
 import firebase from 'firebase'
+import Button from '../Button/Button.vue'
 
 const db = firebase.firestore()
 
@@ -40,6 +41,10 @@ export default {
             piechartdata: {"Morning": 0, "Afternoon": 0},
             selected:""
         }
+    },
+
+    components: {
+        'v-button': Button
     },
     
     methods:{
@@ -135,18 +140,9 @@ export default {
 
 <style> 
 
-.button {
-    border-radius: 15px;
-    padding: 3px 10px;
-    background-color: #0069e0; 
-    color: white;
+#button {
+    font-size: 14px;
+    height: 40px;
 }
 
-.button:hover {
-    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.24), 0 5px 10px 0 rgba(0,0,0,0.19);
-    background-color: #25deff; /* Green */
-    color: rgb(25, 27, 44);
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
 </style>

@@ -17,6 +17,7 @@
 
         <div class="tbl">
             <!-- show all indicated availabilities pending for approval/decline -->
+            <p><strong>Indicated Availability for Current Week</strong></p>
             <AvailList/>
             <br>
             <p><strong>Cancellation Requests</strong></p>
