@@ -2,18 +2,27 @@
 <template>
 <div v-if = "user">
 	<EmployeeHeader/>
-	<h1>Main Schedule</h1>
 
-	<div class="mainschedule">
+	<div class="content">
+		<h1>Main Schedule</h1>
+
+		<div class="mainschedule">
+
+			<div id='calendar'>
+				<!-- availabilities of own and other employees -->
+				<Availability/>
+			</div> 
+			
+		</div>
+
+		<div class="btns">
 		<!-- add availabilties for employees -->
-		<AvailForm/>
-		<!-- request to cancel approved shifts -->
-		<CancelShiftForm/>
-		<div id='calendar'>
-			<!-- availabilities of own and other employees -->
-			<Availability/>
-		</div> 
+			<AvailForm/>
+			<!-- request to cancel approved shifts -->
+			<CancelShiftForm/>
+		</div>
 	</div>
+
 </div>
 </template>
 
