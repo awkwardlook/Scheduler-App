@@ -50,7 +50,6 @@ export default {
     bottom: 0;
     left: 0;
     width: 60%;
-    max-width: 100%;
     height: 60%;
     max-height: 100%;
     object-fit: contain;
