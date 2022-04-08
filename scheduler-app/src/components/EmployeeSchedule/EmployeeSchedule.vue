@@ -81,7 +81,7 @@ export default {
 
 .btns{
 	display:inline-block;
-	margin: auto;
+	margin-right: 5px;
 }
 
 h1 {

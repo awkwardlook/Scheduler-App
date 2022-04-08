@@ -150,7 +150,6 @@ export default {
     background: #ffffff;  
     border-radius: 15px ;
     margin-bottom: auto;
-    /* can't get extra space at bottom leh */
 }
 
 .btn {
