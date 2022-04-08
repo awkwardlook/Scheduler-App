@@ -23,8 +23,8 @@
 			<!-- 3rd column -->
 			<td class="action">
 				<div v-if="states[e] === 'Pending'">
-					<button class="btn" id="decline" @click="changeState(id, e, 'Declined')">Decline</button>
-					<button class="btn" id="approve" @click="changeState(id, e, 'Approved')">Approve</button>
+					<v-button id="decline" @click="changeState(id, e, 'Declined')">Decline</v-button>
+					<v-button id="approve" @click="changeState(id, e, 'Approved')">Approve</v-button>
 				</div>
 
 				<p v-else> {{ states[e] }} </p>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import Button from '../Button/Button.vue'
 import firebase from 'firebase'
 import { ref, onUnmounted } from 'vue'
 
@@ -63,6 +64,9 @@ export default {
 			avails,
 		} 
 
+	},
+	components: {
+		'v-button': Button
 	},
 	methods: {
 		changeState(id, e, newState) {
@@ -170,21 +174,22 @@ tr {
 	background-color: aliceblue;	
 }
 
-.btn {
+#approve {
+	background-color: rgb(94, 207, 94);
 	width: 75px;
 	margin: 5px;
 	padding: 5px;
-	color: white;
-	font-weight: bold;
-	border-radius: 3px;
-}
-
-#approve {
-	background-color: rgb(94, 207, 94);
+	height: 35px;
+	font-size: 15px;
 }
 
 #decline {
 	background-color: rgb(221, 98, 98);
+	width: 75px;
+	margin: 5px;
+	padding: 5px;
+	height: 35px;
+	font-size: 15px;
 }
 
 </style>
