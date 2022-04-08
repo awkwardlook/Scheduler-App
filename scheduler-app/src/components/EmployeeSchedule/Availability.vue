@@ -125,12 +125,9 @@ export default {
   border-right: none !important;
 }
 
-#calendar .fc .fc-scroller-harness {
-  overflow: visible;
-}
-
 #calendar {
-  transform: scale(0.95, 0.95);
+  transform: scale(0.95, 1);
   width: 95%;
 }
+
 </style>
