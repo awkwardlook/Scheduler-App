@@ -16,7 +16,8 @@ body{
   margin: 0;  
   padding: 0;  
   background-color:#6abadeba;  
-  font-family: 'Arial';  
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+  'Lucida Sans', Arial, sans-serif;
 }  
 
 #headers {
