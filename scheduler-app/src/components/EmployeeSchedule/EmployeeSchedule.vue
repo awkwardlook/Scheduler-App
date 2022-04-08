@@ -18,8 +18,6 @@
 		<div class="btns">
 		<!-- add availabilties for employees -->
 			<AvailForm/>
-			<!-- request to cancel approved shifts -->
-			<CancelShiftForm/>
 		</div>
 	</div>
 
@@ -29,7 +27,6 @@
 <script>
 import AvailForm from './AvailForm.vue'
 import EmployeeHeader from '../Header/EmployeeHeader.vue'
-import CancelShiftForm from './CancelShift.vue'
 import Availability from './Availability.vue'
 import firebase from 'firebase'
 const auth = firebase.auth();
@@ -37,7 +34,6 @@ export default {
 	components: {
 		AvailForm,
 		EmployeeHeader,
-		CancelShiftForm,
 		Availability,
 	},
 	data() {
