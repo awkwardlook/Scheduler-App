@@ -8,11 +8,11 @@
             <h1>Employer Schedule Page</h1>
             <div style="width: 2.5%;"></div>
             <!-- enable/disable employees from adding new availabilities -->
-            <button class="btn" @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</button>
+            <v-button @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</v-button>
             <!-- automatically declined non-approved shifts -->
-            <button class="btn" @click="confirmSchedule()">Confirm Schedule</button>
+            <v-button @click="confirmSchedule()">Confirm Schedule</v-button>
             <!-- delete all shifts and cancellation requests for the week -->
-            <button class="btn" @click="resetWeek()">Reset Week</button>
+            <v-button @click="resetWeek()">Reset Week</v-button>
         </div>
 
         <div class="tbl">
@@ -37,6 +37,7 @@ import EmployerHeader from '../Header/EmployerHeader.vue'
 import AvailList from './AvailList.vue'
 import CancelList from './CancelList.vue'
 import Availability from '../EmployeeSchedule/Availability.vue'
+import Button from '../Button/Button.vue'
 import firebase from 'firebase'
 
 const auth = firebase.auth();
@@ -51,7 +52,8 @@ export default {
         EmployerHeader,
         AvailList,
         CancelList,
-        Availability
+        Availability,
+        'v-button': Button
     },
     data() {
         return {
@@ -150,28 +152,6 @@ export default {
     background: #ffffff;  
     border-radius: 15px ;
     margin-bottom: auto;
-}
-
-.btn {
-        background-color: #0069e0; 
-        border-radius: 8px;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 20px;
-        width: 250px;
-        height: 50px;
-        margin: 6px;
-        border-radius: 8px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
-
-.btn:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #25deff; /* Green */
-    color: rgb(25, 27, 44);
 }
 
 .calendar {

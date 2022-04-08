@@ -2,7 +2,7 @@
 	<div class="availform">
 		
 		<!-- Add availabilities button -->
-		<button class="button" @click="toggleAddAvail()">Add Availabilities</button>
+		<v-button class="add-button" @click="toggleAddAvail()">Add Availability</v-button>
 
 		<div class="modal-overlay" v-if="showModal" @click="toggleModal()"></div>
 		
@@ -26,21 +26,22 @@
 				</div>
 
 				<div class="datetime">
-					<button class="button smallbutton" @click="addTiming()">Add</button>
+					<v-button class="button smallbutton" @click="addTiming()">Add</v-button>
 				</div>
 				
 				<br>
 				<p v-for = "timing in Array.from(addedTimings.values()).sort(this.myComparator)" :key = "timing" style="font-size: small;">
 					{{timing.Date}} {{timing.Time}} <button class="button smallbutton" @click="deleteSelection(timing)">Delete</button>
 				</p>
-				<button class="button" @click="toggleModal()">Cancel</button>
-				<button class="button" @click="submit()">Submit</button>
+				<v-button class="button" @click="toggleModal()">Cancel</v-button>
+				<v-button class="button" @click="submit()">Submit</v-button>
 			</div>
 	</div>
 </template>
 
 <script>
 import Datepicker from 'vue3-datepicker'
+import Button from '../Button/Button.vue'
 import { ref } from 'vue'
 import firebase from 'firebase'
 
@@ -51,7 +52,8 @@ export default {
 	name: 'AvailForm',
 	
 	components: {
-		Datepicker
+		Datepicker,
+		'v-button': Button
 	},
 	
 	data() {
@@ -195,34 +197,21 @@ h2 {
 }
 
 .button {
- appearance: none;
- outline: none;
- border: none;
- background: none;
- 
- display: inline-block;
- padding: 15px 25px;
- background-color: #0069e0; 
- border-radius: 8px;
- margin: 10px;
- color: #FFF;
  font-size: 15px;
- font-weight: bold;
-}
-
-
-.button:hover {
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-	background-color: #25deff; /* Green */
-	color: rgb(25, 27, 44);
-	transition-duration: 0.4s;
-	cursor: pointer;
+ height: 40px;
 }
 
 .smallbutton {
 	padding: 3px 5px;
 	margin: 2px;
+	height: 25px;
 	font-size: small;
+}
+
+.add-button {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	margin-left: 170px;
 }
 
 .modal-overlay {

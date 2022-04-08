@@ -6,12 +6,17 @@
 
 <style scoped>
 .btns {
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
   margin: 6px;
   border-radius: 8px;
   transition-duration: 0.4s;
   color:white;
   background-color: #0069e0;
   font-size: 18px;
+  font-weight: bold;
   height: 50px;
   width: auto;
   padding: 10px 20px;;
