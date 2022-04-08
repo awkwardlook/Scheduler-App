@@ -42,6 +42,7 @@
 </template>
 
 <script>
+
 import firebase from 'firebase'
 import { ref, onUnmounted } from 'vue'
 

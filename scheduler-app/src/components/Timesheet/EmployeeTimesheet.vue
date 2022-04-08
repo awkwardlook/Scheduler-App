@@ -13,16 +13,17 @@
       <br>
       
       <label for="cancelremarks" id="remarks"> Remarks: </label>
-      <input type = "text" id = "remarksbox" required="" placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
+      <input type = "text" id = "remarksbox" required placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
       
       <br><br>
-      <button class="button" @click="toggleModal()">Back</button>
-      <button class="button" @click="submit()">Submit</button>
+      <v-button @click="toggleModal()">Back</v-button>
+      <v-button @click="submit()">Submit</v-button>
     </div>
 	</div>
 </template>
 
 <script>
+import Button from '../Button/Button.vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -35,7 +36,8 @@ const shift = db.collection("shifts")
 
 export default {
     components: {
-      FullCalendar // make the <FullCalendar> tag available
+      FullCalendar, // make the <FullCalendar> tag available
+      'v-button': Button
   },
 
   data() {
@@ -117,26 +119,30 @@ export default {
       this.showModal = !this.showModal;
     },
     submit() {
-
-      const cancellations = db.collection('cancellations')
-      const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+      if (this.remarks != '') {
+        const cancellations = db.collection('cancellations')
+        const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
       
-      cancellations.doc(this.calendarEvent['id']).set({
-        employee: this.employee,
-        remarks: this.remarks,
-        shift: shift,
-        status: 'Pending'
-      })
+        cancellations.doc(this.calendarEvent['id']).set({
+          employee: this.employee,
+          remarks: this.remarks,
+          shift: shift,
+          status: 'Pending'
+        })
       
-      .then((doc) => {
-        console.log("Successfully added document ", doc)
-        this.showModal = false
-        this.remarks = ''
-      })
+        .then((doc) => {
+          console.log("Successfully added document ", doc)
+          this.showModal = false
+          this.remarks = ''
+        })
       
-      .catch((e) => {
-        console.log("Error added document: ", e)
-      })
+        .catch((e) => {
+          console.log("Error added document: ", e)
+        })
+      
+      } else {
+        alert("Please indicate your reason for shift cancellation.")
+      }
     }
   }
 }
@@ -159,38 +165,6 @@ export default {
 
 h2 {
 	text-align: center;
-}
-
-.button {
- appearance: none;
- outline: none;
- border: none;
- background: none;
- 
- display: inline-block;
- padding: 15px 25px;
- background-image: linear-gradient(to right, steelblue, lightblue);
- border-radius: 8px;
- margin: 10px;
- color: #FFF;
- font-size: 15px;
- font-weight: bold;
-}
-
-.smallbutton {
-	padding: 3px 5px;
-	margin: 2px;
-	font-size: small;
-}
-
-.modal-overlay {
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- z-index: 98;
- background-color: rgba(0, 0, 0, 0.3);
 }
 
 .modal {
