@@ -90,6 +90,7 @@ export default {
   },
 
   methods: {
+    //Fetch all the user's shifts to the timesheet frame
     async getShifts() {
       const user = await db.collection('employees').doc(this.user.email).get()
       const username = user.data().username
@@ -97,7 +98,6 @@ export default {
         this.calendarOptions.events = [];
         querySnapshot.forEach((doc) => {
           const shifts = doc.data();
-          console.log(shifts.employee_username)
           if (shifts.employee_username == username) {
             let emp_shift = {
                 'id': doc.id,
