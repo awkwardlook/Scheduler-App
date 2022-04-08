@@ -27,7 +27,7 @@
             </div>
             <!-- button id = "savebutton" type="button" v-on:click="savetofs()" style="color: rgb(0, 0, 0);"> SAVE </button><br><br> -->
         </div>
-
+        <br><br>
         <div class= "coydeets">
             <h1>Company Details</h1>
             <div class="left">
@@ -189,6 +189,11 @@ export default {
         font-size: 24px;
         width: 1000px;  
         overflow: hidden;  
+    }
+
+    #coyphoto{
+        height:300px;
+        width: 300px;
     }
 
     .left{

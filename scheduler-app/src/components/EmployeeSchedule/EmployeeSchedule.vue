@@ -67,7 +67,7 @@ export default {
     background: #ffffff;  
     border-radius: 15px ; */
 }
-.calendar {
+#calendar {
     width: 80%; 
     height: 100%;
     display: inline-block;
@@ -78,6 +78,12 @@ export default {
     background: #ffffff;  
     border-radius: 15px ; */
 }
+
+.btns{
+	display:inline-block;
+	margin: auto;
+}
+
 h1 {
 	text-align: center;	
 }
