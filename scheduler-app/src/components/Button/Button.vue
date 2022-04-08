@@ -21,6 +21,8 @@
   width: auto;
   padding: 10px 20px;;
   cursor: pointer;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 .btns:hover {

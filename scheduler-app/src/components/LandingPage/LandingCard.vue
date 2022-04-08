@@ -100,11 +100,13 @@ export default {
   margin-top: 8px;
   color: #fff;
   font-size: 32px;
-  font-family: 'Rosario',
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 .hero-btns {
   margin-top: 32px;
+  
 }
 
 #start-btn {
