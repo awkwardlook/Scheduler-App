@@ -4,7 +4,7 @@
 
     <div class="modal-overlay" v-if="showModal" @@event-click="toggleModal()"></div>
   
-      <!-- Content of popup cancel shift form below-->
+    <!-- Content of popup cancel shift form below-->
     <div class="modal" v-if="showModal">
       
       <h3>Request Shift Cancellation</h3>

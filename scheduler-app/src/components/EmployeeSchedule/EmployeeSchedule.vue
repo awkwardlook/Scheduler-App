@@ -2,7 +2,7 @@
 <template>
 <div v-if = "user">
 	<EmployeeHeader/>
-
+	<br><br>
 	<div class="content">
 		<h1>Main Schedule</h1>
 
@@ -14,12 +14,11 @@
 			</div> 
 			
 		</div>
-
-		<div class="btns">
 		<!-- add availabilties for employees -->
-			<AvailForm/>
-		</div>
+		<AvailForm/>
+
 	</div>
+	<br><br>
 
 </div>
 </template>
@@ -57,31 +56,20 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    /* overflow: hidden;  
-    margin: auto;
-    padding: 1px;  
-    background: #ffffff;  
-    border-radius: 15px ; */
-}
-#calendar {
-    width: 80%; 
-    height: 100%;
-    display: inline-block;
-    /* background: aliceblue;
-    overflow: hidden; 
-    margin: auto;
-    padding: 40px;  
-    background: #ffffff;  
-    border-radius: 15px ; */
-}
-
-.btns{
-	display:inline-block;
-	margin-right: 5px;
 }
 
 h1 {
 	text-align: center;	
+}
+
+.content {
+	text-align: center;
+	background: white;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	width: 95%;
+	margin: auto;
+	border-radius: 15px;
 }
 
 </style>

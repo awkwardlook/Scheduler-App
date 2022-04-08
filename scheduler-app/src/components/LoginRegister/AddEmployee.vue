@@ -1,4 +1,5 @@
 <template>
+<br>
 <div class="AddEmployeeForm">
     <h1> Add Employee </h1>
        <label for="name"> Name: </label>
@@ -53,6 +54,7 @@
     <p><v-button type="submit" id="regbutton" @click="addEmployee()">Register Employee</v-button></p>
 
 </div>
+<br><br>
 </template>
 
 <script>

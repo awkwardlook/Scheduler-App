@@ -2,7 +2,7 @@
     <EmployerHeader/>
     <br><br>
     <div class="analytics">
-        <h1>Analytics Page</h1><br><br>
+        <h1>Analytics</h1><br><br>
         <Charts/>
     </div>
     <br><br>

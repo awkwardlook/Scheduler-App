@@ -5,7 +5,7 @@
     <br>
     <div class="tbl">
         <div>
-            <h1>Employer Schedule Page</h1>
+            <h1>Main Schedule</h1>
             <div style="width: 2.5%;"></div>
             <!-- enable/disable employees from adding new availabilities -->
             <v-button @click="toggleAvail()" :key="availabilityKey">{{availStatus}} add availability</v-button>
@@ -29,7 +29,8 @@
             <!-- indicated availabilities by employees -->
             <Availability :key="availabilityKey"/>
         </div>
-    </div> 
+    </div>
+    <br><br> 
 </div>
 </template>
 
@@ -145,7 +146,7 @@ export default {
 .tbl {
     text-align: center;
     font-size: 18px;
-    width: 73%;  
+    width: 80%;  
     overflow: hidden;  
     margin: auto;
     /* top right bottom left */
@@ -155,16 +156,4 @@ export default {
     margin-bottom: auto;
 }
 
-.calendar {
-    width: 73%; 
-    height: 100%;
-    display: flex;
-    background: aliceblue;
-    overflow: hidden; 
-    margin: auto;
-    /* top right bottom left */
-    padding: 40px;  
-    background: #ffffff;  
-    border-radius: 15px ;
-}
 </style>

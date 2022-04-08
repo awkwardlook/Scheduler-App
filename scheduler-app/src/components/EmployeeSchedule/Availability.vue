@@ -124,4 +124,9 @@ export default {
 #calendar .fc-scrollgrid td:last-of-type {
   border-right: none !important;
 }
+
+#calendar {
+  transform: scale(0.95, 0.95);
+  width: 95%;
+}
 </style>

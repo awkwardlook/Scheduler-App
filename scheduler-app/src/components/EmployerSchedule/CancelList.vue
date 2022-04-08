@@ -138,11 +138,11 @@ table,th,td {
 th {
 	color: white;
 	padding: 10px;
-	background-color: #2c3e50;
+	background-color:#5d5c5c;
 }
 
 tr {
-	background-color: aliceblue;	
+	background-color:rgb(246, 246, 246);	
 }
 
 #approve {

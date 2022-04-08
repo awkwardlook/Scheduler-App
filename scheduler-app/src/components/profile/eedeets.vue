@@ -1,7 +1,7 @@
 <template>
     <form id="myform">
         <div class = "mdeets">
-            <h1>Employee Details</h1>
+            <h1>Profile</h1>
             <h2 id="ename">{{user.email}}</h2>
             <div class="eleft">
                 <img id="dp" alt="display photo">
@@ -42,10 +42,11 @@
         </div>
     </form>
     <br>
-    <button class="button" @click="updatefs()"> Update </button>
+    <v-button class="button" @click="updatefs()"> Update </v-button>
 </template>
 
 <script>
+import Button from '../Button/Button.vue'
 import firebase from 'firebase'
 
 const db = firebase.firestore()
@@ -66,6 +67,9 @@ export default {
             description: "",
             dp : ""
         }
+    },
+    components: {
+        'v-button': Button
     },
     mounted() {
         auth.onAuthStateChanged((user) => {
