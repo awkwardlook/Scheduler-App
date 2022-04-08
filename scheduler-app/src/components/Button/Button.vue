@@ -11,10 +11,10 @@
   transition-duration: 0.4s;
   color:white;
   background-color: #0069e0;
-  font-size: 24px;
-  height: 60px;
-  width: 240px;
-  padding: 10px 24px;;
+  font-size: 18px;
+  height: 50px;
+  width: auto;
+  padding: 10px 20px;;
   cursor: pointer;
 }
 

@@ -5,7 +5,8 @@
     <div class="loginbox">
         <!-- fill in email first -->
         <div v-if = "emailEntered" class="backbuttondiv">
-            <button class="bbutton" @click="editEmail()">Back</button>
+            <v-button class="bbutton" type="button" @click="editEmail()">Back</v-button>
+            <!-- <button class="bbutton" @click="editEmail()">Back</button> -->
         </div>
         <form>
             <div class="loginformheader">
@@ -21,7 +22,8 @@
                     <input type="text" v-model = "email" id="loginforminputbox" placeholder="Email" required> 
                 </div>
                 <br><br>
-                <button class = "emailbutton" type="button" @click="enterEmail()">Next</button> 
+
+                <v-button type="button" @click="enterEmail()">Next</v-button>
             </div>
 
             <div v-else>
@@ -32,8 +34,11 @@
                 <br><br>
                 <div style="text-align: center;">
                     <!-- either login as employer or employee -->
-                    <button class = "passwordbutton" type="button" @click="loginEmployer()">Login As Employer</button>
-                    <button class = "passwordbutton" type="button" @click="loginEmployee()">Login As Employee</button>
+                    <v-button type="button" @click="loginEmployer()">Login As Employer</v-button>
+                    <v-button type="button" @click="loginEmployee()">Login As Employee</v-button>
+                    
+                    <!-- <button class = "passwordbutton" type="button" @click="loginEmployer()">Login As Employer</button> -->
+                    <!-- <button class = "passwordbutton" type="button" @click="loginEmployee()">Login As Employee</button> -->
                 </div>
             </div>
         </form>
@@ -46,6 +51,7 @@
 import { useRouter } from 'vue-router'
 import firebase from 'firebase'
 import Header from '../Header/Header.vue'
+import Button from '../Button/Button.vue'
 
 const auth = firebase.auth()
 const db = firebase.firestore()
@@ -55,15 +61,17 @@ const usersCollection = db.collection('users')
 
 export default {
     data(){
-        return{
+        return {
             email: "",
             emailEntered: false,
             password: "",
-            router: useRouter()
+            router: useRouter(),
+            
         }
     },
     components: {
         Header,
+        'v-button': Button
     },
     methods: {
         enterEmail() {
@@ -146,7 +154,7 @@ export default {
     .loginbox{  
         text-align: center;
         font-size: 14px;
-        width: 382px;  
+        width: 450px;  
         overflow: hidden;   
         margin: auto;
         margin-top: 200px;
@@ -157,25 +165,12 @@ export default {
         border-radius: 15px ;
     }
     .bbutton{
-        background-color: #0069e0; 
-        border-radius: 8px;
-        color: white;
-        padding: 10px 24px;
-        text-align: center;
-        text-decoration: none;
-        margin-left: -300px;
+        margin-left: -420px;
         margin-top: -300px;
+        margin-bottom: 40px;
         display: inline-block;
         font-size: 14px;
-        width: 100px;
-    }
-
-    .bbutton:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        background-color: #25deff; /* Green */
-        color: rgb(25, 27, 44);
-        transition-duration: 0.4s;
-        cursor: pointer;
+        height: 40px;
     }
 
     /* to copy */
@@ -189,25 +184,6 @@ export default {
         color: rgb(68, 68, 68);
         text-align: center;
     } 
-    .emailbutton {
-        background-color: #0069e0; 
-        border-radius: 8px;
-        color: white;
-        padding: 10px 24px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        width: 120px;
-    }
-
-    .emailbutton:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        background-color: #25deff; /* Green */
-        color: rgb(25, 27, 44);
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
 
     /* email input  */
     .loginforminput{
@@ -220,25 +196,5 @@ export default {
     }
     #loginforminputbox{
         width: 100%;
-    }
-    .passwordbutton {
-        background-color: #0069e0; 
-        border-radius: 8px;
-        color: white;
-        padding: 10px 24px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-        width: 160px;
-        margin: 0px 14px;
-    }
-
-    .passwordbutton:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        background-color: #25deff; 
-        color: rgb(25, 27, 44);
-        transition-duration: 0.4s;
-        cursor: pointer;
     }
 </style>

@@ -8,10 +8,8 @@
         <p>Plan their schedule</p>
         <div class='hero-btns'>
         <a href="/login" class='hero-start'>
-            <button class='btns'>
-              GET STARTED
-            </button>
-          </a>
+          <v-button id="start-btn">GET STARTED</v-button>
+        </a>
         </div>
       </div>
       <br/>
@@ -56,6 +54,7 @@
 import Card from './Card.vue';
 import Footer from './Footer.vue';
 import Schedule from './FunctionSchedule.vue';
+import Button from '../Button/Button.vue'
 
 export default {
   name: "LandingCard",
@@ -63,6 +62,7 @@ export default {
     Card,
     Footer,
     Schedule,
+    'v-button': Button
   }
 }
 </script>
@@ -108,24 +108,12 @@ export default {
   margin-top: 32px;
 }
 
- .btns {
-  margin: 6px;
-  border-radius: 8px;
-  transition-duration: 0.4s;
-  color:white;
-  background-color: #0069e0;
+#start-btn {
   font-size: 24px;
+  font-weight: bold;
   height: 60px;
-  width: 240px;
-  padding: 10px 24px;;
-  cursor: pointer;
 }
 
-.btns:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  background-color: #25deff; /* Green */
-  color: rgb(25, 27, 44);
-}
 
 .fa-play-circle {
   margin-left: 4px;
