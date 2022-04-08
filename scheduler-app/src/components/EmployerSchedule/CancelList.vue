@@ -27,10 +27,9 @@
 			<!-- 4th column -->
 			<td class="action">
 				<div v-if="status === 'Pending'">
-					<button class="btn" id="decline" @click="changeState(id, employee, shift, 'Declined')">Decline</button>
-					<button class="btn" id="approve" @click="changeState(id, employee, shift, 'Approved')">Approve</button>
+					<v-button id="decline" @click="changeState(id, employee, shift, 'Declined')">Decline</v-button>
+					<v-button id="approve" @click="changeState(id, employee, shift, 'Approved')">Approve</v-button>
 				</div>
-
 				<p v-else> {{ status }} </p>
 			</td>
 
@@ -42,6 +41,7 @@
 </template>
 
 <script>
+import Button from '../Button/Button.vue'
 import firebase from 'firebase'
 import { ref, onUnmounted } from 'vue'
 
@@ -67,6 +67,9 @@ export default {
 			cancellations,
 		} 
 
+	},
+	components: {
+		'v-button': Button
 	},
 	methods: {
 		changeState(id, employee, shift, newState) {
@@ -135,28 +138,29 @@ table,th,td {
 th {
 	color: white;
 	padding: 10px;
-	background-color: #2c3e50;
+	background-color:#5d5c5c;
 }
 
 tr {
-	background-color: aliceblue;	
-}
-
-.btn {
-	width: 75px;
-	margin: 5px;
-	padding: 5px;
-	color: white;
-	font-weight: bold;
-	border-radius: 3px;
+	background-color:rgb(246, 246, 246);	
 }
 
 #approve {
 	background-color: rgb(94, 207, 94);
+	width: 75px;
+	margin: 5px;
+	padding: 5px;
+	height: 35px;
+	font-size: 15px;
 }
 
 #decline {
 	background-color: rgb(221, 98, 98);
+	width: 75px;
+	margin: 5px;
+	padding: 5px;
+	height: 35px;
+	font-size: 15px;
 }
 
 </style>

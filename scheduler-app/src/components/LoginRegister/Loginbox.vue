@@ -167,7 +167,6 @@ export default {
     .bbutton{
         margin-left: -420px;
         margin-top: -300px;
-        margin-bottom: 40px;
         display: inline-block;
         font-size: 14px;
         height: 40px;

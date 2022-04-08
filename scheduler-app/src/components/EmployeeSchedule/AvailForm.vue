@@ -211,11 +211,10 @@ h2 {
 .add-button {
 	margin-top: 20px;
 	margin-bottom: 30px;
-	margin-left: 170px;
 }
 
 .modal-overlay {
- position: absolute;
+ position: fixed;
  top: 0;
  left: 0;
  right: 0;

@@ -1,4 +1,5 @@
 <template>
+<br>
 <div class="AddEmployeeForm">
     <h1> Add Employee </h1>
        <label for="name"> Name: </label>
@@ -33,7 +34,7 @@
       <v-flex  md6 offset-sm3 >
        <div>
          <div >
-           <v-btn @click="click1">Click here to upload Profile Picture</v-btn>
+           <v-button id="profilepic" @click="click1">Click here to upload Profile Picture</v-button>
            <input type="file" ref="input1"
             style="display: none" height="500px" width="200px"
             @change="previewImage" accept="image/*" >                
@@ -50,14 +51,16 @@
 
 
         
-    <p><button type="submit" id="regbutton" @click="addEmployee()">Register Employee</button></p>
+    <p><v-button type="submit" id="regbutton" @click="addEmployee()">Register Employee</v-button></p>
 
 </div>
+<br><br>
 </template>
 
 <script>
 import firebase from 'firebase'
 import { useRouter } from 'vue-router' // import router
+import Button from '../Button/Button.vue'
 
 const db = firebase.firestore()
 const auth = firebase.auth()
@@ -86,6 +89,9 @@ export default {
                 this.user = user;
             }
         })
+    },
+    components: {
+        'v-button': Button
     },
     methods: {
         async addEmployee() {
@@ -167,28 +173,9 @@ export default {
         font-size: 16px;
     }
 
-    #regbutton{
-        background-color: #0069e0; 
-        border-radius: 30px;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 24px;
-    }
-
-    #regbutton:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #25deff; /* Green */
-    color: rgb(25, 27, 44);
-    transition-duration: 0.4s;
-    cursor: pointer;
-    }
-
     .AddEmployeeForm{
         text-align: center;
-        font-size: 24px;
+        font-size: 20px;
         width: 382px;  
         overflow: hidden;  
         margin: auto;   
@@ -203,5 +190,11 @@ export default {
 			text-align: right;
 			margin-right: 5px;	
 		}
+    
+    #profilepic {
+        background: white;
+        color: black;
+        border:1px grey solid;
+    }
 
 </style>>
