@@ -1,5 +1,5 @@
 <template>
-  <FullCalendar :options="calendarOptions" style="width:100%;" />
+  <FullCalendar :options="calendarOptions" />
   <div class="cancelshiftform">
 
     <div class="modal-overlay" v-if="showModal" @@event-click="toggleModal()"></div>
