@@ -53,6 +53,7 @@ export default {
       });
     },
     methods: {
+      //Fetching all availabilities data into the schedule frame
       async getEvents() {
         const confirmedScheduleDoc = await db.collection("permissions").doc("confirm schedule").get();
         const confirmedSchedule = confirmedScheduleDoc.data().confirmed;
