@@ -3,7 +3,7 @@
         <div className='footer-links'>
             <div className="footer-link-wrapper">
                 <div className="footer-link-items">
-                    <img src="@/assets/scheduler_logo2.png" alt="logo"/>
+                    <img src="@/assets/scheduler_logo2.png" alt="logo" id="footer_logo"/>
                 </div>
                 <div className="footer-link-items">
                     <h2>Created by</h2>
@@ -123,8 +123,8 @@ export default {
     margin-bottom: 0.5rem;
   }
 
-  .img {
-    width: 30px;
+  #footer_logo {
+    width: 45%;
   }
 
 </style>
