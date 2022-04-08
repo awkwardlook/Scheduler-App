@@ -156,6 +156,9 @@ export default {
   border-right: none !important;
 }
 
+#calendar .fc .fc-scroller-harness {
+  overflow: visible;
+}
 
 h2 {
 	text-align: center;

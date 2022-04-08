@@ -124,4 +124,9 @@ export default {
 #calendar .fc-scrollgrid td:last-of-type {
   border-right: none !important;
 }
+
+#calendar .fc .fc-scroller-harness {
+  overflow: visible;
+}
+
 </style>
