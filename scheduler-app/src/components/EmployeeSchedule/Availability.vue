@@ -69,7 +69,7 @@ export default {
                   'start': avail.start,
                   'end': avail.end,
                   'title': (avail.approvedEmp),
-                  'color': '#7FFF00'
+                  'color': '#5ECF5E'
                 }
               // grey if declined or ignored
               } else {
@@ -87,7 +87,7 @@ export default {
                   'start': avail.start,
                   'end': avail.end,
                   'title': (avail.approvedEmp),
-                  'color': '#7FFF00'
+                  'color': '#5ECF5E'
                 }
               // yellow if 1 person is pending
               } else if (Object.keys(avail.states).length == 1) {
@@ -95,7 +95,7 @@ export default {
                   'start': avail.start,
                   'end': avail.end,
                   'title': (Object.keys(avail.states)).toString().replace(/,/g, '\n'),
-                  'color': 	'#ffd700'
+                  'color': 	'#ffd000'
                 }
               // red if more than 1 person is pending
               } else {
@@ -103,7 +103,7 @@ export default {
                   'start': avail.start,
                   'end': avail.end,
                   'title': (Object.keys(avail.states)).toString().replace(/,/g, '\n'),
-                  'color': '#FF0000'
+                  'color': '#dd6262'
                 }
               }
             }

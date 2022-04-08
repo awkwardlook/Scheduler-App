@@ -167,6 +167,16 @@ h2 {
 	text-align: center;
 }
 
+.modal-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ z-index: 98;
+ background-color: rgba(0, 0, 0, 0.3);
+}
+
 .modal {
  position: fixed;
  top: 50%;
