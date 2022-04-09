@@ -115,12 +115,13 @@ export default {
         });
       },
 
+      //Get the next week to be shown in the timetable/calendar
       getSelectedWeek() {
         let calendarApi = this.$refs.cc.getApi();
         var currentDate = calendarApi.getDate()
-        // Generate a new date for manipulating in the next step
-        var  nextWeekDate= new Date(currentDate.valueOf());
-        // Adjust the start & end dates, respectively
+        // Generate a new date from current date for manipulating in the next step
+        var nextWeekDate= new Date(currentDate.valueOf());
+        // Adjust the date for next week from today
         nextWeekDate.setDate(nextWeekDate.getDate() + 7);
         console.log(nextWeekDate);
         calendarApi.gotoDate(nextWeekDate);

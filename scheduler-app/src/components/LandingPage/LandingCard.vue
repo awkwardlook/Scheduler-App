@@ -7,6 +7,7 @@
       <p>Plan your schedule</p>
       <p>Plan their schedule</p>
       <div class='hero-btns'>
+      <!-- Button to get redirected to login page -->
       <a href="/login" class='hero-start'>
         <v-button id="start-btn">GET STARTED</v-button>
       </a>
@@ -14,6 +15,7 @@
     </div>
     <br/>
     <div>
+      <!-- Clients Logos -->
       <h1 style="color:black"> Our Clients</h1>
       <div class="row">
         <div class="column">
@@ -34,6 +36,7 @@
       </div>
       <br/>
       <div class="container">
+        <!-- Scheduler Introduction -->
         <div class="text">
         <h1>What is Scheduler?</h1>
         <p>We are a platform for you to plan the schedule for your employees and for your clients for meetings, 
@@ -43,8 +46,11 @@
           <img src="/img/gg.gif" style="width:70%">
       </div>
     </div>
+    <!-- Scheduler's Benefits Card -->
     <Card/>    
-    <Schedule/>
+    <!-- Schedule Function Part -->
+    <Function/>
+    <!-- Footer -->
     <Footer/>
   </div>
 </template>
@@ -53,7 +59,7 @@
 <script>
 import Card from './Card.vue';
 import Footer from './Footer.vue';
-import Schedule from './FunctionSchedule.vue';
+import Function from './FunctionSchedule.vue';
 import Button from '../Button/Button.vue'
 
 export default {
@@ -61,7 +67,7 @@ export default {
   components: {
     Card,
     Footer,
-    Schedule,
+    Function,
     'v-button': Button
   }
 }

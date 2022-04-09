@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container" style="background-color:#fff">
+    <div class="main-container" style="background-color: #fff">
         <div class="function-container">
             <div class="text">
             <h2>Schedule</h2>
