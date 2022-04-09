@@ -1,4 +1,5 @@
 <template>
+<!-- Table component to display all indicated availability by employees -->
 <table class="table">
 	<thead>
 		<tr>

@@ -1,6 +1,7 @@
 <template>
-  <FullCalendar :options="calendarOptions" />
-  <div class="cancelshiftform">
+<!-- Component to display employee's individual timesheet -->
+<FullCalendar :options="calendarOptions" />
+<div class="cancelshiftform">
 
     <div class="modal-overlay" v-if="showModal" @@event-click="toggleModal()"></div>
   
