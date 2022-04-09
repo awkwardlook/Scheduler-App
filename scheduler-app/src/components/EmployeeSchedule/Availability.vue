@@ -1,5 +1,5 @@
 <template>
-    <FullCalendar :options="calendarOptions" />
+    <FullCalendar ref='cc' :options="calendarOptions" />
 </template>
 
 <script>
@@ -41,7 +41,7 @@ export default {
             hour12: false
           },
         },
-        user: false
+        user: false,
       }
     },
 
@@ -50,6 +50,7 @@ export default {
         if (user) {
           this.user = user; 
           this.getEvents();
+          this.getSelectedWeek();
         }
       });
     },
@@ -112,7 +113,18 @@ export default {
             this.calendarOptions.events.push(availability);
           });
         });
-      }
+      },
+
+      getSelectedWeek() {
+        let calendarApi = this.$refs.cc.getApi();
+        var currentDate = calendarApi.getDate()
+        // Generate a new date for manipulating in the next step
+        var  nextWeekDate= new Date(currentDate.valueOf());
+        // Adjust the start & end dates, respectively
+        nextWeekDate.setDate(nextWeekDate.getDate() + 7);
+        console.log(nextWeekDate);
+        calendarApi.gotoDate(nextWeekDate);
+      },
     }
 }
 </script>
