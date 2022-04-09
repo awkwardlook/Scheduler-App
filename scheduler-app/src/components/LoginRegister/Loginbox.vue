@@ -36,9 +36,6 @@
                     <!-- either login as employer or employee -->
                     <v-button type="button" @click="loginEmployer()">Login As Employer</v-button>
                     <v-button type="button" @click="loginEmployee()">Login As Employee</v-button>
-                    
-                    <!-- <button class = "passwordbutton" type="button" @click="loginEmployer()">Login As Employer</button> -->
-                    <!-- <button class = "passwordbutton" type="button" @click="loginEmployee()">Login As Employee</button> -->
                 </div>
             </div>
         </form>

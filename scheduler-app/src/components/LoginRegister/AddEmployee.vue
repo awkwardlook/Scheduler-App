@@ -1,4 +1,5 @@
 <template>
+<!-- Form component for employer to add employees -->
 <br>
 <div class="AddEmployeeForm">
     <h1> Add Employee </h1>

@@ -1,5 +1,5 @@
 <template>
-    <div class = "allEm">
+    <div>
         <h1 id="header">All Employees </h1>
         <br>
             <table id = "table" class = "auto=index">
@@ -12,10 +12,8 @@
                         <th>Delete</th>
                     </tr>
                 </table>
-        <br><br><br><br>
+        <br>
     </div>
-
-    <br>
 </template>
 
 <script>
@@ -118,21 +116,9 @@ export default {
     margin-left: -50px;
 }
 
-.allEm {
-    text-align: center;
-    font-size: 24px;
-    width: 900px;  
-    overflow: hidden;  
-    margin: auto;
-    /* top right bottom left */
-    padding: 40px;  
-    background: #ffffff;  
-    border-radius: 15px ;
-    margin-bottom: -300px;
-}
 
 table {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border-collapse: collapse;
     width: 55%;
     margin: auto;

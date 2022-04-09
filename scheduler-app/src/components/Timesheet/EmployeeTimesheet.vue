@@ -1,6 +1,7 @@
 <template>
-  <FullCalendar :options="calendarOptions" style="width:100%;" />
-  <div class="cancelshiftform">
+<!-- Component to display employee's individual timesheet -->
+<FullCalendar :options="calendarOptions" />
+<div class="cancelshiftform">
 
     <div class="modal-overlay" v-if="showModal" @@event-click="toggleModal()"></div>
   
@@ -75,7 +76,7 @@ export default {
       user: false,
       showModal: false,
       calendarEvent: {'id':'', 'day':'','start':'', 'end': ''},
-      remarks:''
+      remarks:'',
     }
   },
 
@@ -100,7 +101,7 @@ export default {
           if (shifts.employee_username == username) {
             let emp_shift = {
                 'id': doc.id,
-                'title': '',
+                'title': shifts.cancellationStatus,
                 'start': shifts.start,
                 'end': shifts.end,
             }
@@ -115,28 +116,51 @@ export default {
     toggleModal() {
       this.showModal = !this.showModal;
     },
-    submit() {
+    async submit() {
+      const shifts = db.collection('shifts')
+      const selectedShift = await shifts.doc(this.calendarEvent['id']).get()
+      const currentStatus = selectedShift.data().cancellationStatus
+      console.log(currentStatus)
 
-      const cancellations = db.collection('cancellations')
-      const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+      if (this.remarks != '') {     
+        if (currentStatus == '') {
+          if (confirm("Submit shift cancellation request?\nThis action cannot be undone.")) {
+          
+            const cancellations = db.collection('cancellations')
+
+            const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
       
-      cancellations.doc(this.calendarEvent['id']).set({
-        employee: this.employee,
-        remarks: this.remarks,
-        shift: shift,
-        status: 'Pending'
-      })
+            cancellations.doc(this.calendarEvent['id']).set({
+              employee: this.employee,
+              remarks: this.remarks,
+              shift: shift,
+              status: 'Pending'
+            })
+
+            shifts.doc(this.calendarEvent['id']).update({
+              cancellationStatus: 'Pending Cancellation'
+            })
+
+            .then((doc) => {
+              this.showModal = false
+              this.remarks = ''
+              console.log("Successfully added document ", doc)
+            })
       
-      .then((doc) => {
-        console.log("Successfully added document ", doc)
-        this.showModal = false
-        this.remarks = ''
-      })
-      
-      .catch((e) => {
-        console.log("Error added document: ", e)
-      })
+            .catch((e) => {
+              console.log("Error added document: ", e)
+            })
+          }
+        } else {
+          alert("You have already requested to cancel this shift previously.")
+          this.showModal = false
+          this.remarks = ''
+        }
+      } else {
+        alert("Please indicate your reason for shift cancellation.")
+      }  
     }
+    
   }
 }
 </script>
@@ -145,6 +169,14 @@ export default {
 .fc .fc-timegrid-col.fc-day-today 
 {
   background-color:inherit !important;
+}
+
+.fc .fc-button-primary {
+  background-color: #5d5c5c;
+}
+
+.fc .fc-button-primary:disabled {
+  background-color: #5d5c5c;
 }
 
 #calendar  .fc-scrollgrid {

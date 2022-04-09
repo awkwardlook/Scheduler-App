@@ -1,5 +1,4 @@
 <template>
-	<!-- /addemployee to reach this page -->
 	<EmployerHeader/>
 	<br><br>
 	<AddEmployeeForm/>

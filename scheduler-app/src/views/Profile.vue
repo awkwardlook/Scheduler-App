@@ -1,4 +1,5 @@
 <template>
+    <!-- Conditional rendering of profile page depending on user type -->
     <div v-if = "usertype == 'employee'">
         <EmployeeProf/>
     </div>

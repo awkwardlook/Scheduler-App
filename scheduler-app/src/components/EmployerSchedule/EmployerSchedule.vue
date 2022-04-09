@@ -2,7 +2,6 @@
 <div v-if = "user">
     <EmployerHeader/>
     <br><br>
-    <br>
     <div class="tbl">
         <div>
             <h1>Main Schedule</h1>
