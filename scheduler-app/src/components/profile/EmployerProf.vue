@@ -6,8 +6,10 @@
 		<Deets/>
 	</div>
 	<br><br>
-	<AllEmployees/>
-
+	<div class="allemployees">
+		<AllEmployees/>
+	</div>
+	<br><br>
 </template>
 
 <script>
@@ -30,13 +32,24 @@ export default {
 .deets{
         text-align: center;
         font-size: 24px;
-        width: 1000px;  
+        width: 1000px; 
+	height: 100%; 
         overflow: hidden;  
         margin: auto;
-		/* top right bottom left */
+	/* top right bottom left */
         padding: 80px;  
         background: #ffffff;  
         border-radius: 15px ;
-		/* can we make more away from the bottom */
     }
+
+.allemployees {
+	text-align: center;
+        font-size: 24px;
+        width: 1000px;  
+        margin: auto;
+	/* top right bottom left */
+        padding: 80px;  
+        background: #ffffff;  
+        border-radius: 15px ;	
+}
 </style>
