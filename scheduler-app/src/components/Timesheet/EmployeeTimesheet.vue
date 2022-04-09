@@ -1,10 +1,10 @@
 <template>
-  <FullCalendar :options="calendarOptions" />
+  <FullCalendar :options="calendarOptions" style="width:100%;" />
   <div class="cancelshiftform">
 
     <div class="modal-overlay" v-if="showModal" @@event-click="toggleModal()"></div>
   
-    <!-- Content of popup cancel shift form below-->
+      <!-- Content of popup cancel shift form below-->
     <div class="modal" v-if="showModal">
       
       <h3>Request Shift Cancellation</h3>
@@ -13,17 +13,16 @@
       <br>
       
       <label for="cancelremarks" id="remarks"> Remarks: </label>
-      <input type = "text" id = "remarksbox" required placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
+      <input type = "text" id = "remarksbox" required="" placeholder="Enter reason for shift cancellation" v-model="remarks" /> 
       
       <br><br>
-      <v-button @click="toggleModal()">Back</v-button>
-      <v-button @click="submit()">Submit</v-button>
+      <button class="button" @click="toggleModal()">Back</button>
+      <button class="button" @click="submit()">Submit</button>
     </div>
 	</div>
 </template>
 
 <script>
-import Button from '../Button/Button.vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -36,14 +35,12 @@ const shift = db.collection("shifts")
 
 export default {
     components: {
-      FullCalendar, // make the <FullCalendar> tag available
-      'v-button': Button
+      FullCalendar // make the <FullCalendar> tag available
   },
 
   data() {
     return {
       calendarOptions: {
-        default: 'standard',
         plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
         initialView: 'timeGridWeek',
         height: "auto",
@@ -57,7 +54,7 @@ export default {
         slotMaxTime: "21:00:00",
         slotMinTime: "09:00:00",
         events: [],
-        
+        firstDay: 1,
         eventTimeFormat: {
           hour:'2-digit',
           minute:'2-digit',
@@ -119,30 +116,26 @@ export default {
       this.showModal = !this.showModal;
     },
     submit() {
-      if (this.remarks != '') {
-        const cancellations = db.collection('cancellations')
-        const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+
+      const cancellations = db.collection('cancellations')
+      const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
       
-        cancellations.doc(this.calendarEvent['id']).set({
-          employee: this.employee,
-          remarks: this.remarks,
-          shift: shift,
-          status: 'Pending'
-        })
+      cancellations.doc(this.calendarEvent['id']).set({
+        employee: this.employee,
+        remarks: this.remarks,
+        shift: shift,
+        status: 'Pending'
+      })
       
-        .then((doc) => {
-          console.log("Successfully added document ", doc)
-          this.showModal = false
-          this.remarks = ''
-        })
+      .then((doc) => {
+        console.log("Successfully added document ", doc)
+        this.showModal = false
+        this.remarks = ''
+      })
       
-        .catch((e) => {
-          console.log("Error added document: ", e)
-        })
-      
-      } else {
-        alert("Please indicate your reason for shift cancellation.")
-      }
+      .catch((e) => {
+        console.log("Error added document: ", e)
+      })
     }
   }
 }
@@ -162,16 +155,35 @@ export default {
   border-right: none !important;
 }
 
-#calendar .fc .fc-scroller-harness {
-  overflow: visible;
-}
 
 h2 {
 	text-align: center;
 }
 
+.button {
+ appearance: none;
+ outline: none;
+ border: none;
+ background: none;
+ 
+ display: inline-block;
+ padding: 15px 25px;
+ background-image: linear-gradient(to right, steelblue, lightblue);
+ border-radius: 8px;
+ margin: 10px;
+ color: #FFF;
+ font-size: 15px;
+ font-weight: bold;
+}
+
+.smallbutton {
+	padding: 3px 5px;
+	margin: 2px;
+	font-size: small;
+}
+
 .modal-overlay {
- position: fixed;
+ position: absolute;
  top: 0;
  left: 0;
  right: 0;

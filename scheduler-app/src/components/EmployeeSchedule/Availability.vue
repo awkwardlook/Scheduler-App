@@ -34,7 +34,7 @@ export default {
           slotMaxTime: "21:00:00",
           slotMinTime: "09:00:00",
           events: [],
-
+          firstDay:1,
           eventTimeFormat: {
             hour:'2-digit',
             minute:'2-digit',
@@ -44,6 +44,7 @@ export default {
         user: false
       }
     },
+
     mounted() {
       auth.onAuthStateChanged((user) => {
         if (user) {
