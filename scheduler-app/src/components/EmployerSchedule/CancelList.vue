@@ -75,15 +75,18 @@ export default {
 		changeState(id, employee, shift, newState) {
 			
 			const cancellations = db.collection("cancellations")
-			
-
+			const shifts = db.collection("shifts")
 				
 				if (newState == 'Declined') {
 					if (confirm("Decline the following shift cancellation request?\n" + "\nEmployee: "+ employee + "\nShift: " + shift + 
 					"\n\nThis action cannot be undone.")) {
 					
-						return cancellations.doc(id).update({
+						cancellations.doc(id).update({
 							status: newState
+						})
+
+						shifts.doc(id).update({
+							cancellationStatus: 'Cancellation Declined'
 						})
 					}
 
@@ -101,7 +104,7 @@ export default {
 							console.error("Error deleting document: ", error);
 						});
 							
-						return cancellations.doc(id).update({
+						cancellations.doc(id).update({
 							status: newState
 						})	
 						

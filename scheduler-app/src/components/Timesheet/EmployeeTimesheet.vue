@@ -119,43 +119,50 @@ export default {
     toggleModal() {
       this.showModal = !this.showModal;
     },
-    submit() {
-      if (this.remarks != '') {
-        
-       
+    async submit() {
+      const shifts = db.collection('shifts')
+      const selectedShift = await shifts.doc(this.calendarEvent['id']).get()
+      const currentStatus = selectedShift.data().cancellationStatus
+      console.log(currentStatus)
 
-        if (confirm("Submit shift cancellation request?\nThis action cannot be undone.")) {
+      if (this.remarks != '') {     
+        if (currentStatus == '') {
+          if (confirm("Submit shift cancellation request?\nThis action cannot be undone.")) {
           
-          const cancellations = db.collection('cancellations')
-          const shifts = db.collection('shifts')
-          const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
-      
-          cancellations.doc(this.calendarEvent['id']).set({
-            employee: this.employee,
-            remarks: this.remarks,
-            shift: shift,
-            status: 'Pending'
-          })
+            const cancellations = db.collection('cancellations')
 
-          shifts.doc(this.calendarEvent['id']).update({
-            cancellationStatus: 'Pending Cancellation'
-          })
+            const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+      
+            cancellations.doc(this.calendarEvent['id']).set({
+              employee: this.employee,
+              remarks: this.remarks,
+              shift: shift,
+              status: 'Pending'
+            })
 
+            shifts.doc(this.calendarEvent['id']).update({
+              cancellationStatus: 'Pending Cancellation'
+            })
+
+            .then((doc) => {
+              this.showModal = false
+              this.remarks = ''
+              console.log("Successfully added document ", doc)
+            })
       
-          .then((doc) => {
-            this.showModal = false
-            this.remarks = ''
-            console.log("Successfully added document ", doc)
-          })
-      
-          .catch((e) => {
-            console.log("Error added document: ", e)
-          })
+            .catch((e) => {
+              console.log("Error added document: ", e)
+            })
+          }
+        } else {
+          alert("You have already requested to cancel this shift previously.")
+          this.showModal = false
+          this.remarks = ''
         }
       } else {
         alert("Please indicate your reason for shift cancellation.")
-      }
-      }
+      }  
+    }
     
   }
 }
