@@ -109,6 +109,7 @@ export default {
 								employee_username: e,
 								start: docSnapshot.data().start,
 								end: docSnapshot.data().end,
+								cancellationStatus: ''
 							})
 							.then((docRef) => {
 								console.log("Successfully added document", docRef);
@@ -168,7 +169,6 @@ th,td {
 th {
 	color: white;
 	padding: 10px;
-	background-color: #2c3e50;
 }
 
 tr {

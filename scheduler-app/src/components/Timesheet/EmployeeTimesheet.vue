@@ -79,7 +79,7 @@ export default {
       user: false,
       showModal: false,
       calendarEvent: {'id':'', 'day':'','start':'', 'end': ''},
-      remarks:''
+      remarks:'',
     }
   },
 
@@ -104,7 +104,7 @@ export default {
           if (shifts.employee_username == username) {
             let emp_shift = {
                 'id': doc.id,
-                'title': '',
+                'title': shifts.cancellationStatus,
                 'start': shifts.start,
                 'end': shifts.end,
             }
@@ -121,30 +121,42 @@ export default {
     },
     submit() {
       if (this.remarks != '') {
-        const cancellations = db.collection('cancellations')
-        const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
+        
+       
+
+        if (confirm("Submit shift cancellation request?\nThis action cannot be undone.")) {
+          
+          const cancellations = db.collection('cancellations')
+          const shifts = db.collection('shifts')
+          const shift = this.calendarEvent['day'] + ' '+ this.calendarEvent['start'] + ' - ' + this.calendarEvent['end']
       
-        cancellations.doc(this.calendarEvent['id']).set({
-          employee: this.employee,
-          remarks: this.remarks,
-          shift: shift,
-          status: 'Pending'
-        })
+          cancellations.doc(this.calendarEvent['id']).set({
+            employee: this.employee,
+            remarks: this.remarks,
+            shift: shift,
+            status: 'Pending'
+          })
+
+          shifts.doc(this.calendarEvent['id']).update({
+            cancellationStatus: 'Pending Cancellation'
+          })
+
       
-        .then((doc) => {
-          console.log("Successfully added document ", doc)
-          this.showModal = false
-          this.remarks = ''
-        })
+          .then((doc) => {
+            this.showModal = false
+            this.remarks = ''
+            console.log("Successfully added document ", doc)
+          })
       
-        .catch((e) => {
-          console.log("Error added document: ", e)
-        })
-      
+          .catch((e) => {
+            console.log("Error added document: ", e)
+          })
+        }
       } else {
         alert("Please indicate your reason for shift cancellation.")
       }
-    }
+      }
+    
   }
 }
 </script>
@@ -153,6 +165,14 @@ export default {
 .fc .fc-timegrid-col.fc-day-today 
 {
   background-color:inherit !important;
+}
+
+.fc .fc-button-primary {
+  background-color: #5d5c5c;
+}
+
+.fc .fc-button-primary:disabled {
+  background-color: #5d5c5c;
 }
 
 #calendar  .fc-scrollgrid {
