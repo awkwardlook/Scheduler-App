@@ -22,7 +22,7 @@
           <img src="/img/GS.png" alt="Godlman Sachs" style="width:50%"> 
         </div>
         <div class="column">
-          <img src="/img/google.png" alt="Google" style="width:50%" id="google"> 
+          <img src="/img/Google.png" alt="Google" style="width:50%" id="google"> 
         </div>
         <div class="column">
           <img src="/img/grubhub.png" alt="Grubhub" style="width:50%"> 
@@ -39,8 +39,7 @@
         <!-- Scheduler Introduction -->
         <div class="text">
         <h1>What is Scheduler?</h1>
-        <p>We are a platform for you to plan the schedule for your employees and for your clients for meetings, 
-          work and timetables.</p>
+        <p>We are a platform for you to plan the schedule for your employees.</p>
         </div>
         <div class="functionImage">
           <img src="/img/gg.gif" style="width:70%">

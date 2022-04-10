@@ -8,8 +8,8 @@
                 <div className="footer-link-items">
                     <h2>Created by</h2>
                     <p>Vanessa</p>
-                    <p>Zhen Hong</p>
-                    <p>Zhi Qian</p>
+                    <p>Zheng Hong</p>
+                    <p>Zhiqian</p>
                     <p>Jia Shang</p>
                     <p>Edward</p>
                 </div>
