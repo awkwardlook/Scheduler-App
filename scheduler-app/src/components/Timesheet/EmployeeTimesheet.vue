@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       calendarOptions: {
+        default: "standard",
         plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
         initialView: 'timeGridWeek',
         height: "auto",
@@ -197,7 +198,6 @@ h2 {
  outline: none;
  border: none;
  background: none;
- 
  display: inline-block;
  padding: 15px 25px;
  background-image: linear-gradient(to right, steelblue, lightblue);
